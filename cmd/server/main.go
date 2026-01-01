@@ -54,8 +54,14 @@ func main() {
 	app.Get("/taranote", handlers.TaraNoteBrowser)  // 3-Column Browser
 
 	// Auth Routes
+	// Auth Routes
 	app.Get("/login", handlers.ShowLogin)
 	app.Post("/login", handlers.Login)
+	app.Post("/logout", handlers.Logout)
+
+	// Docs Routes
+	app.Get("/docs", handlers.DocsView)
+	app.Get("/docs/:path", handlers.DocsView)
 	app.Post("/logout", handlers.Logout)
 
 	// Protected Routes
