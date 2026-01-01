@@ -1,6 +1,6 @@
 # TaraNote Documentation Index
 
-Welcome to the comprehensive documentation for **TaraNote** (Beta 0.9.80).
+Welcome to the comprehensive documentation for **TaraNote** (Release v1.0.0).
 This index serves as the central hub for all technical, design, and project documentation.
 
 ## Getting Started
