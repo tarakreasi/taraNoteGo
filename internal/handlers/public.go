@@ -97,7 +97,7 @@ func TaraNoteBrowser(c *fiber.Ctx) error {
 	// Fetch notebooks with note counts
 	var notebooks []models.Notebook
 	database.DB.Select("notebooks.*, count(notes.id) as notes_count").
-		Joins("LEFT JOIN notes ON notes.notebook_id = notebooks.id AND notes.deleted_at IS NULL").
+		Joins("LEFT JOIN notes ON notes.notebook_id = notebooks.id AND notes.deleted_at IS NULL AND notes.status = 'PUBLISHED'").
 		Group("notebooks.id").
 		Find(&notebooks)
 
