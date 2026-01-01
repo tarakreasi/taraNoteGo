@@ -1,79 +1,132 @@
-# TaraNote Go 🚀
+# TaraNote Go
 
-**TaraNote Go** is a high-performance port of the TaraNote application, rewritten in **Go (Golang)** using the **Fiber** web framework and **GORM**. It retains the original **Vue 3** + **Inertia.js** frontend, providing a seamless modern user experience with a blazing fast backend.
+**Current Version**: v1.0.0  
+**Project Status**: Migration Complete
 
-## 🛠 Tech Stack
+---
 
-- **Backend**: Go 1.23+, Fiber v2 (Web Framework), GORM (ORM), SQLite (Database).
-- **Frontend**: Vue 3, Inertia.js, TailwindCSS, Vite.
-- **Architecture**: Monolithic (Go serving Inertia assets).
+## 1. Project Overview
 
-## 🚀 Getting Started
+**TaraNote Go** is a high-performance port of the original Laravel-based `taraNote` application.
+
+- **Goal**: Provide a lightweight, fast, and binary-distributable note-taking application.
+- **State**: The backend has been fully rewritten in Go. The frontend (Vue 3 + Inertia) has been preserved and integrated successfully.
+
+---
+
+## 2. Technical Architecture
+
+| Component | Technology |
+| :--- | :--- |
+| **Language** | Go 1.23+ |
+| **Framework** | [Fiber v2](https://gofiber.io/) (Express-style) |
+| **Database** | SQLite (via GORM) |
+| **Frontend** | Vue 3 + Inertia.js (Monolithic) |
+| **Assets** | Vite v6 → `public/build` |
+| **Routing** | Defined in `cmd/server/main.go` |
+
+> **Note**: Production builds use `go-sqlite3` which requires CGO.
+
+The Go server renders a root HTML template (`views/app.html`) and passes initial state via JSON. No strict API separation; it behaves like a monolithic MVC app.
+
+---
+
+## 3. Completed Sprints (Migration Phase)
+
+| Sprint | Description |
+| :--- | :--- |
+| **Sprint 1** | Setup & Foundation (Fiber, GORM) |
+| **Sprint 2** | Frontend integration (Asset copying, Vite config) |
+| **Sprint 3** | Authentication (Sessions, Bcrypt, Middleware) |
+| **Sprint 4** | Notebooks Domain (CRUD) |
+| **Sprint 5** | Notes Domain (CRUD, Image Uploads) |
+| **Sprint 6** | Public Views (Home, Article, Browser) |
+| **Sprint 7** | Settings Domain (Key-Value Store) |
+| **Sprint 8** | Deployment Config (Docker, Makefile) |
+
+---
+
+## 4. Coding Standards
+
+When writing new code for this project, adhere to these rules:
+
+- **Handlers**: Place in `internal/handlers/`. Group by domain (e.g., `note.go`, `auth.go`).
+- **Models**: Place in `internal/models/`. Use GORM tags.
+- **Routes**: Register in `main.go`. Group protected routes under `api` or middleware blocks.
+- **Error Handling**: Return JSON for API/Inertia errors (`c.Status(500).JSON(...)`).
+- **Inertia**: Use `utils.CreateInertiaPage` to generate the correct JSON structure for the frontend.
+
+---
+
+## 5. Development Workflow
 
 ### Prerequisites
+- **Go**: v1.23 or higher
+- **Node.js**: v18+ (for building frontend assets)
+- **GCC**: Required for CGO (SQLite driver)
 
-- **Go**: v1.23 or higher.
-- **Node.js**: v18+ (for building frontend assets).
-- **GCC**: Required for CGO (SQLite driver).
+### Commands
 
-### Installation
+| Command | Description |
+| :--- | :--- |
+| `make run` | Starts server on port 3000 |
+| `make build` | Outputs binaries to `bin/` |
+| `make migrate` | Updates DB schema |
+| `npm run build` | Generates `manifest.json` for asset loading |
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/tarakreasi/taraNoteGo.git
-    cd taraNoteGo
-    ```
-
-2.  **Setup Environment**
-    Copy the example configuration:
-    ```bash
-    cp .env.example .env
-    ```
-
-3.  **Install Dependencies**
-    ```bash
-    # Backend
-    go mod download
-
-    # Frontend
-    npm install
-    ```
-
-4.  **Database Migration**
-    Initialize the SQLite database and tables:
-    ```bash
-    make migrate
-    # OR
-    go run cmd/migrate/main.go
-    ```
-
-### 🏃‍♂️ Running Locally
-
-1.  **Build Frontend** (Required for production, or run `npm run dev` for hot reload if configured):
-    ```bash
-    npm run build
-    ```
-
-2.  **Start Backend Server**:
-    ```bash
-    make run
-    # OR
-    go run cmd/server/main.go
-    ```
-    The server will start at `http://127.0.0.1:3000`.
-
-## 📦 Building for Production
-
-You can build optimized binaries using the `Makefile`:
+### Quick Start
 
 ```bash
-make build
-```
-This produces:
-- `bin/server`: Main application binary.
-- `bin/migrate`: Database migration utility.
+# 1. Clone & Setup
+git clone https://github.com/tarakreasi/taraNoteGo.git
+cd taraNoteGo
+cp .env.example .env
 
-## 🐳 Docker Deployment
+# 2. Install Dependencies
+go mod download
+npm install
+
+# 3. Migrate Database
+make migrate
+
+# 4. Build Frontend
+npm run build
+
+# 5. Run Server
+make run
+```
+
+---
+
+## 6. Known Issues / Roadmap
+
+- **Ziggy Routes**: The frontend originally used Laravel's `route()` helper (Ziggy). This is currently mocked/hardcoded. A future task is to implement a robust JS route generator for Go.
+- **Search**: The current search implementation in `PublicList` is a basic SQL `LIKE`. Consider full-text search (FTS5) for SQLite later.
+- **Tests**: Zero unit tests currently exist. Prioritize adding `_test.go` for handlers.
+
+---
+
+## 7. Directory Structure Reference
+
+```
+taraNote_go/
+├── cmd/
+│   ├── server/       # main.go entry point
+│   └── migrate/      # Database schema update utility
+├── internal/
+│   ├── config/       # Session, Environment configuration
+│   ├── database/     # SQLite connection logic
+│   ├── handlers/     # HTTP Controllers (Auth, Notes, etc.)
+│   ├── models/       # GORM Data Models (structs)
+│   └── utils/        # Inertia helper functions
+├── resources/        # Vue/JS frontend source
+├── public/           # Static assets & compiled build
+└── views/            # HTML templates (Inertia root)
+```
+
+---
+
+## 8. Docker Deployment
 
 A multi-stage `Dockerfile` is included for lightweight deployment (Alpine Linux).
 
@@ -85,24 +138,12 @@ docker build -t taranote-go .
 docker run -p 3000:3000 -v $(pwd)/database:/app/database taranote-go
 ```
 
-## 📂 Project Structure
+---
 
-```
-├── cmd/
-│   ├── server/       # Main web server entry point
-│   └── migrate/      # Database migration utility
-├── internal/
-│   ├── config/       # Configuration (Session, Env)
-│   ├── database/     # DB Connection logic
-│   ├── handlers/     # HTTP Controllers (Auth, Notes, etc.)
-│   ├── middleware/   # Fiber Middleware (Auth Guard)
-│   ├── models/       # GORM Data Models
-│   └── utils/        # Helpers (Inertia JSON generator)
-├── resources/        # Frontend source (Vue, CSS)
-├── public/           # Static assets & compiled build
-└── views/            # HTML Templates (Inertia root)
-```
-
-## 📝 License
+## 9. License
 
 This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+**Use `docs/sprint/prompt_ref.md` to prime your context before starting new tasks.**
