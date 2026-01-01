@@ -89,14 +89,31 @@ func (s *NoteService) UpdateNote(req UpdateNoteRequest) (*models.Note, error) {
 	return &note, nil
 }
 
-func (s *NoteService) ListNotes(userID uint, query string) ([]models.Note, error) {
+type NoteFilter struct {
+	Search     string
+	NotebookID *uint
+	Status     string
+}
+
+func (s *NoteService) ListNotes(userID uint, filter NoteFilter) ([]models.Note, error) {
 	var notes []models.Note
 	db := database.DB.Preload("Notebook").Where("user_id = ?", userID)
 
-	if query != "" {
-		searchTerm := "%" + query + "%"
+	if filter.Search != "" {
+		searchTerm := "%" + filter.Search + "%"
 		db = db.Where("title LIKE ? OR content LIKE ?", searchTerm, searchTerm)
 	}
+
+	if filter.NotebookID != nil {
+		db = db.Where("notebook_id = ?", *filter.NotebookID)
+	}
+
+	if filter.Status != "" {
+		db = db.Where("status = ?", filter.Status)
+	}
+
+	// Order by updated_at desc by default
+	db = db.Order("updated_at desc")
 
 	if err := db.Find(&notes).Error; err != nil {
 		return nil, err

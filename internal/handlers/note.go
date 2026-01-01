@@ -17,10 +17,27 @@ func ListNotes(c *fiber.Ctx) error {
 	sess, _ := config.Store.Get(c)
 	userID := sess.Get("user_id")
 
-	// Get search query
+	// Parse Query Params
 	query := c.Query("search")
+	status := c.Query("status")
+	notebookIDStr := c.Query("notebook_id")
 
-	notes, err := noteService.ListNotes(userID.(uint), query)
+	var notebookID *uint
+	if notebookIDStr != "" {
+		// Use fmt or strconv to parse
+		var id uint
+		if _, err := fmt.Sscan(notebookIDStr, &id); err == nil {
+			notebookID = &id
+		}
+	}
+
+	filter := services.NoteFilter{
+		Search:     query,
+		Status:     status,
+		NotebookID: notebookID,
+	}
+
+	notes, err := noteService.ListNotes(userID.(uint), filter)
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to fetch notes"})
 	}
