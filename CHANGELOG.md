@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - Sprint 2 (Core Architecture)
+### Added
+- Service Layer (`internal/services`).
+- Request Validation (`go-playground/validator`).
+
 ## [Unreleased] - Sprint 1 (Foundation)
 ### Added
 - Testing framework (`testify`) and helper utilities (`internal/testutils`).

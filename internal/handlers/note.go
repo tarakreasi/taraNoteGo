@@ -3,23 +3,22 @@ package handlers
 import (
 	"fmt"
 	"path/filepath"
-	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"github.com/tarakreasi/taraNote_go/internal/config"
-	"github.com/tarakreasi/taraNote_go/internal/database"
-	"github.com/tarakreasi/taraNote_go/internal/models"
+	"github.com/tarakreasi/taraNote_go/internal/services"
 )
 
-// ListNotes returns all notes (with search/pagination later)
+var noteService = services.NewNoteService()
+
+// ListNotes returns all notes
 func ListNotes(c *fiber.Ctx) error {
 	sess, _ := config.Store.Get(c)
 	userID := sess.Get("user_id")
 
-	var notes []models.Note
-	// GORM preload notebook
-	if err := database.DB.Preload("Notebook").Where("user_id = ?", userID).Find(&notes).Error; err != nil {
+	notes, err := noteService.ListNotes(userID.(uint))
+	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to fetch notes"})
 	}
 
@@ -31,27 +30,22 @@ func CreateNote(c *fiber.Ctx) error {
 	sess, _ := config.Store.Get(c)
 	userID := sess.Get("user_id").(uint)
 
-	type CreateRequest struct {
+	type Request struct {
 		Title string `json:"title"`
 	}
 
-	req := new(CreateRequest)
+	req := new(Request)
 	if err := c.BodyParser(req); err != nil {
 		return c.Status(400).JSON(fiber.Map{"error": "Bad Request"})
 	}
 
-	// Generate basic slug
-	slug := fmt.Sprintf("%s-%d", uuid.New().String(), time.Now().Unix())
-
-	note := models.Note{
+	note, err := noteService.CreateNote(services.CreateNoteRequest{
 		UserID: userID,
-		Title:  req.Title, // Or "Untitled"
-		Slug:   slug,
-		Status: "DRAFT",
-	}
+		Title:  req.Title,
+	})
 
-	if err := database.DB.Create(&note).Error; err != nil {
-		return c.Status(500).JSON(fiber.Map{"error": "Failed to create note"})
+	if err != nil {
+		return c.Status(400).JSON(fiber.Map{"error": err.Error()})
 	}
 
 	return c.Status(201).JSON(fiber.Map{"data": note})
@@ -60,15 +54,10 @@ func CreateNote(c *fiber.Ctx) error {
 // UpdateNote updates a note content
 func UpdateNote(c *fiber.Ctx) error {
 	sess, _ := config.Store.Get(c)
-	userID := sess.Get("user_id")
+	userID := sess.Get("user_id").(uint)
 	id := c.Params("id")
 
-	var note models.Note
-	if err := database.DB.Where("id = ? AND user_id = ?", id, userID).First(&note).Error; err != nil {
-		return c.Status(404).JSON(fiber.Map{"error": "Note not found"})
-	}
-
-	type UpdateRequest struct {
+	type Request struct {
 		Title      string `json:"title"`
 		Content    string `json:"content"`
 		Excerpt    string `json:"excerpt"`
@@ -77,20 +66,31 @@ func UpdateNote(c *fiber.Ctx) error {
 		IsFeatured bool   `json:"is_featured"`
 	}
 
-	req := new(UpdateRequest)
+	req := new(Request)
 	if err := c.BodyParser(req); err != nil {
 		return c.Status(400).JSON(fiber.Map{"error": "Bad Request"})
 	}
 
-	note.Title = req.Title
-	note.Content = req.Content
-	note.Excerpt = req.Excerpt
-	note.NotebookID = req.NotebookID
-	note.Status = req.Status
-	note.IsFeatured = req.IsFeatured
+	note, err := noteService.UpdateNote(services.UpdateNoteRequest{
+		ID:         id,
+		UserID:     userID,
+		Title:      req.Title,
+		Content:    req.Content,
+		Excerpt:    req.Excerpt,
+		NotebookID: req.NotebookID,
+		Status:     req.Status,
+		IsFeatured: req.IsFeatured,
+	})
 
-	if err := database.DB.Save(&note).Error; err != nil {
-		return c.Status(500).JSON(fiber.Map{"error": "Failed to update note"})
+	if err != nil {
+		status := 500
+		if err.Error() == "note not found or unauthorized" {
+			status = 404
+		} else if err != nil {
+			// Validation errors, etc
+			status = 400
+		}
+		return c.Status(status).JSON(fiber.Map{"error": err.Error()})
 	}
 
 	return c.JSON(fiber.Map{"data": note})
@@ -121,16 +121,15 @@ func UploadImage(c *fiber.Ctx) error {
 
 func DeleteNote(c *fiber.Ctx) error {
 	sess, _ := config.Store.Get(c)
-	userID := sess.Get("user_id")
+	userID := sess.Get("user_id").(uint)
 	id := c.Params("id")
 
-	result := database.DB.Where("id = ? AND user_id = ?", id, userID).Delete(&models.Note{})
-	if result.Error != nil {
+	err := noteService.DeleteNote(id, userID)
+	if err != nil {
+		if err.Error() == "note not found" {
+			return c.Status(404).JSON(fiber.Map{"error": "Note not found"})
+		}
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to delete note"})
-	}
-
-	if result.RowsAffected == 0 {
-		return c.Status(404).JSON(fiber.Map{"error": "Note not found"})
 	}
 
 	return c.SendStatus(204)
