@@ -6,6 +6,9 @@ import (
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/tarakreasi/taraNote_go/internal/config"
+	"github.com/tarakreasi/taraNote_go/internal/database"
+	"github.com/tarakreasi/taraNote_go/internal/models"
 	"github.com/tarakreasi/taraNote_go/internal/utils"
 )
 
@@ -58,11 +61,32 @@ func DocsView(c *fiber.Ctx) error {
 	displayName = strings.ReplaceAll(displayName, "_", " ")
 	displayName = strings.Title(strings.ToLower(displayName))
 
+	// 6. Get User (if logged in) for Floating Dock
+	sess, _ := config.Store.Get(c)
+	var user *models.User
+	if sess != nil {
+		userID := sess.Get("user_id")
+		if userID != nil {
+			var u models.User
+			if err := database.DB.First(&u, userID).Error; err == nil {
+				user = &u
+			}
+		}
+	}
+
+	props := fiber.Map{
+		"content":     content,
+		"currentPath": path,
+		"displayName": displayName,
+	}
+
+	if user != nil {
+		props["auth"] = fiber.Map{
+			"user": user,
+		}
+	}
+
 	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "Docs", fiber.Map{
-			"content":     content,
-			"currentPath": path,
-			"displayName": displayName,
-		})),
+		"InertiaJSON": string(utils.CreateInertiaPage(c, "Docs", props)),
 	})
 }
