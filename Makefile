@@ -1,4 +1,4 @@
-.PHONY: run build clean migrate
+.PHONY: run build clean migrate seed
 
 run:
 	go run cmd/server/main.go
@@ -9,6 +9,9 @@ build:
 
 migrate:
 	go run cmd/migrate/main.go
+
+seed:
+	go run cmd/seed/main.go
 
 clean:
 	rm -rf bin
