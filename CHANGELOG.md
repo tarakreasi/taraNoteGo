@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - Sprint 4 (Frontend Architecture)
+### Changed
+- Extract Note logic to `useNotes` composable.
+- Optimized `TaraNote.vue` component.
+
 ## [Unreleased] - Sprint 3 (Enhancements)
 ### Added
 - Server-side Search for Notes (`LIKE %query%`).

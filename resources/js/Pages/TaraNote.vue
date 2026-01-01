@@ -10,50 +10,28 @@ const props = defineProps({
     notebooks: Array,
 });
 
-// State
-const searchQuery = ref('');
-const selectedNotebookId = ref(null);
-const selectedArticle = ref(null);
-const showMobileSidebar = ref(false); // Mobile state for notebook drawer
+import { useNotes } from '@/composables/useNotes';
+
+const { 
+    searchQuery, 
+    selectedNotebookId, 
+    selectedArticle, 
+    filteredNotes, 
+    currentNotebookName, 
+    selectNotebook, 
+    openArticle 
+} = useNotes(props);
+
+// Local UI State
+const showMobileSidebar = ref(false);
 
 // Theme
 const { isDark, toggleTheme } = useTheme();
 
-// Computed
-const filteredNotes = computed(() => {
-    let filtered = props.notes || [];
-    
-    // Filter by notebook
-    if (selectedNotebookId.value) {
-        filtered = filtered.filter(note => note.notebook_id === selectedNotebookId.value);
-    }
-    
-    // Filter by search query
-    if (searchQuery.value) {
-        const query = searchQuery.value.toLowerCase();
-        filtered = filtered.filter(note => 
-            note.title?.toLowerCase().includes(query) ||
-            note.content?.toLowerCase().includes(query)
-        );
-    }
-    
-    return filtered;
-});
-
-const currentNotebookName = computed(() => {
-    if (!selectedNotebookId.value) return 'All Notes';
-    return props.notebooks.find(n => n.id === selectedNotebookId.value)?.name || 'All Notes';
-});
-
-// Methods
-const selectNotebook = (id) => {
-    selectedNotebookId.value = id;
-    selectedArticle.value = null; // Clear selection when changing notebook
-    showMobileSidebar.value = false; // Close mobile drawer on selection
-};
-
-const openArticle = (article) => {
-    selectedArticle.value = article;
+// Override selectNotebook to handle UI side effects
+const handleSelectNotebook = (id) => {
+    selectNotebook(id);
+    showMobileSidebar.value = false;
 };
 
 const formatRelativeTime = (dateString) => {
@@ -147,7 +125,7 @@ const slugify = (text) => {
                 <nav class="flex-1 px-3 space-y-0.5 overflow-y-auto custom-scrollbar pb-40 md:pb-40">
                      <!-- All Articles -->
                     <button 
-                         @click="selectNotebook(null)"
+                         @click="handleSelectNotebook(null)"
                          class="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm group text-left"
                          :class="selectedNotebookId === null 
                             ? 'bg-white/80 dark:bg-white/10 text-slate-900 dark:text-white font-medium shadow-sm ring-1 ring-black/5 dark:ring-white/5' 
@@ -168,7 +146,7 @@ const slugify = (text) => {
                     <button 
                         v-for="notebook in notebooks" 
                         :key="notebook.id"
-                        @click="selectNotebook(notebook.id)"
+                        @click="handleSelectNotebook(notebook.id)"
                         class="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm group text-left relative"
                         :class="selectedNotebookId === notebook.id 
                             ? 'bg-white/80 dark:bg-white/10 ring-1 ring-indigo-500 text-slate-900 dark:text-white font-medium shadow-sm' 
