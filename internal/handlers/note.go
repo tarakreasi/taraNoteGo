@@ -23,7 +23,7 @@ func ListNotes(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to fetch notes"})
 	}
 
-	return c.JSON(notes)
+	return c.JSON(fiber.Map{"data": notes})
 }
 
 // CreateNote creates a new draft note
@@ -54,7 +54,7 @@ func CreateNote(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to create note"})
 	}
 
-	return c.Status(201).JSON(note)
+	return c.Status(201).JSON(fiber.Map{"data": note})
 }
 
 // UpdateNote updates a note content
@@ -93,7 +93,7 @@ func UpdateNote(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to update note"})
 	}
 
-	return c.JSON(note)
+	return c.JSON(fiber.Map{"data": note})
 }
 
 // UploadImage handles image uploads from Tiptap or Cover Image

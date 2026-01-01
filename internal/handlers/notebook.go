@@ -17,7 +17,7 @@ func ListNotebooks(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to fetch notebooks"})
 	}
 
-	return c.JSON(notebooks)
+	return c.JSON(fiber.Map{"data": notebooks})
 }
 
 // CreateNotebook creates a new notebook
@@ -47,7 +47,7 @@ func CreateNotebook(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to create notebook"})
 	}
 
-	return c.Status(201).JSON(notebook)
+	return c.Status(201).JSON(fiber.Map{"data": notebook})
 }
 
 // UpdateNotebook updates an existing notebook
@@ -80,7 +80,7 @@ func UpdateNotebook(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to update notebook"})
 	}
 
-	return c.JSON(notebook)
+	return c.JSON(fiber.Map{"data": notebook})
 }
 
 // DeleteNotebook deletes a notebook
