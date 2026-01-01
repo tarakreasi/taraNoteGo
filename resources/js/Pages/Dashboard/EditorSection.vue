@@ -175,8 +175,7 @@ const deleteNote = () => {
 
             <div class="flex items-center gap-3">
                  <span v-if="saveStatus" class="mr-2 text-[10px] font-mono text-slate-400 tracking-wide uppercase" :class="{'text-blue-500': saveStatus.includes('Saving'), 'text-green-500': saveStatus.includes('Saved')}">
-                     <span v-if="saveStatus.includes('Saving')" class="animate-pulse mr-1">●</span>
-                     {{ saveStatus === '✓ Saved' ? 'Saved' : saveStatus }}
+                     {{ saveStatus === 'Saved' ? 'Saved' : saveStatus }}
                  </span>
 
                 <button 

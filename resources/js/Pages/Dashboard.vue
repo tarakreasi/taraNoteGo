@@ -201,7 +201,7 @@ const handleSaveNote = async ({ data, isAutoSave }) => {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
 
-        saveStatus.value = '✓ Saved';
+        saveStatus.value = 'Saved';
         
         // Update local state
         const updatedNote = response.data.data;
@@ -215,12 +215,12 @@ const handleSaveNote = async ({ data, isAutoSave }) => {
 
         if (isAutoSave) {
             setTimeout(() => {
-                if (saveStatus.value === '✓ Saved') saveStatus.value = '';
+                if (saveStatus.value === 'Saved') saveStatus.value = '';
             }, 2000);
         }
     } catch (error) {
         console.error("Error saving note:", error);
-        saveStatus.value = '✗ Error';
+        saveStatus.value = 'Error';
         if (!isAutoSave) alert('Failed to save note');
     }
 };
@@ -258,7 +258,7 @@ const handleSaveProfile = async (userData) => {
         };
 
         await window.axios.patch(route('profile.update'), payload);
-        saveStatus.value = '✓ Profile Saved';
+        saveStatus.value = 'Profile Saved';
         
         // Update local auth user state if Inertia doesn't do it automatically
         // Since we are not doing a full reload, we rely on the response or just assume success.
@@ -268,11 +268,11 @@ const handleSaveProfile = async (userData) => {
         // So the UI is optimistic.
     } catch (error) {
         console.error("Profile save failed:", error);
-        saveStatus.value = '✗ Error Saving Profile';
+        saveStatus.value = 'Error Saving Profile';
         alert("Failed to save profile.");
     } finally {
         setTimeout(() => {
-            if (saveStatus.value === '✓ Profile Saved') saveStatus.value = '';
+            if (saveStatus.value === 'Profile Saved') saveStatus.value = '';
         }, 3000);
     }
 };

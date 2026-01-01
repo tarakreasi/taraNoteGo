@@ -19,7 +19,7 @@ func main() {
 	// Connect DB
 	database.Connect()
 
-	log.Println("🌱 Starting Database Seed...")
+	log.Println("[INFO] Starting Database Seed...")
 
 	// 1. Create Admin User
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte("password"), 14)
@@ -32,7 +32,7 @@ func main() {
 		IsAdmin:  true,
 	}
 	database.DB.FirstOrCreate(&user, models.User{Email: "ajarsinau@gmail.com"})
-	log.Printf("✅ User created: %s", user.Email)
+	log.Printf("[OK] User created: %s", user.Email)
 
 	// 2. Create Notebooks
 	notebooks := []models.Notebook{
@@ -44,7 +44,7 @@ func main() {
 	for i := range notebooks {
 		database.DB.FirstOrCreate(&notebooks[i], models.Notebook{Slug: notebooks[i].Slug})
 	}
-	log.Println("✅ Notebooks created")
+	log.Println("[OK] Notebooks created")
 
 	// 3. Create Sample Notes
 	now := time.Now()
@@ -99,14 +99,14 @@ func main() {
 				"status":       notes[i].Status,
 				"published_at": notes[i].PublishedAt,
 			})
-			log.Printf("✅ Note updated: %s", notes[i].Title)
+			log.Printf("[OK] Note updated: %s", notes[i].Title)
 		} else {
 			// Not found, create it
 			database.DB.Create(&notes[i])
-			log.Printf("✅ Note created: %s", notes[i].Title)
+			log.Printf("[OK] Note created: %s", notes[i].Title)
 		}
 	}
-	log.Println("✅ Notes seeded")
+	log.Println("[OK] Notes seeded")
 
-	log.Println("🎉 Database Seed Completed!")
+	log.Println("[DONE] Database Seed Completed!")
 }

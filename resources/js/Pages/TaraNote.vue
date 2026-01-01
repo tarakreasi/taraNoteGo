@@ -287,7 +287,7 @@ const slugify = (text) => {
                                             </span>
                                             <div class="flex items-center gap-2 text-[11px] text-slate-500 font-mono">
                                                 <span>{{ formatDate(selectedArticle.published_at || selectedArticle.created_at) }}</span>
-                                                <span class="text-slate-300">•</span>
+                                                <span class="text-slate-300"> | </span>
                                                 <span>{{ calculateReadTime(selectedArticle.content) }}</span>
                                             </div>
                                         </div>
