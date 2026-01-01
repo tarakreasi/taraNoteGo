@@ -257,7 +257,7 @@ const slugify = (text) => {
 
                         <!-- Breadcrumbs -->
                         <nav class="flex flex-wrap gap-2 items-center text-xs mb-8 text-slate-400 font-sans tracking-wide">
-                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="/">Home</Link>
+                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('home')">Home</Link>
                             <span class="text-slate-300">/</span>
                             <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('taranote')">TaraNote</Link>
                             <span class="text-slate-300">/</span>

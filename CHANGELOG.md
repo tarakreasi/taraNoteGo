@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - Sprint 5 (Polish & Deployment)
+### Added
+- Frontend `route()` helper (Ziggy-lite).
+- Replaced hardcoded URLs with named routes.
+
 ## [Unreleased] - Sprint 4 (Frontend Architecture)
 ### Changed
 - Extract Note logic to `useNotes` composable.

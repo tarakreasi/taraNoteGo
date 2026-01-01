@@ -302,7 +302,7 @@ onMounted(() => {
                         <Link 
                             v-for="doc in filteredDocs" 
                             :key="doc.name"
-                             :href="selectedCategory ? route('docs.view', { path: doc.name, category: selectedCategory }) : route('docs.view', { path: doc.name })"
+                            :href="selectedCategory ? route('docs.show', { path: doc.name, category: selectedCategory }) : route('docs.show', { path: doc.name })"
                             class="block group p-3 rounded-lg cursor-pointer transition-all duration-200"
                             :class="currentPath === doc.name 
                                 ? 'bg-white dark:bg-white/10 shadow-md ring-1 ring-black/5 dark:ring-white/5 z-10' 
@@ -331,9 +331,9 @@ onMounted(() => {
                     <article class="w-full max-w-7xl px-8 py-10 md:px-12 pb-40 xl:pr-[280px]">
                         <!-- Breadcrumbs -->
                         <nav class="flex flex-wrap gap-2 items-center text-xs mb-8 text-slate-400 font-sans tracking-wide">
-                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="/">Home</Link>
+                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('home')">Home</Link>
                             <span class="text-slate-300">/</span>
-                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('docs.view')">Docs</Link>
+                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('docs.index')">Docs</Link>
                             <span class="text-slate-300">/</span>
                             <span class="text-indigo-500 font-medium">{{ displayName }}</span>
                         </nav>

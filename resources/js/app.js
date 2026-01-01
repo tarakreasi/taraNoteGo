@@ -10,35 +10,41 @@ const appName = import.meta.env.VITE_APP_NAME || 'TaraNote';
 
 // Mock Ziggy route() function for Go backend
 const routeMap = {
-    'login': '/login',
+    'home': '/',
+    'login.view': '/login',
+    'login.post': '/login',
     'logout': '/logout',
-    'register': '/register',
     'dashboard': '/dashboard',
     'taranote': '/taranote',
-    'profile.edit': '/profile',
-    'profile.update': '/api/v1/admin/profile',
-    'profile.destroy': '/api/v1/admin/profile',
-    'password.update': '/api/v1/admin/password',
-    'password.request': '/forgot-password',
-    'password.email': '/forgot-password',
-    'password.store': '/reset-password',
-    'password.confirm': '/confirm-password',
-    'verification.send': '/email/verification-notification',
+    'api.notebooks.index': '/api/v1/admin/notebooks',
     'articles.show': '/articles',
-    'docs.view': '/docs',
+    'docs.index': '/docs',
+    'docs.show': '/docs',
 };
 
 window.route = (name, params) => {
-    let url = routeMap[name] || `/${name.replace(/\./g, '/')}`;
+    let url = routeMap[name];
 
-    // Handle params (simple slug replacement)
-    if (params && typeof params === 'string') {
-        url = `${url}/${params}`;
-    } else if (params && typeof params === 'object') {
-        // Handle object params like { path: 'foo', category: 'bar' }
-        Object.values(params).forEach(val => {
-            if (val) url = `${url}/${val}`;
-        });
+    if (!url) {
+        console.warn(`Route not found: ${name}`);
+        return `/${name.replace(/\./g, '/')}`;
+    }
+
+    // Handle params
+    if (params) {
+        if (typeof params === 'object') {
+            // Replace {param} in URL if it exists (e.g. /articles/{slug})
+            // For now, our simple map doesn't have placeholders, so we append or replace logic
+            if (name === 'articles.show' && params.slug) {
+                return `${url}/${params.slug}`;
+            }
+            if (name === 'docs.show' && params.path) {
+                return `${url}/${params.path}`;
+            }
+        } else {
+            // If string/number param, append it
+            return `${url}/${params}`;
+        }
     }
 
     return url;
