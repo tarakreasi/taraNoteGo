@@ -48,6 +48,8 @@ func DocsView(c *fiber.Ctx) error {
 			})
 			// Simpler approach for now: Use RenderInertia but set status before if possible
 			// Correction: RenderInertia just does c.JSON or c.Render. We can set status on c before calling it.
+			// Force HTML content type for 404 error page to avoid quirks mode
+			c.Set("Content-Type", "text/html; charset=utf-8")
 			c.Status(404)
 			return utils.RenderInertia(c, "Docs", fiber.Map{
 				"content":     "# 404 Not Found\n\nThe requested documentation page could not be found.",
