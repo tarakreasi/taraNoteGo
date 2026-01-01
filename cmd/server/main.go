@@ -1,11 +1,14 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"os"
 
+	"github.com/tarakreasi/taraNote_go/internal/config"
 	"github.com/tarakreasi/taraNote_go/internal/database"
+	"github.com/tarakreasi/taraNote_go/internal/handlers"
+	"github.com/tarakreasi/taraNote_go/internal/middleware"
+	"github.com/tarakreasi/taraNote_go/internal/utils"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -22,6 +25,9 @@ func main() {
 	// Connect to Database
 	database.Connect()
 
+	// Initialize Session
+	config.InitSession()
+
 	// Initialize View Engine
 	engine := html.New("./views", ".html")
 
@@ -34,34 +40,50 @@ func main() {
 	// Middleware
 	app.Use(cors.New())
 
-	// Static Assets (for built frontend)
+	// Static Assets
 	app.Static("/resources", "./resources")
 	app.Static("/public", "./public")
 
-	// Inertia Page Mock
+	// --- ROUTES ---
+
+	// Guest Routes
 	app.Get("/", func(c *fiber.Ctx) error {
-		// This is a minimal definition of the Inertia Page object
-		page := fiber.Map{
-			"component": "TaraNote", // The Vue component name
-			"props": fiber.Map{
-				"auth": fiber.Map{
-					"user": nil,
-				},
-				"can": fiber.Map{
-					"login":    true,
-					"register": true,
-				},
-			},
-			"url":     "/",
-			"version": "v1", // Asset version
-		}
-
-		pageBytes, _ := json.Marshal(page)
-
+		// Mock Auth for now (nil)
 		return c.Render("app", fiber.Map{
-			"InertiaJSON": string(pageBytes),
+			"InertiaJSON": string(utils.CreateInertiaPage(c, "TaraNote", fiber.Map{
+				"can": fiber.Map{"login": true, "register": true},
+			})),
 		})
 	})
+
+	app.Get("/login", handlers.ShowLogin)
+	app.Post("/login", handlers.Login)
+	app.Post("/logout", handlers.Logout)
+
+	// Protected Routes
+	app.Get("/dashboard", middleware.Protected, func(c *fiber.Ctx) error {
+		return c.Render("app", fiber.Map{
+			"InertiaJSON": string(utils.CreateInertiaPage(c, "Dashboard", fiber.Map{
+				"auth": fiber.Map{"user": fiber.Map{"name": "Test User"}}, // Mock User
+			})),
+		})
+	})
+
+	// API Group (Protected)
+	api := app.Group("/api/v1/admin", middleware.Protected)
+	api.Get("/notebooks", handlers.ListNotebooks)
+	api.Post("/notebooks", handlers.CreateNotebook)
+	api.Put("/notebooks/:id", handlers.UpdateNotebook)
+	api.Delete("/notebooks/:id", handlers.DeleteNotebook)
+
+	// Notes
+	api.Get("/notes", handlers.ListNotes)
+	api.Post("/notes", handlers.CreateNote)
+	api.Put("/notes/:id", handlers.UpdateNote)
+	api.Delete("/notes/:id", handlers.DeleteNote)
+
+	// Uploads
+	api.Post("/upload", handlers.UploadImage)
 
 	// Start server
 	port := os.Getenv("PORT")
