@@ -33,6 +33,22 @@ func main() {
 	app := fiber.New(fiber.Config{
 		AppName: "TaraNote Go v1.0",
 		Views:   engine,
+		ErrorHandler: func(c *fiber.Ctx, err error) error {
+			code := fiber.StatusInternalServerError
+			if e, ok := err.(*fiber.Error); ok {
+				code = e.Code
+			}
+
+			// For API requests, return JSON
+			if c.Get("Content-Type") == "application/json" || c.XHR() {
+				return c.Status(code).JSON(fiber.Map{
+					"error": err.Error(),
+				})
+			}
+
+			// For View requests, render error page (or just text for now)
+			return c.Status(code).SendString(err.Error())
+		},
 	})
 
 	// Middleware

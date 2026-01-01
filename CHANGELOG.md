@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - Sprint 1 (Foundation)
+### Added
+- Testing framework (`testify`) and helper utilities (`internal/testutils`).
+- Characterization tests for Authentication (`internal/handlers/auth_test.go`).
+- Global Error Handler in `cmd/server/main.go`.
+
 ## [v1.0.0] - 2026-01-01
 ### Added
 - **Migration**: Complete rewrite of backend from Laravel to Go (Fiber).
