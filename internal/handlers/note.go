@@ -51,7 +51,8 @@ func CreateNote(c *fiber.Ctx) error {
 	userID := sess.Get("user_id").(uint)
 
 	type Request struct {
-		Title string `json:"title"`
+		Title      string `json:"title"`
+		NotebookID *uint  `json:"notebook_id"`
 	}
 
 	req := new(Request)
@@ -60,8 +61,9 @@ func CreateNote(c *fiber.Ctx) error {
 	}
 
 	note, err := noteService.CreateNote(services.CreateNoteRequest{
-		UserID: userID,
-		Title:  req.Title,
+		UserID:     userID,
+		Title:      req.Title,
+		NotebookID: req.NotebookID,
 	})
 
 	if err != nil {

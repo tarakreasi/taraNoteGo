@@ -22,8 +22,9 @@ func NewNoteService() *NoteService {
 }
 
 type CreateNoteRequest struct {
-	UserID uint   `validate:"required"`
-	Title  string `validate:"required,min=1,max=255"`
+	UserID     uint   `validate:"required"`
+	Title      string `validate:"required,min=1,max=255"`
+	NotebookID *uint
 }
 
 func (s *NoteService) CreateNote(req CreateNoteRequest) (*models.Note, error) {
@@ -36,10 +37,11 @@ func (s *NoteService) CreateNote(req CreateNoteRequest) (*models.Note, error) {
 	slug := fmt.Sprintf("%s-%d", uuid.New().String(), time.Now().Unix())
 
 	note := models.Note{
-		UserID: req.UserID,
-		Title:  req.Title,
-		Slug:   slug,
-		Status: "DRAFT",
+		UserID:     req.UserID,
+		Title:      req.Title,
+		Slug:       slug,
+		Status:     "DRAFT",
+		NotebookID: req.NotebookID,
 	}
 
 	// 3. Persistence
