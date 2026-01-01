@@ -89,9 +89,16 @@ func (s *NoteService) UpdateNote(req UpdateNoteRequest) (*models.Note, error) {
 	return &note, nil
 }
 
-func (s *NoteService) ListNotes(userID uint) ([]models.Note, error) {
+func (s *NoteService) ListNotes(userID uint, query string) ([]models.Note, error) {
 	var notes []models.Note
-	if err := database.DB.Preload("Notebook").Where("user_id = ?", userID).Find(&notes).Error; err != nil {
+	db := database.DB.Preload("Notebook").Where("user_id = ?", userID)
+
+	if query != "" {
+		searchTerm := "%" + query + "%"
+		db = db.Where("title LIKE ? OR content LIKE ?", searchTerm, searchTerm)
+	}
+
+	if err := db.Find(&notes).Error; err != nil {
 		return nil, err
 	}
 	return notes, nil

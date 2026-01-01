@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - Sprint 3 (Enhancements)
+### Added
+- Server-side Search for Notes (`LIKE %query%`).
+- Route cleanup.
+
 ## [Unreleased] - Sprint 2 (Core Architecture)
 ### Added
 - Service Layer (`internal/services`).

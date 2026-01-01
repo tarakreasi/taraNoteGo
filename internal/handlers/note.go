@@ -17,7 +17,10 @@ func ListNotes(c *fiber.Ctx) error {
 	sess, _ := config.Store.Get(c)
 	userID := sess.Get("user_id")
 
-	notes, err := noteService.ListNotes(userID.(uint))
+	// Get search query
+	query := c.Query("search")
+
+	notes, err := noteService.ListNotes(userID.(uint), query)
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to fetch notes"})
 	}
@@ -86,7 +89,7 @@ func UpdateNote(c *fiber.Ctx) error {
 		status := 500
 		if err.Error() == "note not found or unauthorized" {
 			status = 404
-		} else if err != nil {
+		} else {
 			// Validation errors, etc
 			status = 400
 		}
