@@ -23,6 +23,7 @@ func main() {
 		&models.User{},
 		&models.Notebook{},
 		&models.Note{},
+		&models.Setting{},
 	)
 	if err != nil {
 		log.Fatalf("Migration failed: %v", err)
