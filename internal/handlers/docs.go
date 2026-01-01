@@ -14,7 +14,10 @@ import (
 
 // DocsView renders the documentation page
 func DocsView(c *fiber.Ctx) error {
-	path := c.Params("path")
+	path := c.Params("*")
+	if path == "" {
+		path = c.Params("path") // Fallback if using :path in some other context
+	}
 	if path == "" {
 		path = "INDEX" // Default page
 	}

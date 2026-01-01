@@ -20,7 +20,7 @@ func SetupWeb(app *fiber.App) {
 
 	// Docs Routes
 	app.Get("/docs", handlers.DocsView).Name("docs.index")
-	app.Get("/docs/:path", handlers.DocsView).Name("docs.show")
+	app.Get("/docs/*", handlers.DocsView).Name("docs.show")
 
 	// Protected Routes
 	app.Get("/dashboard", middleware.Protected, handlers.DashboardView).Name("dashboard")
