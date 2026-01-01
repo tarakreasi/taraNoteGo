@@ -287,6 +287,7 @@ onMounted(() => {
                                 type="text" 
                                 name="search_docs"
                                 id="search_docs"
+                                aria-label="Search documentation"
                                 v-model="searchQuery" 
                                 placeholder="Search docs..."
                                 class="w-full h-9 bg-slate-100 dark:bg-white/5 border-none rounded-lg pl-9 pr-3 text-sm focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-slate-400 text-slate-700 dark:text-slate-200"

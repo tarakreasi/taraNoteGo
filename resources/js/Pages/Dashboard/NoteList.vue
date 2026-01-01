@@ -140,6 +140,7 @@ const vFocus = {
                     type="text" 
                     name="search_notes"
                     id="search_notes"
+                    aria-label="Search notes"
                     :value="searchQuery"
                     @input="$emit('update:searchQuery', $event.target.value)"
                     placeholder="Search..."
@@ -199,6 +200,8 @@ const vFocus = {
                     <div v-if="editingState.id === note.id && editingState.type === 'NOTE_TITLE'" class="mb-1">
                          <input 
                             v-model="editingState.value"
+                            name="edit_title"
+                            :id="'edit_title_' + note.id"
                             @blur="saveEditing"
                             @keydown.enter="saveEditing"
                             @keydown.esc="cancelEditing"
@@ -260,6 +263,8 @@ const vFocus = {
                             <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">URL Slug</label>
                             <input 
                                 v-model="editingState.value" 
+                                name="edit_slug"
+                                :id="'edit_slug_' + note.id"
                                 @keydown.enter="saveEditing"
                                 @keydown.esc="cancelEditing"
                                 v-focus

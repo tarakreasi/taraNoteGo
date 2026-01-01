@@ -47,12 +47,27 @@ func main() {
 			}
 
 			// For View requests, render error page (or just text for now)
-			return c.Status(code).SendString(err.Error())
+			// For View requests, render error page
+			c.Set("Content-Type", "text/html")
+			return c.Status(code).SendString("<!DOCTYPE html><html><head><title>Error</title></head><body><h1>Error</h1><p>" + err.Error() + "</p></body></html>")
 		},
 	})
 
 	// Middleware
 	app.Use(cors.New())
+	// Custom Method Override Middleware
+	app.Use(func(c *fiber.Ctx) error {
+		if c.Method() == fiber.MethodPost {
+			method := c.FormValue("_method")
+			if method == "" {
+				method = c.Get("X-HTTP-Method-Override")
+			}
+			if method == "PUT" || method == "PATCH" || method == "DELETE" {
+				c.Method(method)
+			}
+		}
+		return c.Next()
+	})
 
 	// Static Assets
 	app.Static("/resources", "./resources")

@@ -56,13 +56,14 @@ const submit = () => {
 
                     <!-- Email Input Group -->
                     <div class="space-y-1.5">
-                        <label class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 ml-1">Email Address</label>
+                        <label for="email" class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 ml-1">Email Address</label>
                         <div class="relative group/input">
                             <div class="absolute inset-0 bg-gradient-to-r from-primary to-purple-500 rounded-xl opacity-0 group-focus-within/input:opacity-100 blur transition-opacity duration-500"></div>
                             <div class="relative flex items-center bg-white/50 dark:bg-[#0F172A]/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 h-12 transition-all focus-within:bg-white dark:focus-within:bg-[#0F172A]">
                                 <span class="material-symbols-outlined text-slate-400 mr-3">mail</span>
                                 <input 
                                     id="email" 
+                                    name="email"
                                     type="email" 
                                     v-model="form.email"
                                     class="w-full bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 text-sm font-medium"
@@ -81,7 +82,7 @@ const submit = () => {
                     <!-- Password Input Group -->
                     <div class="space-y-1.5">
                         <div class="flex justify-between items-center ml-1">
-                            <label class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Password</label>
+                            <label for="password" class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Password</label>
                             <Link v-if="canResetPassword" :href="route('password.request')" class="text-xs font-medium text-primary hover:text-primary-hover transition-colors">
                                 Forgot?
                             </Link>
@@ -92,6 +93,7 @@ const submit = () => {
                                 <span class="material-symbols-outlined text-slate-400 mr-3">lock</span>
                                 <input 
                                     id="password" 
+                                    name="password"
                                     type="password" 
                                     v-model="form.password"
                                     class="w-full bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 text-sm font-medium"

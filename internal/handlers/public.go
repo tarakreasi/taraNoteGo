@@ -24,11 +24,9 @@ func PublicList(c *fiber.Ctx) error {
 	var notebooks []models.Notebook
 	database.DB.Find(&notebooks)
 
-	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "TaraNote", fiber.Map{
-			"notes":     notes,
-			"notebooks": notebooks,
-		})),
+	return utils.RenderInertia(c, "TaraNote", fiber.Map{
+		"notes":     notes,
+		"notebooks": notebooks,
 	})
 }
 
@@ -50,11 +48,9 @@ func PublicShow(c *fiber.Ctx) error {
 		return c.Status(404).SendString("Article not found")
 	}
 
-	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "Docs", fiber.Map{
-			"article":  note,
-			"settings": fiber.Map{},
-		})),
+	return utils.RenderInertia(c, "Docs", fiber.Map{
+		"article":  note,
+		"settings": fiber.Map{},
 	})
 }
 
@@ -68,14 +64,15 @@ func TaraNoteBrowser(c *fiber.Ctx) error {
 		return c.Status(500).SendString("Error fetching notes")
 	}
 
-	// Mock notebooks
+	// Fetch notebooks with note counts
 	var notebooks []models.Notebook
-	database.DB.Find(&notebooks)
+	database.DB.Select("notebooks.*, count(notes.id) as notes_count").
+		Joins("LEFT JOIN notes ON notes.notebook_id = notebooks.id AND notes.deleted_at IS NULL").
+		Group("notebooks.id").
+		Find(&notebooks)
 
-	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "TaraNote", fiber.Map{
-			"notes":     notes,
-			"notebooks": notebooks,
-		})),
+	return utils.RenderInertia(c, "TaraNote", fiber.Map{
+		"notes":     notes,
+		"notebooks": notebooks,
 	})
 }

@@ -11,6 +11,8 @@ const appName = import.meta.env.VITE_APP_NAME || 'TaraNote';
 // Mock Ziggy route() function for Go backend
 const routeMap = {
     'home': '/',
+    'home': '/',
+    'login': '/login',
     'login.view': '/login',
     'login.post': '/login',
     'logout': '/logout',

@@ -26,11 +26,9 @@ func DashboardView(c *fiber.Ctx) error {
 		return c.Redirect("/login")
 	}
 
-	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "Dashboard", fiber.Map{
-			"auth": fiber.Map{
-				"user": user,
-			},
-		})),
+	return utils.RenderInertia(c, "Dashboard", fiber.Map{
+		"auth": fiber.Map{
+			"user": user,
+		},
 	})
 }

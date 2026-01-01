@@ -10,10 +10,9 @@ import (
 var authService = services.NewAuthService()
 
 // ShowLogin renders the login page (Inertia)
+// ShowLogin renders the login page (Inertia)
 func ShowLogin(c *fiber.Ctx) error {
-	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "Auth/Login", fiber.Map{})),
-	})
+	return utils.RenderInertia(c, "Auth/Login", fiber.Map{})
 }
 
 // Login handles the authentication attempt

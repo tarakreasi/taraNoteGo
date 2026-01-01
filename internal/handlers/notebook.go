@@ -16,7 +16,11 @@ func ListNotebooks(c *fiber.Ctx) error {
 	userID := sess.Get("user_id")
 
 	var notebooks []models.Notebook
-	if err := database.DB.Where("user_id = ?", userID).Find(&notebooks).Error; err != nil {
+	if err := database.DB.Select("notebooks.*, count(notes.id) as notes_count").
+		Joins("LEFT JOIN notes ON notes.notebook_id = notebooks.id AND notes.deleted_at IS NULL").
+		Where("notebooks.user_id = ?", userID).
+		Group("notebooks.id").
+		Find(&notebooks).Error; err != nil {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to fetch notebooks"})
 	}
 

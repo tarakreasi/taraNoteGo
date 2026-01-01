@@ -38,12 +38,18 @@ func DocsView(c *fiber.Ctx) error {
 		if _, err := os.Stat(docPathIndex); err == nil {
 			docPath = docPathIndex
 		} else {
-			return c.Status(404).Render("app", fiber.Map{
-				"InertiaJSON": string(utils.CreateInertiaPage(c, "Docs", fiber.Map{
-					"content":     "# 404 Not Found\n\nThe requested documentation page could not be found.",
-					"currentPath": path,
-					"displayName": "Not Found",
-				})),
+			return c.Status(404).JSON(fiber.Map{ // For API 404? No, this is a page.
+				// Since RenderInertia handles JSON/HTML switch, we should use it.
+				// But RenderInertia returns error. We need to handle status code.
+				// Actually, utils.RenderInertia doesn't support setting status code easily unless we modify it or set it on context before.
+			})
+			// Simpler approach for now: Use RenderInertia but set status before if possible
+			// Correction: RenderInertia just does c.JSON or c.Render. We can set status on c before calling it.
+			c.Status(404)
+			return utils.RenderInertia(c, "Docs", fiber.Map{
+				"content":     "# 404 Not Found\n\nThe requested documentation page could not be found.",
+				"currentPath": path,
+				"displayName": "Not Found",
 			})
 		}
 	}
@@ -86,7 +92,5 @@ func DocsView(c *fiber.Ctx) error {
 		}
 	}
 
-	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "Docs", props)),
-	})
+	return utils.RenderInertia(c, "Docs", props)
 }

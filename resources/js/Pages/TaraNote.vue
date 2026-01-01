@@ -184,6 +184,7 @@ const slugify = (text) => {
                                 type="text" 
                                 name="search_articles"
                                 id="search_articles"
+                                aria-label="Search articles"
                                 v-model="searchQuery" 
                                 placeholder="Search articles..."
                                 class="w-full h-9 bg-white/50 dark:bg-white/5 border-none rounded-lg pl-9 pr-3 text-sm focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-slate-400 text-slate-700 dark:text-slate-200 shadow-sm"

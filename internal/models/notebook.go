@@ -17,5 +17,6 @@ type Notebook struct {
 	DeletedAt   gorm.DeletedAt `gorm:"index" json:"deleted_at"`
 
 	// Relations
-	User User `json:"user,omitempty"`
+	User       User  `json:"user,omitempty"`
+	NotesCount int64 `gorm:"-" json:"notes_count"`
 }
