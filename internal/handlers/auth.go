@@ -3,10 +3,11 @@ package handlers
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/tarakreasi/taraNote_go/internal/config"
-	"github.com/tarakreasi/taraNote_go/internal/database"
-	"github.com/tarakreasi/taraNote_go/internal/models"
+	"github.com/tarakreasi/taraNote_go/internal/services"
 	"github.com/tarakreasi/taraNote_go/internal/utils"
 )
+
+var authService = services.NewAuthService()
 
 // ShowLogin renders the login page (Inertia)
 func ShowLogin(c *fiber.Ctx) error {
@@ -27,21 +28,14 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(400).SendString("Bad Request")
 	}
 
-	var user models.User
-	// Find user by email
-	if err := database.DB.Where("email = ?", req.Email).First(&user).Error; err != nil {
-		// User not found - Return 422 for Inertia
-		c.Set("X-Inertia", "true")
-		return c.Status(422).JSON(fiber.Map{
-			"message": "Invalid credentials",
-			"errors": fiber.Map{
-				"email": "Invalid credentials",
-			},
-		})
-	}
+	// Use Service
+	user, err := authService.Authenticate(services.LoginRequest{
+		Email:    req.Email,
+		Password: req.Password,
+	})
 
-	// Check password
-	if !user.CheckPassword(req.Password) {
+	if err != nil {
+		// User not found or Invalid Password - Return 422 for Inertia
 		c.Set("X-Inertia", "true")
 		return c.Status(422).JSON(fiber.Map{
 			"message": "Invalid credentials",

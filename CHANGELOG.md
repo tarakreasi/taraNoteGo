@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Service Layer (`internal/services`).
 - Request Validation (`go-playground/validator`).
+- Refactored `Note` and `Auth` logic to services.
 
 ## [Unreleased] - Sprint 1 (Foundation)
 ### Added
