@@ -30,13 +30,22 @@ func Login(c *fiber.Ctx) error {
 	var user models.User
 	// Find user by email
 	if err := database.DB.Where("email = ?", req.Email).First(&user).Error; err != nil {
-		// User not found
-		return c.Status(401).JSON(fiber.Map{"message": "Invalid credentials"})
+		// User not found - Return 422 for Inertia
+		return c.Status(422).JSON(fiber.Map{
+			"message": "Invalid credentials",
+			"errors": fiber.Map{
+				"email": "Invalid credentials",
+			},
+		})
 	}
 
 	// Check password
 	if !user.CheckPassword(req.Password) {
-		return c.Status(401).JSON(fiber.Map{"message": "Invalid credentials"})
+		return c.Status(422).JSON(fiber.Map{
+			"message": "Invalid credentials",
+			"errors": fiber.Map{
+				"email": "Invalid credentials"},
+		})
 	}
 
 	// Create Session
