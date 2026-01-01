@@ -43,6 +43,7 @@ func main() {
 	// Static Assets
 	app.Static("/resources", "./resources")
 	app.Static("/public", "./public")
+	app.Static("/images", "./public/images")
 
 	// --- ROUTES ---
 
