@@ -21,4 +21,7 @@ node_modules
 Thumbs.db
 
 # Env
-.env
+
+# Valid Database (Local)
+database/database.sqlite
+

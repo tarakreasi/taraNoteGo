@@ -88,9 +88,25 @@ func main() {
 	}
 
 	for i := range notes {
-		database.DB.FirstOrCreate(&notes[i], models.Note{Slug: notes[i].Slug})
+		var existingNote models.Note
+		result := database.DB.Where("slug = ?", notes[i].Slug).First(&existingNote)
+		if result.Error == nil {
+			// Found, update it
+			database.DB.Model(&existingNote).Updates(map[string]interface{}{
+				"notebook_id":  notes[i].NotebookID,
+				"title":        notes[i].Title,
+				"content":      notes[i].Content,
+				"status":       notes[i].Status,
+				"published_at": notes[i].PublishedAt,
+			})
+			log.Printf("✅ Note updated: %s", notes[i].Title)
+		} else {
+			// Not found, create it
+			database.DB.Create(&notes[i])
+			log.Printf("✅ Note created: %s", notes[i].Title)
+		}
 	}
-	log.Println("✅ Notes created")
+	log.Println("✅ Notes seeded")
 
 	log.Println("🎉 Database Seed Completed!")
 }
