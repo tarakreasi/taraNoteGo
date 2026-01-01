@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TaraKreasi Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FFB347", "primary-hover": "#e69e38",
+                        "background-light": "#f8f9fa", "background-dark": "#1a202c",
+                        "brand-blue": "#4A90E2", "brand-dark-blue": "#000080", "brand-orange": "#FF9F43",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Spline Sans', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display overflow-hidden h-screen flex">
+    <aside class="hidden md:flex flex-col w-72 bg-brand-blue h-full p-4 justify-between shadow-xl z-20">
+        <div class="flex flex-col gap-8">
+            <div class="flex items-center gap-3 px-2 py-2">
+                <div class="bg-white rounded-xl p-2 shadow-sm">
+                    <span class="material-symbols-outlined text-brand-blue text-2xl font-bold">edit_note</span>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class="text-white text-xl font-bold leading-none tracking-tight">TaraKreasi</h1>
+                    <p class="text-white/80 text-xs font-medium mt-1">Kreasi Bermakna</p>
+                </div>
+            </div>
+            <nav class="flex flex-col gap-2">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors group text-white/90 hover:text-white"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+                    <span class="text-sm font-medium">Dashboard</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white shadow-lg shadow-blue-900/10 transition-colors group"
+                    href="#">
+                    <span class="material-symbols-outlined text-brand-blue font-bold">article</span>
+                    <span class="text-brand-blue text-sm font-bold">All Notes</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors group text-white/90 hover:text-white"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:scale-110 transition-transform">book</span>
+                    <span class="text-sm font-medium">Notebooks</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors group text-white/90 hover:text-white"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:scale-110 transition-transform">settings</span>
+                    <span class="text-sm font-medium">Settings</span>
+                </a>
+            </nav>
+        </div>
+        <div
+            class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+            <div class="size-10 rounded-full bg-cover bg-center border-2 border-white shadow-md"
+                data-alt="User profile picture showing a smiling person"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFikZy4GUe2g92RS5JMVuFi4bgU__zDod1U_pnGmxYW5oIaVnXQyHZjg6NXOJ8cB800rX7XTadLn6Mnu2NqrjA0NZKZG-vji5seWrgGD8dJfYzQuVg5fkG5F9yC7vDCpoNT0X5X9JPvABQI7w5t3SG-eB724q5W_WzNp4A-qfBcuzkZd7uMO_icpS8bNkAkA48AEBQ4AkN6mel6cfkQvI1v-cWek07H9aHpa1oRkBZwFX3PV81VokGL_EjCE01K0an_Sc4u91U4yrJ");'>
+            </div>
+            <div class="flex flex-col overflow-hidden">
+                <p class="text-white text-sm font-bold truncate">Tara Admin</p>
+                <p class="text-white/70 text-xs truncate">admin@tarakreasi.com</p>
+            </div>
+        </div>
+    </aside>
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative bg-[#F4F7FE] dark:bg-slate-900">
+        <header class="w-full px-8 py-6 flex items-center justify-between z-10">
+            <div class="flex flex-col gap-1">
+                <h1 class="text-3xl font-black text-slate-800 dark:text-white tracking-tight">All Notes</h1>
+                <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Manage and organize your blog content
+                </p>
+            </div>
+            <!-- Fixed Nav -->
+            <div
+                class="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-8 py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full border-2 border-orange-400 shadow-xl shadow-orange-500/10 flex items-center gap-8">
+                <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                    href="index.html">Home</a>
+                <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                    href="article.html">Article</a>
+                <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                    href="dashboard.html">Dashboard</a>
+                <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                    href="login.html">Login</a>
+                <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                    href="editor.html">Editor</a>
+            </div>
+            <!-- End Fixed Nav --> </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="relative flex items-center justify-center size-12 rounded-2xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-brand-blue transition-all group">
+                    <span
+                        class="absolute top-3 right-3 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
+                    <span class="material-symbols-outlined group-hover:animate-pulse">notifications</span>
+                </button>
+                <button
+                    class="flex items-center gap-2 h-12 pl-5 pr-7 rounded-2xl bg-brand-orange hover:bg-orange-400 text-white font-bold text-sm shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 hover:-translate-y-0.5 transition-all active:translate-y-0 active:shadow-none">
+                    <span class="material-symbols-outlined text-[20px]">add</span>
+                    Create New Note
+                </button>
+            </div>
+        </header>
+        <div class="flex-1 overflow-y-auto px-8 pb-8">
+            <div
+                class="flex flex-wrap items-center justify-between gap-4 mb-8 bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
+                <div class="relative flex-1 min-w-[300px] max-w-lg">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input
+                        class="w-full h-11 pl-12 pr-4 rounded-xl border-none bg-slate-50 dark:bg-slate-700/50 text-slate-700 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-blue/50 shadow-inner text-sm transition-all"
+                        placeholder="Search notes by title..." type="text" />
+                </div>
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+                    <button
+                        class="flex items-center gap-2 h-10 px-5 rounded-xl bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-200 text-sm font-semibold hover:border-brand-blue hover:text-brand-blue transition-colors whitespace-nowrap shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                    </button>
+                    <div class="h-8 w-px bg-slate-200 dark:bg-slate-600 mx-1"></div>
+                    <button
+                        class="h-10 px-5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-md whitespace-nowrap">All</button>
+                    <button
+                        class="h-10 px-5 rounded-xl bg-transparent text-slate-500 dark:text-slate-400 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors whitespace-nowrap">Published</button>
+                    <button
+                        class="h-10 px-5 rounded-xl bg-transparent text-slate-500 dark:text-slate-400 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors whitespace-nowrap">Drafts</button>
+                    <button
+                        class="h-10 px-5 rounded-xl bg-transparent text-slate-500 dark:text-slate-400 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors whitespace-nowrap">Archived</button>
+                </div>
+            </div>
+            <div
+                class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[900px] text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-slate-50/50 dark:bg-slate-700/30 border-b border-slate-100 dark:border-slate-700">
+                                <th
+                                    class="py-5 pl-8 pr-4 text-[11px] uppercase tracking-wider text-slate-400 font-bold w-[35%]">
+                                    Title</th>
+                                <th
+                                    class="py-5 px-4 text-[11px] uppercase tracking-wider text-slate-400 font-bold w-[20%]">
+                                    Notebook</th>
+                                <th
+                                    class="py-5 px-4 text-[11px] uppercase tracking-wider text-slate-400 font-bold w-[15%]">
+                                    Status</th>
+                                <th
+                                    class="py-5 px-4 text-[11px] uppercase tracking-wider text-slate-400 font-bold w-[15%]">
+                                    Date</th>
+                                <th
+                                    class="py-5 pl-4 pr-8 text-[11px] uppercase tracking-wider text-slate-400 font-bold text-right w-[15%]">
+                                    Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr
+                                class="group border-b border-slate-50 dark:border-slate-700/50 hover:bg-blue-50/30 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="py-5 pl-8 pr-4">
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="font-bold text-slate-800 dark:text-white text-[15px] group-hover:text-brand-blue transition-colors">The
+                                            Future of Web Design 2024</span>
+                                        <span class="text-slate-400 text-xs mt-1">by Tara Admin</span>
+                                    </div>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-300 text-xs font-semibold border border-blue-100 dark:border-blue-800/50">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_6px_rgba(59,130,246,0.6)]"></span>
+                                        Design Trends
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-100 dark:border-emerald-800/30">
+                                        <span class="material-symbols-outlined text-[14px] mr-1">check_circle</span>
+                                        Published
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4 text-slate-500 font-medium">
+                                    Oct 24, 2023
+                                </td>
+                                <td class="py-5 pl-4 pr-8 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity translate-x-2 group-hover:translate-x-0 duration-200">
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-brand-blue hover:bg-blue-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">edit</span>
+                                        </button>
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                class="group border-b border-slate-50 dark:border-slate-700/50 hover:bg-blue-50/30 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="py-5 pl-8 pr-4">
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="font-bold text-slate-800 dark:text-white text-[15px] group-hover:text-brand-blue transition-colors">Minimalist
+                                            UI Principles</span>
+                                        <span class="text-slate-400 text-xs mt-1">by Tara Admin</span>
+                                    </div>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-300 text-xs font-semibold border border-purple-100 dark:border-purple-800/50">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_6px_rgba(168,85,247,0.6)]"></span>
+                                        UX Research
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 text-xs font-bold border border-amber-100 dark:border-amber-800/30">
+                                        <span class="material-symbols-outlined text-[14px] mr-1">edit_note</span>
+                                        Draft
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4 text-slate-500 font-medium">
+                                    Oct 22, 2023
+                                </td>
+                                <td class="py-5 pl-4 pr-8 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity translate-x-2 group-hover:translate-x-0 duration-200">
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-brand-blue hover:bg-blue-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">edit</span>
+                                        </button>
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                class="group border-b border-slate-50 dark:border-slate-700/50 hover:bg-blue-50/30 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="py-5 pl-8 pr-4">
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="font-bold text-slate-800 dark:text-white text-[15px] group-hover:text-brand-blue transition-colors">Q4
+                                            Content Strategy Meeting</span>
+                                        <span class="text-slate-400 text-xs mt-1">by Tara Admin</span>
+                                    </div>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-300 text-xs font-semibold border border-orange-100 dark:border-orange-800/50">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_6px_rgba(249,115,22,0.6)]"></span>
+                                        Internal
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 text-xs font-bold border border-amber-100 dark:border-amber-800/30">
+                                        <span class="material-symbols-outlined text-[14px] mr-1">edit_note</span>
+                                        Draft
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4 text-slate-500 font-medium">
+                                    Oct 20, 2023
+                                </td>
+                                <td class="py-5 pl-4 pr-8 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity translate-x-2 group-hover:translate-x-0 duration-200">
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-brand-blue hover:bg-blue-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">edit</span>
+                                        </button>
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                class="group border-b border-slate-50 dark:border-slate-700/50 hover:bg-blue-50/30 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="py-5 pl-8 pr-4">
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="font-bold text-slate-800 dark:text-white text-[15px] group-hover:text-brand-blue transition-colors">Tailwind
+                                            CSS v3 Tips</span>
+                                        <span class="text-slate-400 text-xs mt-1">by Tara Admin</span>
+                                    </div>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-300 text-xs font-semibold border border-cyan-100 dark:border-cyan-800/50">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_6px_rgba(6,182,212,0.6)]"></span>
+                                        Development
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-100 dark:border-emerald-800/30">
+                                        <span class="material-symbols-outlined text-[14px] mr-1">check_circle</span>
+                                        Published
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4 text-slate-500 font-medium">
+                                    Oct 15, 2023
+                                </td>
+                                <td class="py-5 pl-4 pr-8 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity translate-x-2 group-hover:translate-x-0 duration-200">
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-brand-blue hover:bg-blue-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">edit</span>
+                                        </button>
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="group hover:bg-blue-50/30 dark:hover:bg-slate-700/30 transition-colors">
+                                <td class="py-5 pl-8 pr-4">
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="font-bold text-slate-800 dark:text-white text-[15px] group-hover:text-brand-blue transition-colors">Color
+                                            Theory Basics</span>
+                                        <span class="text-slate-400 text-xs mt-1">by Tara Admin</span>
+                                    </div>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-300 text-xs font-semibold border border-blue-100 dark:border-blue-800/50">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_6px_rgba(59,130,246,0.6)]"></span>
+                                        Design Trends
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-100 dark:border-emerald-800/30">
+                                        <span class="material-symbols-outlined text-[14px] mr-1">check_circle</span>
+                                        Published
+                                    </span>
+                                </td>
+                                <td class="py-5 px-4 text-slate-500 font-medium">
+                                    Oct 10, 2023
+                                </td>
+                                <td class="py-5 pl-4 pr-8 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity translate-x-2 group-hover:translate-x-0 duration-200">
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-brand-blue hover:bg-blue-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">edit</span>
+                                        </button>
+                                        <button
+                                            class="size-9 flex items-center justify-center rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+                                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div
+                    class="flex items-center justify-between px-8 py-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-700">
+                    <span class="text-xs font-medium text-slate-400">Showing 1-5 of 24 notes</span>
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="size-8 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50">
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </button>
+                        <button
+                            class="size-8 flex items-center justify-center rounded-lg bg-brand-blue text-white font-bold text-xs shadow-md shadow-blue-500/20">1</button>
+                        <button
+                            class="size-8 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-medium transition-colors">2</button>
+                        <button
+                            class="size-8 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-medium transition-colors">3</button>
+                        <button
+                            class="size-8 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="py-6 text-center text-slate-400 dark:text-slate-500 text-xs font-medium">
+                © 2023 TaraKreasi. All rights reserved.
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

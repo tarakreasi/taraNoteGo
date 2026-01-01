@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook Interface Study</title>
+
+    <!-- DISCLAIMER: This is an educational prototype studying notebook UI patterns. It is not affiliated with Microsoft. -->
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <!-- Vue 3 (Global Build) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Quill -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FAFAFA;
+            color: #201F1E;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        /* Layout */
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Top Bar */
+        .onenote-topbar {
+            height: 48px;
+            background: #7719AA;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        /* Styles ported from original Vue component */
+        .notebooks-sidebar {
+            width: 280px;
+            background: #F3F2F1;
+            border-right: 1px solid #EDEBE9;
+        }
+
+        .notebook-item:hover {
+            background: #EDEBE9;
+        }
+
+        .notebook-item.active {
+            background: #E1DFDD;
+        }
+
+        /* Quill Override */
+        .ql-container {
+            height: calc(100vh - 200px);
+            font-size: 16px;
+        }
+
+        .ql-toolbar {
+            border-top: none !important;
+            border-left: none !important;
+            border-right: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- Top Bar -->
+        <div class="onenote-topbar text-white">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-white rounded flex items-center justify-center text-[#7719AA] font-bold text-sm">
+                    N</div>
+                <span class="font-semibold text-sm">TaraNote (Prototype)</span>
+            </div>
+            <div class="ml-auto flex gap-2">
+                <button class="p-1 hover:bg-white/10 rounded">
+                    <span class="material-symbols-outlined text-white">settings</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="flex flex-1 overflow-hidden">
+
+            <!-- Left Sidebar - Notebooks -->
+            <div class="notebooks-sidebar flex flex-col">
+                <div class="p-4 border-b border-[#EDEBE9]">
+                    <h2 class="text-lg font-semibold mb-3">Notebooks</h2>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-2 top-2 text-lg text-gray-500">search</span>
+                        <input type="text" placeholder="Search..."
+                            class="w-full pl-9 pr-3 py-2 border border-gray-400 rounded-sm text-sm focus:border-[#7719AA] outline-none">
+                    </div>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-2">
+                    <div v-for="notebook in notebooks" :key="notebook.id" @click="selectedNotebookId = notebook.id"
+                        class="flex items-center p-2 rounded-sm cursor-pointer mb-1 notebook-item"
+                        :class="{ active: selectedNotebookId === notebook.id }">
+                        <span class="material-symbols-outlined text-[#7719AA] mr-3">book</span>
+                        <span class="text-sm flex-1">{{ notebook.name }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Sidebar - Pages -->
+            <div class="w-[300px] flex flex-col border-right border-[#EDEBE9] bg-white border-r">
+                <div class="p-4 border-b border-[#EDEBE9] flex justify-between items-center">
+                    <h3 class="font-semibold">{{ currentNotebookName }}</h3>
+                    <button @click="createPage" class="hover:bg-gray-100 p-1 rounded">
+                        <span class="material-symbols-outlined text-gray-600">add</span>
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto">
+                    <div v-for="note in filteredNotes" :key="note.id" @click="selectNote(note)"
+                        class="p-3 border-b border-[#EDEBE9] cursor-pointer hover:bg-[#F3F2F1]"
+                        :class="{ 'bg-[#E1DFDD]': selectedNote?.id === note.id }">
+                        <div class="font-[500] text-sm mb-1">{{ note.title || 'Untitled Page' }}</div>
+                        <div class="text-xs text-gray-500">{{ formatDate(note.updated_at) }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editor Area -->
+            <div class="flex-1 flex flex-col bg-white relative">
+                <div v-if="!selectedNote" class="flex flex-col items-center justify-center h-full text-gray-400">
+                    <span class="material-symbols-outlined text-6xl mb-4">description</span>
+                    <p>Select a page to start writing</p>
+                </div>
+
+                <div v-show="selectedNote" class="flex flex-col h-full">
+                    <!-- Editor Header -->
+                    <div class="p-8 pb-4">
+                        <input v-model="editorTitle" class="text-4xl font-bold w-full outline-none placeholder-gray-300"
+                            placeholder="Untitled Page">
+                        <div class="text-xs text-gray-500 mt-2">{{ formatDate(new Date()) }}</div>
+                    </div>
+
+                    <!-- Quill container -->
+                    <div id="editor-container"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted, watch } = Vue;
+
+        createApp({
+            setup() {
+                // MOCK DATA
+                const notebooks = ref([
+                    { id: 1, name: 'Personal Notes' },
+                    { id: 2, name: 'Work Projects' },
+                    { id: 3, name: 'Learning Laravel' }
+                ]);
+
+                const notes = ref([
+                    { id: 101, notebook_id: 1, title: 'Grocery List', content: '<ul><li>Milk</li><li>Eggs</li><li>Bread</li></ul>', updated_at: new Date().toISOString() },
+                    { id: 102, notebook_id: 2, title: 'Project Ideas', content: '<p>Build a <strong>Notebook Interface Study</strong>!</p>', updated_at: new Date(Date.now() - 86400000).toISOString() },
+                    { id: 103, notebook_id: 3, title: 'Routing Guide', content: '<p>Laravel routing is cool.</p>', updated_at: new Date(Date.now() - 172800000).toISOString() },
+                ]);
+
+                // STATE
+                const selectedNotebookId = ref(1);
+                const selectedNote = ref(null);
+                const editorTitle = ref('');
+                let quill = null;
+
+                // Computed
+                const currentNotebookName = computed(() =>
+                    notebooks.value.find(n => n.id === selectedNotebookId.value)?.name || 'Notebook'
+                );
+
+                const filteredNotes = computed(() =>
+                    notes.value.filter(n => n.notebook_id === selectedNotebookId.value)
+                );
+
+                // Methods
+                const formatDate = (dateStr) => {
+                    return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                };
+
+                const createPage = () => {
+                    const newNote = {
+                        id: Date.now(),
+                        notebook_id: selectedNotebookId.value,
+                        title: '',
+                        content: '',
+                        updated_at: new Date().toISOString()
+                    };
+                    notes.value.unshift(newNote);
+                    selectNote(newNote);
+                };
+
+                const selectNote = (note) => {
+                    selectedNote.value = note;
+                    editorTitle.value = note.title;
+
+                    // Init Quill if needed
+                    if (!quill) {
+                        setTimeout(() => {
+                            quill = new Quill('#editor-container', {
+                                theme: 'snow',
+                                placeholder: 'Start typing...',
+                                modules: {
+                                    toolbar: [
+                                        [{ 'header': [1, 2, false] }],
+                                        ['bold', 'italic', 'underline'],
+                                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                        ['clean']
+                                    ]
+                                }
+                            });
+                            quill.root.innerHTML = note.content;
+
+                            quill.on('text-change', () => {
+                                if (selectedNote.value) {
+                                    selectedNote.value.content = quill.root.innerHTML;
+                                }
+                            });
+                        }, 0);
+                    } else {
+                        quill.root.innerHTML = note.content;
+                    }
+                };
+
+                // Watch title changes
+                watch(editorTitle, (newVal) => {
+                    if (selectedNote.value) selectedNote.value.title = newVal;
+                });
+
+                return {
+                    notebooks,
+                    notes,
+                    selectedNotebookId,
+                    selectedNote,
+                    editorTitle,
+                    currentNotebookName,
+                    filteredNotes,
+                    formatDate,
+                    createPage,
+                    selectNote
+                };
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>

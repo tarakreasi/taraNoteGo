@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaraKreasi Notes - About / Living Portfolio</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e45b5",
+                        "accent-orange": "#ffedd5", // Pastel orange background
+                        "accent-orange-text": "#c2410c", // Darker orange for text
+                        "background-light": "#ffffff",
+                        "background-off": "#f9fafb",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom underline style */
+        .highlight-orange {
+            background: linear-gradient(120deg, #ffedd5 0%, #ffedd5 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            display: inline;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-[#111318]">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Navigation -->
+<div class="layout-container flex w-full flex-col bg-white border-b border-[#f0f2f4] sticky top-0 z-50">
+<div class="flex justify-center w-full">
+<div class="flex flex-col max-w-[960px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap px-4 py-3 md:px-10">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-[24px]">edit_note</span>
+</div>
+<h2 class="text-primary text-lg font-bold leading-tight tracking-[-0.015em]">TaraKreasi Notes</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-6">
+<a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary text-sm font-bold leading-normal relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-primary" href="#">Living Portfolio</a>
+<a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Blog</a>
+<a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary-dark transition-colors shadow-sm">
+<span class="truncate">Subscribe</span>
+</button>
+</div>
+<!-- Mobile Menu Icon -->
+<div class="md:hidden text-[#111318]">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+</div>
+</div>
+</div>
+<!-- Hero Section -->
+<div class="layout-container flex flex-col w-full">
+<div class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 px-4 md:px-10">
+<div class="@container">
+<div class="flex flex-col-reverse gap-6 py-10 @[480px]:gap-8 @[864px]:flex-row items-center">
+<!-- Text Content -->
+<div class="flex flex-col gap-6 @[480px]:min-w-[400px] @[480px]:gap-8 @[864px]:justify-center flex-1">
+<div class="flex flex-col gap-4 text-left">
+<div class="inline-flex items-center gap-2 px-2 py-1 bg-accent-orange rounded-md w-fit">
+<span class="material-symbols-outlined text-accent-orange-text text-[16px]">waving_hand</span>
+<span class="text-accent-orange-text text-xs font-bold uppercase tracking-wide">About Me</span>
+</div>
+<h1 class="text-[#111318] text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl">
+                                        Hi, I'm Tara. <br/>
+<span class="text-primary">A Digital Craftsman.</span>
+</h1>
+<p class="text-[#637588] text-base font-normal leading-relaxed max-w-[500px]">
+                                        Building <span class="text-[#111318] font-medium">TaraKreasi Notes</span>. This is where I document my journey, share my process, and showcase the raw, unfinished reality of creative work. I believe in <span class="highlight-orange">learning in public</span>.
+                                    </p>
+</div>
+<div class="flex gap-4">
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary-dark transition-all hover:scale-105 shadow-md">
+<span class="truncate">Get in Touch</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white border border-[#dbdfe6] text-[#111318] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#f0f2f4] transition-colors">
+<span class="truncate">Read Blog</span>
+</button>
+</div>
+</div>
+<!-- Image -->
+<div class="relative w-full @[864px]:w-1/2 flex justify-center @[864px]:justify-end">
+<!-- Abstract decorative bg -->
+<div class="absolute top-4 right-4 w-full h-full bg-accent-orange rounded-full opacity-50 blur-2xl transform translate-x-4 translate-y-4 -z-10"></div>
+<div class="w-full max-w-[400px] aspect-square bg-center bg-no-repeat bg-cover rounded-2xl shadow-xl z-10" data-alt="Portrait of Tara, a creative professional, smiling in a modern office setting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3v2QYxt4qAn1hmWpwr7dz6Zv_LQLCkyOtS7oIELbzXAw4xV8XQTCqzWb7VjUK8KKak2Vyv2wUYQ0Hi53vl6BFUf_X6B7CObZW8m2AW3oYJMPxiVQDizMgG6UfalDCN7zhbK1mq2L4Q606KlxVA3rrnLdUHfhc0GN48z96Vj1zhN9ehIKMZ8Eatyk9HSYkmtNHON3i0xdGF4_bX2V3oe6yM6LdNg8SlGPShOpzBJM41ACkrwx_ZdfDtjmoAsKAyb_lExpGj1bwmuI-");'>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Philosophy Section -->
+<div class="w-full bg-accent-orange/30 py-16 border-y border-orange-100">
+<div class="flex justify-center w-full">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 px-4 md:px-10">
+<div class="flex flex-col gap-10 @container">
+<div class="flex flex-col gap-4 text-center items-center">
+<h2 class="text-primary text-[32px] font-bold leading-tight @[480px]:text-4xl tracking-[-0.033em] max-w-[720px]">
+                                The Living Portfolio Philosophy
+                            </h2>
+<p class="text-[#4b5563] text-lg font-normal leading-normal max-w-[720px]">
+                                This portfolio is a garden, not a museum. It prioritizes <span class="font-bold text-primary">process over perfection</span> and evolves as I learn.
+                            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="flex flex-1 gap-4 rounded-xl border border-[#fed7aa] bg-white p-6 flex-col hover:shadow-lg transition-shadow duration-300">
+<div class="text-primary bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">update</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-[#111318] text-lg font-bold leading-tight">Always Evolving</h3>
+<p class="text-[#637588] text-sm font-normal leading-relaxed">Work is never truly finished, only abandoned or improved. I update projects as they grow.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-1 gap-4 rounded-xl border border-[#fed7aa] bg-white p-6 flex-col hover:shadow-lg transition-shadow duration-300">
+<div class="text-primary bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">construction</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-[#111318] text-lg font-bold leading-tight">Process First</h3>
+<p class="text-[#637588] text-sm font-normal leading-relaxed">Documenting the 'how' is as important as the 'what'. Expect sketches and drafts.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-1 gap-4 rounded-xl border border-[#fed7aa] bg-white p-6 flex-col hover:shadow-lg transition-shadow duration-300">
+<div class="text-primary bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">menu_book</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-[#111318] text-lg font-bold leading-tight">Open Learning</h3>
+<p class="text-[#637588] text-sm font-normal leading-relaxed">Building in public to share knowledge, resources, and even failures openly.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Two Column Content: Current Focus & Featured Work -->
+<div class="layout-container flex w-full justify-center py-12">
+<div class="layout-content-container flex flex-col md:flex-row gap-12 max-w-[960px] flex-1 px-4 md:px-10">
+<!-- Left Column: Current Focus (Timeline) -->
+<div class="flex flex-col w-full md:w-1/3 gap-6">
+<div class="flex items-center gap-2 pb-2 border-b border-[#f0f2f4]">
+<span class="material-symbols-outlined text-primary">radar</span>
+<h2 class="text-[#111318] text-xl font-bold leading-tight tracking-[-0.015em]">Current Focus</h2>
+</div>
+<div class="flex flex-col gap-0 relative">
+<!-- Vertical Line -->
+<div class="absolute left-[15px] top-2 bottom-2 w-[2px] bg-[#f0f2f4]"></div>
+<!-- Item 1 -->
+<div class="flex gap-4 pb-8 relative z-10">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 border-4 border-white shadow-sm">
+<span class="material-symbols-outlined text-white text-[16px]">brush</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Now</span>
+<h3 class="text-[#111318] font-bold text-sm">Refining the Design System</h3>
+<p class="text-[#637588] text-sm mt-1">Standardizing components for TaraKreasi V2.</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 pb-8 relative z-10">
+<div class="w-8 h-8 rounded-full bg-accent-orange flex items-center justify-center shrink-0 border-4 border-white shadow-sm">
+<span class="material-symbols-outlined text-accent-orange-text text-[16px]">code</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Last Week</span>
+<h3 class="text-[#111318] font-bold text-sm">HTMX Integration Experiment</h3>
+<p class="text-[#637588] text-sm mt-1">Testing server-side interactions for the blog.</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex gap-4 relative z-10">
+<div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 border-4 border-white shadow-sm">
+<span class="material-symbols-outlined text-gray-500 text-[16px]">school</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Ongoing</span>
+<h3 class="text-[#111318] font-bold text-sm">Learning Advanced Tailwind</h3>
+<p class="text-[#637588] text-sm mt-1">Exploring container queries and plugins.</p>
+</div>
+</div>
+</div>
+<div class="mt-4 p-4 bg-[#f9fafb] rounded-lg border border-[#f0f2f4]">
+<p class="text-xs text-[#637588] italic">"The only way to do great work is to love what you do."</p>
+</div>
+</div>
+<!-- Right Column: Featured Projects -->
+<div class="flex flex-col w-full md:w-2/3 gap-6">
+<div class="flex items-center justify-between pb-2 border-b border-[#f0f2f4]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+<h2 class="text-[#111318] text-xl font-bold leading-tight tracking-[-0.015em]">Featured Projects</h2>
+</div>
+<a class="text-sm font-bold text-primary hover:text-primary-dark" href="#">View All -&gt;</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Project Card 1 -->
+<div class="group flex flex-col bg-white border border-[#dbdfe6] rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Screenshot of a minimal dashboard interface with charts and sidebar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjfXeZTaydEMpdINzXzDPQAE9bpgGzHPug-T8X9QoUaC_qkXS9Zr8voPg_AYff4irCkgXIcZHX8XpnfkC4q8O9Eb-Lx_Dh_EYRB8B-8IYtw3WZf7Vgnnb4PvZQFjxmXLgv0RYzNz9hxhVd2K7xPQ0HsXUtwF8gSOh9mGSWEuHbkFYcw_9zOZwgfLA8Eyx4sBReFA12rHiZ3JsN6FuJvknprGkaMn5GMTQ0gb_azAX_54UIKdhl3lN-ODIaK4r8Fh-d_EyfqkGA8Wwt');">
+<div class="absolute inset-0 bg-black/0 group-hover:bg-primary/10 transition-colors duration-300"></div>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-accent-orange rounded text-[10px] font-bold uppercase text-accent-orange-text tracking-wide">UX Design</span>
+<span class="px-2 py-1 bg-gray-100 rounded text-[10px] font-bold uppercase text-gray-600 tracking-wide">Case Study</span>
+</div>
+<h3 class="text-[#111318] font-bold text-lg leading-tight group-hover:text-primary transition-colors">E-Commerce Redesign</h3>
+<p class="text-[#637588] text-sm leading-relaxed line-clamp-2">A comprehensive overhaul of a checkout flow focusing on reducing cart abandonment.</p>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group flex flex-col bg-white border border-[#dbdfe6] rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Macro photography of a fountain pen writing on textured paper" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPCSdEzNokC6ONTwAKwgu9lMdl4OJkcUfuYavmzdbWOkF9T1q_QFX5bXHs-9_iiGqtnm9U10qYz_8cyGIs_lIlIIt29bwUmJZANYgjWePiIOuObfVxaSiB-T30YeSzNYXbKu4K8tC2NTg_Z3OWweVBChIAx4g500HPwoqB15HUj8_WrV9wQIqVod6kNDl9mSufsXEfDi6nm8-_ubHrVvaQCjR3Z_dbWZ0FHy0aRyn7gd1Z9uLqF7GbyFXxhtPKCNY7dsuIx5-rBShY');">
+<div class="absolute inset-0 bg-black/0 group-hover:bg-primary/10 transition-colors duration-300"></div>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-accent-orange rounded text-[10px] font-bold uppercase text-accent-orange-text tracking-wide">Writing</span>
+<span class="px-2 py-1 bg-gray-100 rounded text-[10px] font-bold uppercase text-gray-600 tracking-wide">Essay</span>
+</div>
+<h3 class="text-[#111318] font-bold text-lg leading-tight group-hover:text-primary transition-colors">Digital Minimalism</h3>
+<p class="text-[#637588] text-sm leading-relaxed line-clamp-2">Exploring the impact of notification fatigue on creative output and deep work.</p>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="group flex flex-col bg-white border border-[#dbdfe6] rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Mockup of mobile app screens displaying a fitness tracking application" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJipQNXieIoTDfwQpLQlclt_zf1uSiKaTo7sEflLZWLyrSzP_57L3Rj0j80GT-K3gMXOhuBunMQZ1_VfgW3OjkWA_ckt0fqHuCOVlvhcFdOiLgwhDxqQ1N76x6LuEBMnBG8guME0ue8IU6dzQkiCBhsMqxOXA8dCLpyFsAcWUeq3PS5jpHXHTPA6zOq3MO6WcvSE_LI8W6qrlY9AugoyhrdBOhvWQrLYFWmxC_ucpaFirHZIrh8M7QNH5Wr1oJ-ANkMuDW0qHg8FUq');">
+<div class="absolute inset-0 bg-black/0 group-hover:bg-primary/10 transition-colors duration-300"></div>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-accent-orange rounded text-[10px] font-bold uppercase text-accent-orange-text tracking-wide">Mobile Dev</span>
+</div>
+<h3 class="text-[#111318] font-bold text-lg leading-tight group-hover:text-primary transition-colors">FitTrack Pro</h3>
+<p class="text-[#637588] text-sm leading-relaxed line-clamp-2">Building a React Native application for tracking personal bests in the gym.</p>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="group flex flex-col bg-gray-50 border border-dashed border-primary/40 rounded-xl overflow-hidden hover:border-primary hover:bg-blue-50/50 transition-all duration-300 cursor-pointer justify-center items-center h-full min-h-[300px]">
+<div class="flex flex-col items-center gap-3 text-center p-6">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary">add</span>
+</div>
+<h3 class="text-primary font-bold text-lg leading-tight">What's Next?</h3>
+<p class="text-[#637588] text-sm leading-relaxed max-w-[200px]">Check back soon for the upcoming design system case study.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Newsletter / Footer CTA -->
+<div class="w-full bg-[#101622] text-white py-16 mt-12">
+<div class="flex justify-center w-full">
+<div class="layout-content-container flex flex-col items-center text-center max-w-[600px] flex-1 px-4 gap-6">
+<div class="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-white text-[32px]">mail</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight">Join the Journey</h2>
+<p class="text-gray-400 text-lg">
+                        I share weekly updates on my "Living Portfolio", design resources, and thoughts on digital craftsmanship. No spam, just notes.
+                    </p>
+<div class="flex w-full max-w-md gap-2 flex-col sm:flex-row mt-4">
+<input class="flex-1 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="tara@example.com" type="email"/>
+<button class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                            Subscribe
+                        </button>
+</div>
+<div class="flex gap-6 mt-8">
+<a class="text-gray-400 hover:text-white transition-colors text-sm" href="#">Twitter</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm" href="#">LinkedIn</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm" href="#">GitHub</a>
+<a class="text-gray-400 hover:text-white transition-colors text-sm" href="#">Dribbble</a>
+</div>
+<div class="text-gray-600 text-xs mt-8">
+                        © 2023 TaraKreasi Notes. All rights reserved.
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

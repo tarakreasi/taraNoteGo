@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TaraKreasi Notes - Topics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e45b5",
+                        "accent-orange": "#ffedd5",
+                        "accent-orange-text": "#c2410c",
+                        "background-light": "#ffffff",
+                        "background-off": "#f9fafb",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            /* Palet 2026 (Refined TaraKreasi Blue + Orange) */
+            --bg-color: #F8FAFC;
+            /* Softer Slate 50 */
+            --text-primary: #1E293B;
+            /* Slate 800 */
+            --accent-blue: #135bec;
+            /* Tara Blue */
+            --accent-orange: #FF5F1F;
+            /* Electric Orange - Tara Orange */
+            --glass-bg: rgba(255, 255, 255, 0.90);
+            /* Clarity Upgrade: Higher Opacity for Contrast */
+            --glass-border: rgba(255, 255, 255, 0.6);
+            /* Diamond Edge: Cleaner white border */
+            --shadow-ambient: 0 12px 40px -10px rgba(68, 133, 238, 0.15);
+            /* Blue glow */
+        }
+
+        .dark {
+            --bg-color: #0F172A;
+            --text-primary: #F1F5F9;
+            --accent-blue: #3b82f6;
+            --accent-orange: #fb923c;
+            --glass-bg: rgba(15, 23, 42, 0.80);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            line-height: 1.7;
+            /* Clarity Upgrade: Relaxed reading */
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Improved Text Readability on Glass */
+        p,
+        li,
+        a {
+            font-weight: 500;
+            /* Clarity Upgrade: Medium weight for better legibility */
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .dark .noise-overlay {
+            opacity: 0.07;
+        }
+
+        /* Liquid Glass Component (Deep Glass Upgrade) */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+                /* Diamond Edge: Inner Light */
+                var(--shadow-ambient);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Bioluminescent Glow */
+        .glass-panel:hover {
+            transform: translateY(-4px) scale(1.005);
+            border-color: rgba(255, 95, 31, 0.4);
+            box-shadow:
+                0 20px 60px -10px rgba(255, 95, 31, 0.15),
+                0 0 15px rgba(255, 95, 31, 0.1);
+            /* Inner/Outer Glow */
+        }
+
+        .dark .glass-panel:hover {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(68, 133, 238, 0.5);
+            box-shadow:
+                0 20px 60px -10px rgba(68, 133, 238, 0.2),
+                0 0 20px rgba(68, 133, 238, 0.15);
+            /* Stronger bioluminescence */
+        }
+
+        /* Typography */
+        .text-gradient-orange {
+            background: linear-gradient(135deg, var(--accent-orange), #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* 2026 Living Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.03);
+                opacity: 1;
+            }
+        }
+
+        @keyframes reveal-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-breathe {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse Nodes (Phase 3) */
+        .node-pulse {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-blue);
+            animation: pulse-node 4s infinite;
+        }
+
+        @keyframes pulse-node {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(2);
+                opacity: 0.8;
+            }
+        }
+    </style>
+    <script>
+        // Init theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+
+<body class="text-[#181511] font-display min-h-screen flex flex-col font-body">
+    <div class="noise-overlay"></div>
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Top Navigation -->
+        <div class="layout-container flex w-full flex-col sticky top-4 z-50 px-4">
+            <div class="flex justify-center w-full">
+                <div class="flex flex-col max-w-[1200px] flex-1">
+                    <header class="glass-panel flex items-center justify-between whitespace-nowrap px-4 py-3 md:px-10">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-sm border border-white/50 flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                                <img src="images/logo_tarakreasi.png" alt="TaraKreasi Notes Logo"
+                                    class="h-8 w-auto object-contain">
+                            </div>
+                        </div>
+                        <div class="hidden md:flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-6">
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="index.html">Home</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="about.html">Living Portfolio</a>
+                                <a class="text-primary text-sm font-bold leading-normal relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
+                                    href="topics.html">Garden</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="contact.html">Contact</a>
+                            </div>
+                            <button
+                                class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary-dark transition-colors shadow-sm">
+                                <span class="truncate">Subscribe</span>
+                            </button>
+                            <button id="theme-toggle"
+                                class="p-2 ml-4 rounded-full text-primary hover:bg-black/5 dark:text-white dark:hover:bg-white/10 transition-colors"
+                                aria-label="Toggle Dark Mode">
+                                <span class="material-symbols-outlined dark:hidden">light_mode</span>
+                                <span class="material-symbols-outlined hidden dark:block">dark_mode</span>
+                            </button>
+                        </div>
+                        <!-- Mobile Menu Icon -->
+                        <div class="md:hidden text-[#111318]">
+                            <span class="material-symbols-outlined">menu</span>
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Area -->
+        <main class="flex-grow">
+            <!-- Phase 3: Background Pulse Nodes -->
+            <div class="absolute top-[10%] left-[10%] node-pulse" style="animation-delay: 0s;"></div>
+            <div class="absolute top-[20%] right-[15%] node-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute top-[60%] left-[20%] node-pulse" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-[20%] right-[10%] node-pulse" style="animation-delay: 3s;"></div>
+
+            <section class="reveal-on-scroll relative py-20 sm:py-28 px-4 overflow-hidden">
+                <!-- Ambient Spotlight -->
+                <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[500px] bg-primary/20 blur-[150px] rounded-full pointer-events-none z-0 opacity-60">
+                </div>
+
+                <div class="relative z-10 max-w-3xl mx-auto text-center flex flex-col gap-8 items-center">
+                    <h1
+                        class="font-display text-gray-900 dark:text-white text-5xl sm:text-6xl font-bold tracking-tight leading-tight">
+                        Explore <span class="text-primary dark:text-blue-400">Knowledge</span>
+                    </h1>
+                    <p class="text-slate-600 dark:text-slate-300 text-xl font-normal max-w-xl mx-auto leading-relaxed">
+                        Discover what matters to you. Browse our curated collection of thoughts, tutorials, and
+                        insights.
+                    </p>
+
+                    <!-- Search Box: Glass Prism -->
+                    <div class="w-full max-w-lg mt-6 relative group">
+                        <div
+                            class="absolute -inset-1 bg-gradient-to-r from-primary/50 to-purple-500/50 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500">
+                        </div>
+                        <div
+                            class="relative flex w-full h-16 bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl items-center p-2 shadow-2xl overflow-hidden focus-within:bg-white/80 dark:focus-within:bg-white/10 focus-within:border-primary/50 dark:focus-within:border-white/20 transition-all">
+                            <div class="pl-4 pr-3 text-gray-400 dark:text-white/50 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[24px]">search</span>
+                            </div>
+                            <input
+                                class="w-full h-full bg-transparent border-none focus:ring-0 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/40 text-lg font-medium"
+                                placeholder="Find a topic like 'Design' or 'Python'..." type="text" />
+                            <button
+                                class="h-12 px-8 bg-primary hover:bg-primary-dark text-white text-base font-bold rounded-xl transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-10 py-12 flex flex-col lg:flex-row gap-10">
+                <!-- Left Column: Topic Grid -->
+                <div class="flex-1 flex flex-col gap-8">
+                    <div class="flex items-center justify-between border-b border-[#e5e1dc] dark:border-[#3a3228] pb-4">
+                        <h2 class="text-[#181511] dark:text-white text-2xl font-bold tracking-tight">All Categories</h2>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                            <span>Sort by:</span>
+                            <select
+                                class="bg-transparent border-none py-0 pl-2 pr-8 text-primary dark:text-primary font-bold focus:ring-0 cursor-pointer text-sm">
+                                <option>Popularity</option>
+                                <option>A-Z</option>
+                                <option>Newest</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+                        <!-- Card 1 -->
+                        <a class="glass-panel group flex flex-col p-5 relative overflow-hidden" href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">12
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">palette</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                Design Systems</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Building scalable UI
+                                libraries and maintaining visual consistency across products.</p>
+                        </a>
+                        <!-- Card 2 -->
+                        <a class="glass-panel group flex flex-col p-5 relative overflow-hidden" href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">24
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">code</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                Frontend Dev</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Deep dives into React,
+                                Vue, modern CSS techniques, and web performance.</p>
+                        </a>
+                        <!-- Card 3 -->
+                        <a class="glass-panel group flex flex-col p-5 relative overflow-hidden" href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">8
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">trending_up</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                Career Growth</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Navigating the tech
+                                industry, negotiations, and leadership skills.</p>
+                        </a>
+                        <!-- Card 4 -->
+                        <a class="glass-panel group flex flex-col p-5 relative overflow-hidden" href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">15
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">search_insights</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                UX Research</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Understanding user
+                                needs through qualitative and quantitative methods.</p>
+                        </a>
+                        <!-- Card 5 -->
+                        <a class="glass-panel group flex flex-col p-5 relative overflow-hidden" href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">18
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">view_kanban</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                Product Mgmt</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Roadmap strategies,
+                                agile methodologies, and stakeholder management.</p>
+                        </a>
+                        <!-- Card 6 -->
+                        <a class="glass-panel group flex flex-col p-5 relative overflow-hidden" href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">6
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">database</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                Data Science</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Python, machine
+                                learning basics, and analytics visualization.</p>
+                        </a>
+                        <!-- Card 7 -->
+                        <a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden"
+                            href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">9
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">cloud</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                Cloud Computing</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Deploying on AWS,
+                                Azure, and Google Cloud Platform.</p>
+                        </a>
+                        <!-- Card 8 -->
+                        <a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden"
+                            href="#">
+                            <div class="absolute top-0 right-0 p-4">
+                                <span
+                                    class="bg-accent-orange text-accent-orange-text dark:text-primary text-xs font-bold px-2 py-1 rounded-full">5
+                                    Articles</span>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-accent-orange dark:bg-accent-orange-text/20 text-accent-orange-text dark:text-accent-orange flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+                                <span class="material-symbols-outlined text-[28px]">smartphone</span>
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-primary dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                Mobile Dev</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Building for iOS and
+                                Android with Swift, Kotlin, and Flutter.</p>
+                        </a>
+                        <!-- Card 9 - View All -->
+                        <a class="group flex flex-col items-center justify-center bg-gray-50 dark:bg-[#2a2218] border-2 border-dashed border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:border-primary hover:bg-white dark:hover:bg-[#332b21] transition-all duration-300 min-h-[180px]"
+                            href="#">
+                            <div
+                                class="w-12 h-12 rounded-full bg-primary/10 text-primary dark:text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[28px]">arrow_forward</span>
+                            </div>
+                            <h3 class="text-base font-bold text-primary dark:text-white mb-1">View All Topics</h3>
+                        </a>
+                    </div>
+                </div>
+                <!-- Right Sidebar: Trending -->
+                <aside class="w-full lg:w-80 flex flex-col gap-6">
+                    <div class="glass-panel p-6">
+                        <h3 class="text-lg font-bold text-primary dark:text-white mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">local_fire_department</span>
+                            Trending Now
+                        </h3>
+                        <ul class="flex flex-col gap-4">
+                            <li>
+                                <a class="flex gap-3 group" href="#">
+                                    <span
+                                        class="text-2xl font-black text-gray-200 dark:text-gray-700 group-hover:text-primary transition-colors">01</span>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-primary dark:text-white font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">How
+                                            to implement Dark Mode in Tailwind CSS</span>
+                                        <span class="text-xs text-gray-500 mt-1">in Frontend Dev</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex gap-3 group" href="#">
+                                    <span
+                                        class="text-2xl font-black text-gray-200 dark:text-gray-700 group-hover:text-primary transition-colors">02</span>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-primary dark:text-white font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">The
+                                            Future of AI in Design Systems</span>
+                                        <span class="text-xs text-gray-500 mt-1">in Design Systems</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex gap-3 group" href="#">
+                                    <span
+                                        class="text-2xl font-black text-gray-200 dark:text-gray-700 group-hover:text-primary transition-colors">03</span>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-primary dark:text-white font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">Salary
+                                            Negotiation Tips for 2024</span>
+                                        <span class="text-xs text-gray-500 mt-1">in Career Growth</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-primary rounded-xl p-6 text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 opacity-10 transform translate-x-4 -translate-y-4">
+                            <span class="material-symbols-outlined text-[100px]">mail</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 relative z-10">Weekly Digest</h3>
+                        <p class="text-blue-100 text-sm mb-4 relative z-10">Get the best articles delivered to your
+                            inbox
+                            every Monday.</p>
+                        <form class="flex flex-col gap-3 relative z-10">
+                            <input
+                                class="rounded-lg border-none text-[#181511] text-sm px-3 py-2 focus:ring-2 focus:ring-primary"
+                                placeholder="Your email address" type="email" />
+                            <button
+                                class="bg-primary text-[#181511] font-bold text-sm py-2 rounded-lg hover:bg-white hover:text-primary transition-colors">Subscribe</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </main>
+        <!-- Hybrid Footer System -->
+        <footer class="mt-20 reveal-on-scroll">
+            <!-- Contextual Pre-Footer: Topics (Newsletter) -->
+            <div class="px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto mb-12">
+                <div class="glass-panel p-8 md:p-12 relative overflow-hidden border-2 border-primary/10">
+                    <!-- Glow effect -->
+                    <div
+                        class="absolute top-0 right-0 -transtale-y-1/2 translate-x-1/2 w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none">
+                    </div>
+
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center justify-between">
+                        <div class="text-center md:text-left max-w-lg">
+                            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                                Join the <span class="text-gradient-orange">Digital Garden</span>
+                            </h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg">
+                                Receive weekly seeds of thought on coding, design, and building living software. No
+                                spam, just growth.
+                            </p>
+                        </div>
+                        <div class="w-full max-w-md">
+                            <form class="flex flex-col sm:flex-row gap-3">
+                                <input type="email" placeholder="your@email.com"
+                                    class="flex-1 bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 text-gray-900 dark:text-white placeholder-gray-500 transition-colors" />
+                                <button type="button"
+                                    class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-95">
+                                    Subscribe
+                                </button>
+                            </form>
+                            <p class="text-xs text-slate-500 mt-3 text-center md:text-left">
+                                Join 2,000+ other gardeners. Unsubscribe anytime.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Uniform Base Footer -->
+            <div class="border-t border-gray-200 dark:border-white/5 bg-white/50 dark:bg-black/20 backdrop-blur-lg">
+                <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                        <!-- Brand -->
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                                <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                            </div>
+                            <span
+                                class="font-display font-bold text-xl text-gray-900 dark:text-white tracking-tight">TaraKreasi</span>
+                        </div>
+
+                        <!-- Links -->
+                        <div class="flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                            <a href="index.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                            <a href="about.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">About</a>
+                            <a href="topics.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Garden</a>
+                            <a href="contact.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Contact</a>
+                        </div>
+
+                        <!-- Socials -->
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">Twitter</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">GitHub</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-8 pt-8 border-t border-gray-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
+                        <p>&copy; 2026 TaraKreasi Notes. Built with ❤️ and ☕.</p>
+                        <p class="flex items-center gap-2">
+                            <span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+                            All systems operational
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    if (document.documentElement.classList.contains('dark')) {
+                        localStorage.theme = 'dark';
+                    } else {
+                        localStorage.theme = 'light';
+                    }
+                });
+            }
+
+            // 2026 Living Interactions: Scroll Reveal Observer
+            document.addEventListener('DOMContentLoaded', () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            // observer.unobserve(entry.target); // Optional: Keep unobserved to re-trigger or not
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+            });
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TaraKreasi Notes - Digital Garden</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e45b5",
+                        "accent-orange": "#ffedd5",
+                        "accent-orange-text": "#c2410c",
+                        "background-light": "#ffffff",
+                        "background-off": "#f9fafb",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            /* Palet 2026 (Refined TaraKreasi Blue + Orange) */
+            --bg-color: #F8FAFC;
+            /* Softer Slate 50 */
+            --text-primary: #1E293B;
+            /* Slate 800 */
+            --accent-blue: #135bec;
+            /* Tara Blue */
+            --accent-orange: #FF5F1F;
+            /* Electric Orange - Tara Orange */
+            --glass-bg: rgba(255, 255, 255, 0.90);
+            /* Clarity Upgrade: Higher Opacity for Contrast */
+            --glass-border: rgba(255, 255, 255, 0.6);
+            /* Diamond Edge: Cleaner white border */
+            --shadow-ambient: 0 12px 40px -10px rgba(68, 133, 238, 0.15);
+            /* Blue glow */
+        }
+
+        .dark {
+            --bg-color: #0F172A;
+            --text-primary: #F1F5F9;
+            --accent-blue: #3b82f6;
+            --accent-orange: #fb923c;
+            --glass-bg: rgba(15, 23, 42, 0.80);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            /* Clarity Upgrade: Relaxed reading */
+            /* Blue gradient glow */
+            /* background-image: radial-gradient(circle at 50% 0%, rgba(68, 133, 238, 0.1) 0%, transparent 60%); */
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Improved Text Readability on Glass */
+        p,
+        li,
+        a {
+            font-weight: 500;
+            /* Clarity Upgrade: Medium weight for better legibility */
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .dark .noise-overlay {
+            opacity: 0.07;
+        }
+
+        /* Liquid Glass Component (Deep Glass Upgrade) */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+                /* Diamond Edge: Inner Light */
+                var(--shadow-ambient);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Bioluminescent Glow */
+        .glass-panel:hover {
+            transform: translateY(-4px) scale(1.005);
+            border-color: rgba(255, 95, 31, 0.4);
+            box-shadow:
+                0 20px 60px -10px rgba(255, 95, 31, 0.15),
+                0 0 15px rgba(255, 95, 31, 0.1);
+            /* Inner/Outer Glow */
+        }
+
+        .dark .glass-panel:hover {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(68, 133, 238, 0.5);
+            box-shadow:
+                0 20px 60px -10px rgba(68, 133, 238, 0.2),
+                0 0 20px rgba(68, 133, 238, 0.15);
+            /* Stronger bioluminescence */
+        }
+
+        /* Typography */
+        .text-gradient-orange {
+            background: linear-gradient(135deg, var(--accent-orange), #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Hero Portal Glow */
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* 2026 Living Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.03);
+                opacity: 1;
+            }
+        }
+
+        @keyframes reveal-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-breathe {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Delays */
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+
+
+        .portal-glow {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .portal-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(255, 95, 31, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+            animation: pulse-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .dark .portal-glow::before {
+            background: radial-gradient(circle, rgba(68, 133, 238, 0.2) 0%, transparent 70%);
+        }
+    </style>
+    <script>
+        // Init theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+
+<body class="text-[#181511] dark:text-white transition-colors duration-200 font-body">
+    <div class="noise-overlay"></div>
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden"
+        style="background-image: radial-gradient(circle at 50% 0%, rgba(68, 133, 238, 0.1) 0%, transparent 60%);">
+        <!-- Navbar -->
+        <div class="layout-container flex w-full flex-col sticky top-4 z-50 px-4">
+            <div class="flex justify-center w-full">
+                <div class="flex flex-col max-w-[1200px] flex-1">
+                    <header class="glass-panel flex items-center justify-between whitespace-nowrap px-4 py-3 md:px-10">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-sm border border-white/50 flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                                <img src="images/logo_tarakreasi.png" alt="TaraKreasi Notes Logo"
+                                    class="h-8 w-auto object-contain">
+                            </div>
+                        </div>
+                        <div class="hidden md:flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-6">
+                                <a class="text-primary text-sm font-bold leading-normal relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
+                                    href="index.html">Home</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="about.html">Living Portfolio</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="topics.html">Garden</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="contact.html">Contact</a>
+                            </div>
+                            <button
+                                class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary-dark transition-colors shadow-sm">
+                                <span class="truncate">Subscribe</span>
+                            </button>
+                            <button id="theme-toggle"
+                                class="p-2 ml-4 rounded-full text-primary hover:bg-black/5 dark:text-white dark:hover:bg-white/10 transition-colors"
+                                aria-label="Toggle Dark Mode">
+                                <span class="material-symbols-outlined dark:hidden">light_mode</span>
+                                <span class="material-symbols-outlined hidden dark:block">dark_mode</span>
+                            </button>
+                        </div>
+                        <!-- Mobile Menu Icon -->
+                        <div class="md:hidden text-[#111318]">
+                            <span class="material-symbols-outlined">menu</span>
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <main class="flex-grow">
+            <!-- Hero Section: The Portal -->
+            <section
+                class="reveal-on-scroll relative pt-12 pb-16 md:pt-20 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+                <!-- Ambient Background Blob -->
+                <div
+                    class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary/5 dark:bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]">
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="flex flex-col gap-8 order-2 lg:order-1 relative z-10">
+                        <h1
+                            class="font-display text-gray-900 dark:text-white text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
+                            Deep dives into <span class="text-gradient-orange">Code</span> & <span
+                                class="text-primary dark:text-[#a5b4fc]">Creation</span>.
+                        </h1>
+                        <p
+                            class="text-slate-600 dark:text-slate-300 text-lg md:text-xl font-medium leading-relaxed max-w-xl">
+                            A living collection of thoughts, tutorials, and experiments growing in my digital garden.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mt-2">
+                            <button onclick="window.location.href='topics.html'"
+                                class="flex items-center justify-center rounded-xl h-14 px-8 bg-primary text-white text-lg font-bold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 hover:bg-primary-dark transition-all transform hover:-translate-y-1">
+                                Explore Garden
+                            </button>
+                            <button onclick="window.location.href='about.html'"
+                                class="flex items-center justify-center rounded-xl h-14 px-8 bg-white dark:bg-white/5 backdrop-blur-sm text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/10 text-lg font-bold transition-all">
+                                View Portfolio
+                            </button>
+                        </div>
+
+                        <!-- Garden Activity Heatmap (Phase 3) -->
+                        <div class="flex flex-col gap-2 mt-6">
+                            <div class="flex items-end gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                <span
+                                    class="material-symbols-outlined text-green-500 text-sm animate-pulse">check_circle</span>
+                                <div>System Activity</div>
+                            </div>
+                            <div
+                                class="flex gap-1 p-2 bg-white/50 dark:bg-black/20 rounded-lg border border-white/20 w-fit backdrop-blur-sm">
+                                <!-- 5 Columns of Data -->
+                                <div class="grid grid-rows-3 grid-flow-col gap-1">
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/20"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/60 animate-pulse"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/40"></div>
+
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/30"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/80 animate-pulse delay-100">
+                                    </div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/20"></div>
+
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/10"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/40"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/90 animate-pulse delay-200">
+                                    </div>
+
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/50"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/20"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/40"></div>
+
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/70 animate-pulse delay-300">
+                                    </div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/30"></div>
+                                    <div class="w-2.5 h-2.5 rounded-[1px] bg-green-500/10"></div>
+                                </div>
+                                <div
+                                    class="flex flex-col justify-end ml-2 text-[10px] text-slate-500 dark:text-slate-400 font-mono leading-tight">
+                                    <div class="font-bold text-gray-900 dark:text-white">842</div>
+                                    <div>commits</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-1 lg:order-2 relative group perspective-1000">
+                        <div
+                            class="portal-glow transition-transform duration-500 group-hover:scale-[1.02] group-hover:rotate-1">
+                            <div
+                                class="relative w-full aspect-[4/3] bg-background-off dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-white/20 dark:border-white/5 z-10">
+                                <img alt="Coding monitor screen with abstract visualization"
+                                    class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700 ease-out"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZy2BhljKlOWChUB3uRfmChnydrpcwp9nK-RhOhr6A2m0UDrjurWxGzYpBACWxs1smojuwr9FlVz5xCquJvtM6QejdCjU2FU5NP-CZRxIZFCMRyfVNq4x-eZK9OBhvVDAcSj8iaqWj-h8MkReeB4mjWH_A34utc98m9dUDv53zWAAk36W982gxkO3fviBZewa6PAmpK8uHi4WD714bKiwwbyNwwn0NZd5FX9TN2SQHZkseKzTUblXKhvpl3OQHs7RTcB-xM4lxubmi" />
+
+                                <!-- Glass Overlay in Image -->
+                                <div
+                                    class="absolute bottom-4 left-4 right-4 p-4 glass-panel flex items-center gap-4 bg-white/10 backdrop-blur-md border-white/20">
+                                    <div class="size-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-green-400">terminal</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-white/70 uppercase tracking-wider font-bold">Current
+                                            Status</div>
+                                        <div class="text-sm text-white font-bold">Compiling...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Stats/Highlights -->
+            <section class="px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Stat Card 1 -->
+                    <div class="glass-panel p-6 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm uppercase tracking-wider">
+                                Latest Article</p>
+                            <span
+                                class="material-symbols-outlined text-accent-orange-text group-hover:scale-110 transition-transform">article</span>
+                        </div>
+                        <h3
+                            class="text-primary dark:text-white text-2xl font-bold leading-tight mb-2 group-hover:text-primary transition-colors">
+                            Optimizing React VDOM</h3>
+                        <a class="text-sm font-semibold text-primary dark:text-primary flex items-center gap-1 mt-4"
+                            href="article.html">
+                            Read Note <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
+                    </div>
+                    <!-- Stat Card 2 -->
+                    <div class="glass-panel p-6 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm uppercase tracking-wider">
+                                Garden Size</p>
+                            <span
+                                class="material-symbols-outlined text-accent-orange-text group-hover:scale-110 transition-transform">forest</span>
+                        </div>
+                        <h3 class="text-primary dark:text-white text-2xl font-bold leading-tight mb-2">42 Notes
+                            planted</h3>
+                        <div class="flex gap-2 mt-4">
+                            <span
+                                class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
+                                12 Evergreen
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1 rounded-full bg-yellow-50 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-300 ring-1 ring-inset ring-yellow-600/20">
+                                30 Seedlings
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Stat Card 3 -->
+                    <div class="glass-panel p-6 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm uppercase tracking-wider">
+                                Status</p>
+                            <span
+                                class="material-symbols-outlined text-accent-orange-text group-hover:scale-110 transition-transform">person_check</span>
+                        </div>
+                        <h3 class="text-primary dark:text-white text-2xl font-bold leading-tight mb-2">Open for hire
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm mt-2">Currently accepting new freelance
+                            projects for Q4.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Digital Garden Content -->
+            <section class="py-16 border-t border-[var(--glass-border)]">
+                <div class="px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+                    <!-- Section Header -->
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                        <div>
+                            <h2 class="text-primary dark:text-white text-3xl font-bold tracking-tight mb-2">Digital
+                                Garden</h2>
+                            <p class="text-slate-600 dark:text-slate-400">Notes ranging from raw ideas to polished
+                                tutorials.</p>
+                        </div>
+                        <!-- Filter Chips -->
+                        <div class="flex flex-wrap gap-2">
+                            <button
+                                class="px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold shadow-md transition-transform hover:-translate-y-0.5">All</button>
+                            <button
+                                class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary dark:hover:text-white transition-colors text-sm font-medium">Evergreen
+                                🌲</button>
+                            <button
+                                class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary dark:hover:text-white transition-colors text-sm font-medium">Budding
+                                🌿</button>
+                            <button
+                                class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary dark:hover:text-white transition-colors text-sm font-medium">Seedling
+                                🌱</button>
+                        </div>
+                    </div>
+                    <!-- Article Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Card 1 -->
+                        <article class="glass-panel flex flex-col overflow-hidden group">
+                            <div class="h-48 w-full bg-gray-100 overflow-hidden relative"
+                                data-alt="Blue abstract geometric shapes representing Kubernetes pods">
+                                <img alt="Kubernetes abstract representation"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQPl8gqy7ZrjTIYM5WaYx-3YBxKZhdmrvfI2GIXkAg10l5dM9mtAqbfO5YlXFN_6d-8Z_Jmc8yr4BUWY7BNRbxxGU-ublXKdx7v4ibOK8eF5-grYnNQzX6kvE8fapNoxxe8Ncmh9mc3Lhx6ULmZ-YsboeFE4PF-BGc-OsVSR6vMqVHvsPzxn-XVJ0c4bPJ7Qd9fr45j89HdNYBo9Uad7IrdceJ5zdME0M99-o4stf9cAqVkWprVX3FDruAx4lZoFBWhO3IM0qPsK-" />
+                                <div class="absolute top-4 right-4">
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-green-100 dark:bg-green-900/50 px-2 py-1 text-xs font-semibold text-green-700 dark:text-green-200 shadow-sm backdrop-blur-sm border border-green-200 dark:border-green-800">
+                                        Evergreen 🌲
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+                                    <span>Oct 24, 2023</span>
+                                    <span>•</span>
+                                    <span>8 min read</span>
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-primary transition-colors">
+                                    Understanding Kubernetes Pods</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    A deep dive into the smallest deployable units of computing that you can create and
+                                    manage in Kubernetes.
+                                </p>
+                                <a class="inline-flex items-center text-sm font-bold text-primary dark:text-white hover:text-primary transition-colors group/link"
+                                    href="#">
+                                    Read Article
+                                    <span
+                                        class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </article>
+                        <!-- Card 2 -->
+                        <article class="glass-panel flex flex-col overflow-hidden group">
+                            <div class="h-48 w-full bg-gray-100 overflow-hidden relative"
+                                data-alt="Dark terminal screen with code text">
+                                <img alt="Vim code editor setup"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf-weY-xf4CgQJxHgs9ZbaXIWqdEPHiAj2CMKWWUYvp6K-n8UhFWFZAKeilYZvJV8FdKhTWWidFWyq24gBLUXad2Dc-YIDwv_BpGanyi1i1aRfj9782qFFqFlEKTNYIYjLlkV6a1g202Ko4lu_T_M-jFe1tRGtIvBBqTzrBeqPpg6JicvtR_yaidX6RFkuDmUhNv1z9ml4MaEv1DFBuafeVZHMIyo64UQ7hqarfNH-ncb03dlOrd_MA_e2pXZ7dhXre3c1L7xEYQwU" />
+                                <div class="absolute top-4 right-4">
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-blue-100 dark:bg-blue-900/50 px-2 py-1 text-xs font-semibold text-blue-700 dark:text-blue-200 shadow-sm backdrop-blur-sm border border-blue-200 dark:border-blue-800">
+                                        Budding 🌿
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+                                    <span>Nov 12, 2023</span>
+                                    <span>•</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-primary transition-colors">
+                                    My VIM Setup 2024</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Configuration, plugins, and keybindings that make my daily workflow efficient and
+                                    keyboard-centric.
+                                </p>
+                                <a class="inline-flex items-center text-sm font-bold text-primary dark:text-white hover:text-primary transition-colors group/link"
+                                    href="#">
+                                    Read Article
+                                    <span
+                                        class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </article>
+                        <!-- Card 3 -->
+                        <article class="glass-panel flex flex-col overflow-hidden group">
+                            <div class="h-48 w-full bg-gray-100 overflow-hidden relative"
+                                data-alt="Abstract neural network connection nodes">
+                                <img alt="AI Neural network"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2N8IE00v9Xxr-GmIZqHpZpGwSvYIKzFR1kcSZCW1uZ1vIAKYsF-kj9MMLsjDHlq2Nt9B8duk85PnzgrfbvwbouL6apezd18816L4-yXUNg7FRaLazQaaosBoiNByZG5SS-blajO0-9A9cuqFlkem_a1Er4nO9U3O0O5RcHsAZOmg7US9sY2Ijw0bWd8aI2lsBBtl6e40uJn3187OxLp7ZmRTaPGuz0YY9uziMNOSW4YfB5T3icuPT1or6unxLijLeQlbnqj3Wu1Vo" />
+                                <div class="absolute top-4 right-4">
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-yellow-100 dark:bg-yellow-900/50 px-2 py-1 text-xs font-semibold text-yellow-700 dark:text-yellow-200 shadow-sm backdrop-blur-sm border border-yellow-200 dark:border-yellow-800">
+                                        Seedling 🌱
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+                                    <span>Dec 01, 2023</span>
+                                    <span>•</span>
+                                    <span>3 min read</span>
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-primary transition-colors">
+                                    Thoughts on AI Pair Programming</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Initial impressions on using Copilot and ChatGPT for complex refactoring tasks. Is
+                                    it really faster?
+                                </p>
+                                <a class="inline-flex items-center text-sm font-bold text-primary dark:text-white hover:text-primary transition-colors group/link"
+                                    href="#">
+                                    Read Article
+                                    <span
+                                        class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </article>
+                        <!-- Card 4 -->
+                        <article class="glass-panel flex flex-col overflow-hidden group">
+                            <div class="h-48 w-full bg-gray-100 overflow-hidden relative"
+                                data-alt="Minimalist desk setup with coffee and notebook">
+                                <img alt="Desk setup"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEmLZkhpI4Zj0G_oXoE8zQjtku_t1yEFYZKpM1Jg7wNWY2HVULI-1jzrlFkw8dTe3-m3Xu6jq4MGIFvbAN8dMKLlLX5NY5rfjQarrVs2KfA7gExEu87hjjRY-QR7ZBkKxdIzOBSyifeAuemnOiUZCgBzHau336UyLDl7XuoAM_90LK79I3eeJziDf4xaX6wbHEp-T9r3mDOTLoxn9_0xKfOs7jN51PScywTHiEF9rEeZKWqcJycA4H5UtYGkGrmT8aPN25g8clEP9v" />
+                                <div class="absolute top-4 right-4">
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-yellow-100 dark:bg-yellow-900/50 px-2 py-1 text-xs font-semibold text-yellow-700 dark:text-yellow-200 shadow-sm backdrop-blur-sm border border-yellow-200 dark:border-yellow-800">
+                                        Seedling 🌱
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+                                    <span>Dec 15, 2023</span>
+                                    <span>•</span>
+                                    <span>4 min read</span>
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-primary transition-colors">
+                                    Digital Minimalism</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Reducing digital clutter to focus on what truly matters in work and life.
+                                </p>
+                                <a class="inline-flex items-center text-sm font-bold text-primary dark:text-white hover:text-primary transition-colors group/link"
+                                    href="#">
+                                    Read Article
+                                    <span
+                                        class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </article>
+                        <!-- Card 5 -->
+                        <article class="glass-panel flex flex-col overflow-hidden group">
+                            <div class="h-48 w-full bg-gray-100 overflow-hidden relative"
+                                data-alt="A server room with blue lights">
+                                <img alt="Server room blue lights"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBREXQLm1RpGnc-oEaU3s3pqXcbl1G2iKL-6oSipm4r5lhx63TKbFnVZUvobJpZCSWemCi9N9hgVKdWIhteC8GRlXwStJEsisXcBf4LWW037lA0ncEYAHt-eUap6lZKq_ofQveXu-Su5arJKQ0ixeK1mLA1TOFGjOAXgrN7nA66JhW09b5xV2FVBFnWqUZ1QneFO_D8nRR_fo5y6CrWHMw-m5FR5kTgNTXV9U4R9aGtZ-mIQstLRW7ridL3AkeA4IzKuCNOh8T2WC_f" />
+                                <div class="absolute top-4 right-4">
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-blue-100 dark:bg-blue-900/50 px-2 py-1 text-xs font-semibold text-blue-700 dark:text-blue-200 shadow-sm backdrop-blur-sm border border-blue-200 dark:border-blue-800">
+                                        Budding 🌿
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+                                    <span>Jan 05, 2024</span>
+                                    <span>•</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-primary transition-colors">
+                                    Rust for Web Devs</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Why a JavaScript developer might want to learn Rust in 2024, and where to start.
+                                </p>
+                                <a class="inline-flex items-center text-sm font-bold text-primary dark:text-white hover:text-primary transition-colors group/link"
+                                    href="#">
+                                    Read Article
+                                    <span
+                                        class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </article>
+                        <!-- Card 6 -->
+                        <article
+                            class="flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-white/5">
+                            <div class="h-48 w-full bg-gray-100 overflow-hidden relative"
+                                data-alt="Close up of mechanical keyboard switches">
+                                <img alt="Mechanical keyboard"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUveOUncx76awV7kM5aXhsG6scM-srrQSLmgVE8KUL2cYYVvTSQQMLGXtqmLksamxQnRi-qqkZGiNbcAsxbPAlqtFWR58l2vgQxt3u8GvbUzNCyRZhy_UHkIKoEM2oocTccMLLyHQUQrfMI69s_X-fvuRcng_u9R8zIz1erwXJa3dlEcyjsWQRIL7eqYoFlxuujegqwOT_nwyc715EdwEbhVp_kgrqbe3_DaOlEjSxF30238Ro00SI6gdRjSNmm104yxLEA1dmbCbT" />
+                                <div class="absolute top-4 right-4">
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-green-100 dark:bg-green-900/50 px-2 py-1 text-xs font-semibold text-green-700 dark:text-green-200 shadow-sm backdrop-blur-sm border border-green-200 dark:border-green-800">
+                                        Evergreen 🌲
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+                                    <span>Jan 12, 2024</span>
+                                    <span>•</span>
+                                    <span>10 min read</span>
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-primary transition-colors">
+                                    Building a Homelab</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Setting up a Proxmox cluster at home for learning and hosting personal services.
+                                </p>
+                                <a class="inline-flex items-center text-sm font-bold text-primary dark:text-white hover:text-primary transition-colors group/link"
+                                    href="#">
+                                    Read Article
+                                    <span
+                                        class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Hybrid Footer System -->
+        <footer class="mt-20 reveal-on-scroll">
+            <!-- Contextual Pre-Footer: Home/Garden (Newsletter) -->
+            <div class="px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto mb-12">
+                <div class="glass-panel p-8 md:p-12 relative overflow-hidden border-2 border-primary/10">
+                    <!-- Glow effect -->
+                    <div
+                        class="absolute top-0 right-0 -transtale-y-1/2 translate-x-1/2 w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none">
+                    </div>
+
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center justify-between">
+                        <div class="text-center md:text-left max-w-lg">
+                            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                                Join the <span class="text-gradient-orange">Digital Garden</span>
+                            </h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg">
+                                Receive weekly seeds of thought on coding, design, and building living software. No
+                                spam, just growth.
+                            </p>
+                        </div>
+                        <div class="w-full max-w-md">
+                            <form class="flex flex-col sm:flex-row gap-3">
+                                <input type="email" placeholder="your@email.com"
+                                    class="flex-1 bg-white/50 dark:bg-black/20 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 text-gray-900 dark:text-white placeholder-gray-500 transition-colors" />
+                                <button type="button"
+                                    class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-95">
+                                    Subscribe
+                                </button>
+                            </form>
+                            <p class="text-xs text-slate-500 mt-3 text-center md:text-left">
+                                Join 2,000+ other gardeners. Unsubscribe anytime.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Uniform Base Footer -->
+            <div class="border-t border-gray-200 dark:border-white/5 bg-white/50 dark:bg-black/20 backdrop-blur-lg">
+                <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                        <!-- Brand -->
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                                <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                            </div>
+                            <span
+                                class="font-display font-bold text-xl text-gray-900 dark:text-white tracking-tight">TaraKreasi</span>
+                        </div>
+
+                        <!-- Links -->
+                        <div class="flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                            <a href="index.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                            <a href="about.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">About</a>
+                            <a href="topics.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Garden</a>
+                            <a href="contact.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Contact</a>
+                        </div>
+
+                        <!-- Socials -->
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">Twitter</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">GitHub</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-8 pt-8 border-t border-gray-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
+                        <p>&copy; 2026 TaraKreasi Notes. Built with ❤️ and ☕.</p>
+                        <p class="flex items-center gap-2">
+                            <span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+                            All systems operational
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+
+            function updateThemeIcon() {
+                // Icon handling if needed, currently just toggles class
+            }
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    if (document.documentElement.classList.contains('dark')) {
+                        localStorage.theme = 'dark';
+                    } else {
+                        localStorage.theme = 'light';
+                    }
+                });
+            }
+
+            // 2026 Living Interactions: Scroll Reveal Observer
+            document.addEventListener('DOMContentLoaded', () => {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target); // Only animate once
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

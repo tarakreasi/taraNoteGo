@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Kubernetes - TaraKreasi (v5.2)</title>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'article-blue': '#135bec',
+                        'accent-orange': '#FF5F1F',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <style>
+        /* Custom Utilities matching v5.2 style */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .text-gradient-orange {
+            background: linear-gradient(135deg, #FF5F1F 0%, #FF8C00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-blue {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(19, 91, 236, 0.1);
+            color: #135bec;
+        }
+
+        .liquid-button {
+            position: relative;
+            background: #135bec;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .liquid-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(19, 91, 236, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 font-body antialiased">
+
+    <!-- NAVBAR -->
+    <nav
+        class="sticky top-0 z-50 w-full glass-panel !rounded-none !border-x-0 !border-t-0 !bg-white/60 !backdrop-blur-xl !py-6 mb-12">
+        <div class="px-6 lg:px-20 max-w-[1400px] mx-auto flex items-center justify-between">
+            <a href="article_list.html"
+                class="flex items-center gap-2 group font-display font-bold text-2xl text-article-blue">
+                TaraKreasi
+            </a>
+
+            <div class="hidden md:flex items-center gap-10">
+                <a href="dashboard.html"
+                    class="text-base font-semibold text-slate-600 hover:text-blue-600 transition-colors">Dashboard</a>
+                <a href="login.html"
+                    class="text-base font-semibold text-slate-600 hover:text-blue-600 transition-colors">Login</a>
+
+                <button
+                    class="liquid-button !py-3 !px-8 text-base shadow-lg !bg-gradient-to-r !from-orange-400 !to-orange-500 hover:!from-orange-500 hover:!to-orange-600">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow px-6 lg:px-20 pb-32">
+        <article class="w-full max-w-[900px] mx-auto mt-16">
+
+            <!-- HEADER -->
+            <header class="flex flex-col gap-6 mb-12">
+                <div class="flex">
+                    <span class="badge-blue">Infrastructure</span>
+                </div>
+                <h1 class="font-display font-black text-5xl md:text-7xl mb-4 leading-tight">
+                    <span class="text-gradient-orange">Mastering Kubernetes: A Deep Dive into Pods</span>
+                </h1>
+
+                <div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-10 rounded-full bg-gray-200 flex items-center justify-center text-article-blue font-bold text-lg border border-slate-200 shadow-sm">
+                            TW
+                        </div>
+                        <div class="flex flex-col">
+                            <a href="#" class="text-slate-800 font-bold hover:text-blue-600 transition-colors">
+                                Tri Wantoro
+                            </a>
+                            <span class="text-xs text-slate-500">Author</span>
+                        </div>
+                    </div>
+                    <div class="hidden sm:block h-8 w-px bg-slate-200"></div>
+                    <div class="flex items-center gap-4 text-sm text-slate-500 font-medium">
+                        <span>Oct 24, 2025</span>
+                        <span class="flex items-center gap-1">
+                            <span class="size-1 rounded-full bg-slate-400"></span>
+                            5 min read
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- HERO IMAGE -->
+            <figure
+                class="w-full aspect-[16/9] mb-12 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-gray-100 flex items-center justify-center text-gray-300 relative group">
+                <div
+                    class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 opacity-90 group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <span class="material-symbols-outlined text-white text-8xl relative z-10">dns</span>
+            </figure>
+
+            <!-- CONTENT -->
+            <div
+                class="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-a:text-orange-500 hover:prose-a:text-orange-600 max-w-none whitespace-pre-wrap font-body text-lg leading-relaxed">
+                <p>Kubernetes has become the de facto standard for container orchestration. But at its core, it relies
+                    on a simple yet powerful concept: the <strong>Pod</strong>.</p>
+
+                <h3>What is a Pod?</h3>
+                <p>A Pod is the smallest deployable unit of computing that you can create and manage in Kubernetes. A
+                    Pod (as in a pod of whales or pea pod) is a group of one or more containers, with shared storage and
+                    network resources, and a specification for how to run the containers.</p>
+
+                <pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80</code></pre>
+
+                <h3>Why not just run containers directly?</h3>
+                <p>While you could run containers directly (like in Docker), Pods provide a higher level of abstraction
+                    that allows for co-located processes (like a sidecar container for logging) to share the same IP
+                    address and port space.</p>
+
+                <p>Stay tuned for Part 2 where we discuss <strong>ReplicaSets</strong> and <strong>Deployments</strong>.
+                </p>
+            </div>
+
+            <!-- AUTHOR BIO -->
+            <section class="mt-8 mb-20 p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="shrink-0 relative">
+                        <div
+                            class="size-20 sm:size-24 rounded-full bg-gray-200 flex items-center justify-center text-article-blue font-bold text-3xl border-4 border-white shadow-md">
+                            TW
+                        </div>
+                        <div
+                            class="absolute bottom-0 right-0 p-1 bg-article-blue rounded-full text-white flex items-center justify-center border-2 border-white">
+                            <span class="material-symbols-outlined text-sm" style="font-size: 16px;">verified</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col text-center sm:text-left w-full">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">
+                                    Written by <a href="#" class="hover:text-article-blue transition-colors">Tri
+                                        Wantoro</a>
+                                </h3>
+                                <p class="text-sm font-bold text-article-blue uppercase tracking-wide mt-1 mb-3">Writer
+                                    @ TaraKreasi</p>
+                            </div>
+                            <a href="#"
+                                class="hidden sm:flex items-center justify-center px-5 h-9 rounded-full bg-slate-900 text-white text-sm font-bold hover:bg-article-blue transition-colors cursor-pointer no-underline">
+                                Connect
+                            </a>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-5 max-w-lg">
+                            Passionate about sharing ideas and knowledge through TaraKreasi Notes. DevOps enthusiast and
+                            Vue.js lover.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 border-t border-white/50 bg-white/30 backdrop-blur-lg">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-20 py-16">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
+                <div class="flex flex-col items-center md:items-start gap-4 max-w-sm text-center md:text-left">
+                    <span class="font-display font-bold text-xl text-slate-400">TaraKreasi</span>
+                    <p class="text-slate-500 leading-relaxed font-medium">
+                        Exploring the technical landscape one post at a time.
+                    </p>
+                </div>
+                <div class="flex gap-12 text-sm">
+                    <a href="article_list.html" class="text-slate-500 hover:text-blue-600">Home</a>
+                    <a href="dashboard.html" class="text-slate-500 hover:text-blue-600">Dashboard</a>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-blue-100/50 text-center text-slate-400 text-sm">
+                © 2026 TaraKreasi Notes.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

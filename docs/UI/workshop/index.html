@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TaraKreasi Notes - Blog Home</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2563EB", // Vibrant Blue from logo
+                        "background-light": "#F8FAFC", // Clean Slate-50
+                        "background-dark": "#0F172A", // Dark Slate
+                        "pastel-blue": "#3B82F6", // Sharper Blue for accents
+                        "pastel-orange": "#FFB347", // Maintained Pastel Orange
+                        "text-main": "#1E293B", // Slate-800 for high readability
+                        "text-muted": "#64748B", // Slate-500
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased min-h-screen flex flex-col transition-colors duration-300">
+    <div class="w-full bg-white dark:bg-[#1e293b] border-b border-slate-100 dark:border-slate-800">
+        <div class="px-4 lg:px-40 flex flex-1 justify-center py-2">
+            <div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1">
+                <header class="flex items-center justify-between whitespace-nowrap px-4 py-3">
+                    <div class="flex items-center gap-4 text-text-main dark:text-white">
+                        <div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+                            <span class="material-symbols-outlined text-xl">terminal</span>
+                        </div>
+                        <h2 class="text-lg font-bold leading-tight tracking-tight"><span
+                                class="text-primary">TaraKreasi</span> Notes</h2>
+                    </div>
+                    <div
+                        class="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-8 py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full border-2 border-orange-400 shadow-xl shadow-orange-500/10 flex items-center gap-8">
+                        <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                            href="index.html">Home</a>
+                        <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                            href="article.html">Article</a>
+                        <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                            href="dashboard.html">Dashboard</a>
+                        <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                            href="login.html">Login</a>
+                        <a class="text-sm font-bold text-slate-700 hover:text-orange-500 transition-colors dark:text-gray-200"
+                            href="editor.html">Editor</a>
+                    </div>
+                    <div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+                        <!-- Nav moved to fixed overlay -->
+                        <button
+                            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm hover:bg-blue-600 transition-colors">
+                            <span class="truncate">Subscribe</span>
+                        </button>
+                    </div>
+                    <div class="md:hidden flex items-center">
+                        <button class="text-text-main dark:text-white">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </div>
+    <main class="flex-grow">
+        <div class="px-4 lg:px-40 flex justify-center py-10 lg:py-16 bg-white dark:bg-[#0f172a]">
+            <div class="layout-content-container flex flex-col max-w-[960px] w-full items-center text-center">
+                <div class="max-w-2xl flex flex-col gap-6">
+                    <div
+                        class="inline-flex mx-auto items-center gap-2 px-3 py-1 rounded-full bg-pastel-blue/10 border border-pastel-blue/20">
+                        <span class="w-2 h-2 rounded-full bg-pastel-blue"></span>
+                        <span class="text-xs font-semibold text-pastel-blue tracking-wide uppercase">Engineering
+                            Blog</span>
+                    </div>
+                    <h1
+                        class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-text-main dark:text-white">
+                        Deep dives into code, <span
+                            class="relative inline-block z-10 px-2 italic text-text-main dark:text-white">servers,<span
+                                class="absolute inset-0 bg-pastel-orange/40 -skew-y-2 -z-10 rounded-lg"></span></span>
+                        and everything in between.
+                    </h1>
+                    <p class="text-lg text-text-muted dark:text-gray-400 font-normal leading-relaxed max-w-lg mx-auto">
+                        Technical musings on System Administration and Web Development. Join 5,000+ developers reading
+                        my weekly notes.
+                    </p>
+                    <form
+                        class="flex w-full max-w-md mx-auto items-center gap-2 mt-4 p-1 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm focus-within:ring-2 focus-within:ring-pastel-blue/50 transition-all">
+                        <div class="pl-4 text-text-muted flex items-center">
+                            <span class="material-symbols-outlined text-[20px]">mail</span>
+                        </div>
+                        <input
+                            class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-3 text-text-main dark:text-white placeholder:text-text-muted"
+                            placeholder="Enter your email address" required="" type="email" />
+                        <button
+                            class="bg-primary hover:bg-blue-600 text-white text-sm font-bold px-6 py-2.5 rounded-full transition-colors"
+                            type="submit">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div
+            class="sticky top-0 z-30 bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-md border-y border-slate-100 dark:border-slate-800">
+            <div class="px-4 lg:px-40 flex justify-center">
+                <div class="layout-content-container flex flex-col w-full max-w-[960px]">
+                    <div class="flex gap-3 py-4 overflow-x-auto no-scrollbar items-center">
+                        <span class="text-sm font-semibold mr-2 text-text-main dark:text-white shrink-0">Topics:</span>
+                        <button
+                            class="flex h-9 shrink-0 items-center justify-center px-4 rounded-full bg-text-main text-white text-sm font-medium transition-transform active:scale-95">
+                            All Posts
+                        </button>
+                        <button
+                            class="flex h-9 shrink-0 items-center justify-center px-4 rounded-full bg-slate-50 dark:bg-slate-800 border border-transparent hover:border-pastel-blue text-text-main dark:text-gray-200 text-sm font-medium transition-all hover:bg-white dark:hover:bg-slate-700">
+                            SysAdmin Diary
+                        </button>
+                        <button
+                            class="flex h-9 shrink-0 items-center justify-center px-4 rounded-full bg-slate-50 dark:bg-slate-800 border border-transparent hover:border-pastel-blue text-text-main dark:text-gray-200 text-sm font-medium transition-all hover:bg-white dark:hover:bg-slate-700">
+                            Web Dev
+                        </button>
+                        <button
+                            class="flex h-9 shrink-0 items-center justify-center px-4 rounded-full bg-slate-50 dark:bg-slate-800 border border-transparent hover:border-pastel-blue text-text-main dark:text-gray-200 text-sm font-medium transition-all hover:bg-white dark:hover:bg-slate-700">
+                            DevOps
+                        </button>
+                        <button
+                            class="flex h-9 shrink-0 items-center justify-center px-4 rounded-full bg-slate-50 dark:bg-slate-800 border border-transparent hover:border-pastel-blue text-text-main dark:text-gray-200 text-sm font-medium transition-all hover:bg-white dark:hover:bg-slate-700">
+                            Tutorials
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-4 lg:px-40 flex justify-center py-12 bg-background-light dark:bg-background-dark">
+            <div class="layout-content-container flex flex-col max-w-[960px] w-full">
+                <div class="flex justify-between items-baseline mb-8 px-2">
+                    <h3 class="text-xl font-bold text-text-main dark:text-white">Latest Articles</h3>
+                    <a class="text-sm font-medium text-pastel-blue hover:text-primary flex items-center gap-1 transition-colors"
+                        href="#">
+                        View Archive <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
+                    <article
+                        class="group flex flex-col gap-4 bg-white dark:bg-[#1e293b] p-4 rounded-2xl border border-transparent hover:border-pastel-blue/30 shadow-sm hover:shadow-lg hover:shadow-pastel-blue/10 transition-all duration-300">
+                        <div
+                            class="relative w-full aspect-[16/9] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+                            <img alt="Abstract server room lights in blue and pink"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxUcejGF1bcsBLvNckPoWkCMA2513BeKJ3cwutoTN08_MC-vhFyVKNicd2N5P3jGaYemhGs5n7sjJk6ZnAk2MNCYQwAsx2s6SBxcc_E9ry6dq5C0HmIdqDy0CwUwgcnOKI2PHbv3jTf7IPnCo8Gnva5c9uifvkgTQZ0QU0xjpyTH9_gA419rX6g-XgQjX6p1d3p2gwb6a8XpWDlPpkkauzo_VEnUdd8x1pzBRyNMbxacxCc6feRDU5P0bwZLpxuO2Y3s-uMy5hKoVs" />
+                            <div
+                                class="absolute top-3 left-3 bg-pastel-blue text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                SysAdmin Diary
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <div class="flex items-center gap-2 text-xs text-text-muted font-medium mt-1">
+                                <span
+                                    class="material-symbols-outlined text-[16px] text-pastel-orange">calendar_today</span>
+                                Oct 24, 2023
+                                <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                5 min read
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-snug">
+                                Optimizing Nginx for High Traffic Scenarios
+                            </h4>
+                            <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                                A deep dive into worker processes, caching strategies, and load balancing techniques to
+                                keep your server responsive under pressure.
+                            </p>
+                        </div>
+                    </article>
+                    <article
+                        class="group flex flex-col gap-4 bg-white dark:bg-[#1e293b] p-4 rounded-2xl border border-transparent hover:border-pastel-blue/30 shadow-sm hover:shadow-lg hover:shadow-pastel-blue/10 transition-all duration-300">
+                        <div
+                            class="relative w-full aspect-[16/9] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+                            <img alt="Minimalist code editor screen with dark theme"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZPWrgquR4rA8l6Uc4Xg3vQPKtTq9snGf7LKzGq8udqEVv73QLt7q66Zjt0r50TThwH_cz5i98DHLQQw7e_0BczUB8v6D6go8-gYQ1ZnUgSsQh7NZ2yns-bDlIiEir1I1rIHJPv3lTZ_qVXaD4YIV1tZg7itcREixyqxgQgVxgeYqxginMTEhDzrk3yRzmsDQ2qEc58Kc6bzH5aXDwmnrpAhZVD-vVZzcjpuq_10JGlokhKcroPI_D2uwXOsuKLrOKZtDMM1ZzZwUr" />
+                            <div
+                                class="absolute top-3 left-3 bg-pastel-orange text-[#4d3218] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                DevOps
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <div class="flex items-center gap-2 text-xs text-text-muted font-medium mt-1">
+                                <span
+                                    class="material-symbols-outlined text-[16px] text-pastel-orange">calendar_today</span>
+                                Oct 18, 2023
+                                <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                8 min read
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-snug">
+                                The Art of Shell Scripting: Beyond Basics
+                            </h4>
+                            <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                                Moving beyond simple one-liners. How to write robust, maintainable shell scripts for
+                                automation tasks that you can rely on.
+                            </p>
+                        </div>
+                    </article>
+                    <article
+                        class="group flex flex-col gap-4 bg-white dark:bg-[#1e293b] p-4 rounded-2xl border border-transparent hover:border-pastel-blue/30 shadow-sm hover:shadow-lg hover:shadow-pastel-blue/10 transition-all duration-300">
+                        <div
+                            class="relative w-full aspect-[16/9] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+                            <img alt="Abstract kubernetes wheel logo concept"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOscXbTCOFxfxznfIRBdLWGKBPkYa_wjJG-O9tV7gldwPzHI2NvKZc8U7OJrM5GWJV5W2B_T4EGW0GOXrv11N4rBAe2ABldHoPC2mcWV7QSR5k7vpcJJS_UMUZhNgmJv572dEoxrY828d6Qap2ZJgvlc7qzleTITrC8Zv8h-Ut02yii7UNR7Sj9qtxSx8kqUF2MSDkYkcTrj-XkBGjr6H-_iKPvDjUVg1YY820U5tJDdMascbsyVZ0qZSAdPC84fsJwQIYulLPtSOv" />
+                            <div
+                                class="absolute top-3 left-3 bg-pastel-orange text-[#4d3218] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                DevOps
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <div class="flex items-center gap-2 text-xs text-text-muted font-medium mt-1">
+                                <span
+                                    class="material-symbols-outlined text-[16px] text-pastel-orange">calendar_today</span>
+                                Oct 10, 2023
+                                <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                12 min read
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-snug">
+                                Kubernetes for Beginners: A Gentle Intro
+                            </h4>
+                            <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                                Demystifying pods, services, and deployments. A step-by-step guide to deploying your
+                                first containerized application.
+                            </p>
+                        </div>
+                    </article>
+                    <article
+                        class="group flex flex-col gap-4 bg-white dark:bg-[#1e293b] p-4 rounded-2xl border border-transparent hover:border-pastel-blue/30 shadow-sm hover:shadow-lg hover:shadow-pastel-blue/10 transition-all duration-300">
+                        <div
+                            class="relative w-full aspect-[16/9] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+                            <img alt="Computer code on a screen with rust colored lighting"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgOeivGbE131SEv4KdNa4B5HBP3wDpYzUO4n3HierqDIhUmYyS3qEHFzL-Q1vYF13yyS1zeZnX2sEZLdv5kZzZot1eS3-EmAMWpXNMBEj1Jb8KxrROVb1cX6czjNsjNklGfeUvMCLKOPuaFveOG63lPoItS3XAffxE--PgCi8SQGvalwqX8waysBYJTyffJ7sGJlNoiBkPjIp1g7OhSJxsXhJzVzgXcqtkyq82Vaz-U3Uxi51hMT2v751uo9tGG6s4DMfl2ToDkaQf" />
+                            <div
+                                class="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Web Dev
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <div class="flex items-center gap-2 text-xs text-text-muted font-medium mt-1">
+                                <span
+                                    class="material-symbols-outlined text-[16px] text-pastel-orange">calendar_today</span>
+                                Sep 28, 2023
+                                <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                6 min read
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-snug">
+                                My Journey into Rust from JavaScript
+                            </h4>
+                            <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                                The borrow checker was tough, but the performance gains were worth it. Here is what I
+                                learned during my first month with Rust.
+                            </p>
+                        </div>
+                    </article>
+                    <article
+                        class="group flex flex-col gap-4 bg-white dark:bg-[#1e293b] p-4 rounded-2xl border border-transparent hover:border-pastel-blue/30 shadow-sm hover:shadow-lg hover:shadow-pastel-blue/10 transition-all duration-300">
+                        <div
+                            class="relative w-full aspect-[16/9] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+                            <img alt="Old dusty mainframe computer components"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX0-7fknoee1ZmMMP6vqm8-4LEx6rHxNpCdzl9TEFbiYzc59TqK05leGP2JGjPLvcfNYPSgKUPU8qjj5wFfZ50_bjXAzIFGLhXUSoxUCuPl2Bm_bELGO-wANHyfYQISIRwe7UuFrr0-MxvgEpLWcAH8TDoFAS3Z-QkKtauthMXBjywuefu4Nut1DrMkQvsw6nvWNf76hEYBaDAz7JGTRA71mr-yj4Q1nE9m83ZCt8T33FPHk4mmZq8METj27Nk3spbCcs_xJk2UAOj" />
+                            <div
+                                class="absolute top-3 left-3 bg-pastel-blue text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                SysAdmin Diary
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <div class="flex items-center gap-2 text-xs text-text-muted font-medium mt-1">
+                                <span
+                                    class="material-symbols-outlined text-[16px] text-pastel-orange">calendar_today</span>
+                                Sep 15, 2023
+                                <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                7 min read
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-snug">
+                                Managing Legacy Systems without Going Crazy
+                            </h4>
+                            <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                                Strategies for documenting, maintaining, and eventually migrating old infrastructure
+                                that nobody wants to touch.
+                            </p>
+                        </div>
+                    </article>
+                    <article
+                        class="group flex flex-col gap-4 bg-white dark:bg-[#1e293b] p-4 rounded-2xl border border-transparent hover:border-pastel-blue/30 shadow-sm hover:shadow-lg hover:shadow-pastel-blue/10 transition-all duration-300">
+                        <div
+                            class="relative w-full aspect-[16/9] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+                            <img alt="Abstract colorful pastel gradient shapes"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBroOFHHqWbXGMb5EJYFwqVi28vUeJpYyuP2uUZcNPNVDRZcsZt7A5GuGWbjoSXoIAOIHCugYdkU_b-xR867rv82_mphNIus_7N7MYVcUAaR9FJexaYvFo_f5GyuqTcWSlcouW_6e-UJHaU7Gf9xIw9clAQvwOk-GeB3Oxz33kFAY_dRzm-VUcABOBMHacrSCpHQnobr3ESauVYz6lyaP4kQ2bwy-v5ReKuPmINfXfS8F-ufpXwo06uHYwARh6NQFMIVRlDGTBNNJ8Y" />
+                            <div
+                                class="absolute top-3 left-3 bg-[#e2e8f0] text-text-main text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Design
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 flex-1">
+                            <div class="flex items-center gap-2 text-xs text-text-muted font-medium mt-1">
+                                <span
+                                    class="material-symbols-outlined text-[16px] text-pastel-orange">calendar_today</span>
+                                Sep 01, 2023
+                                <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                                4 min read
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-snug">
+                                Pastel Color Theory in Modern UI
+                            </h4>
+                            <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                                Why soft colors are taking over the web and how to implement a pastel palette without
+                                sacrificing accessibility.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+                <div
+                    class="flex justify-center items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <button
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 text-text-muted hover:bg-white dark:hover:bg-slate-800 hover:text-text-main transition-colors">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <div class="flex gap-2">
+                        <button
+                            class="w-10 h-10 rounded-full bg-primary text-white font-bold text-sm shadow-sm">1</button>
+                        <button
+                            class="w-10 h-10 rounded-full bg-transparent hover:bg-white dark:hover:bg-slate-800 text-text-muted hover:text-text-main font-medium text-sm transition-colors">2</button>
+                        <button
+                            class="w-10 h-10 rounded-full bg-transparent hover:bg-white dark:hover:bg-slate-800 text-text-muted hover:text-text-main font-medium text-sm transition-colors">3</button>
+                        <span class="flex items-center justify-center w-10 h-10 text-text-muted">...</span>
+                        <button
+                            class="w-10 h-10 rounded-full bg-transparent hover:bg-white dark:hover:bg-slate-800 text-text-muted hover:text-text-main font-medium text-sm transition-colors">8</button>
+                    </div>
+                    <button
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 text-text-muted hover:bg-white dark:hover:bg-slate-800 hover:text-text-main transition-colors">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="w-full bg-white dark:bg-[#1e293b] border-t border-slate-100 dark:border-slate-800 py-12 mt-12">
+        <div class="px-4 lg:px-40 flex justify-center">
+            <div
+                class="layout-content-container flex flex-col md:flex-row justify-between items-center md:items-start gap-8 max-w-[960px] w-full">
+                <div class="flex flex-col gap-4 max-w-xs text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-3">
+                        <div class="size-6 flex items-center justify-center bg-primary rounded-md text-white">
+                            <span class="material-symbols-outlined text-sm">terminal</span>
+                        </div>
+                        <h3 class="text-base font-bold text-text-main dark:text-white">TaraKreasi Notes</h3>
+                    </div>
+                    <p class="text-sm text-text-muted">
+                        Exploring the technical landscape one post at a time. Built for developers by a developer.
+                    </p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">Content
+                        </h4>
+                        <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Articles</a>
+                        <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Series</a>
+                        <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Snippets</a>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">Social
+                        </h4>
+                        <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Twitter</a>
+                        <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">GitHub</a>
+                        <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xs text-text-muted mt-12 pt-8 border-t border-slate-100 dark:border-slate-800">
+            © 2023 TaraKreasi Notes. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>

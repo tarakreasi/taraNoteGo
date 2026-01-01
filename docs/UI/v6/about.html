@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TaraKreasi Notes - About / Living Portfolio</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e45b5",
+                        "accent-orange": "#ffedd5", // Pastel orange background
+                        "accent-orange-text": "#c2410c", // Darker orange for text
+                        "background-light": "#ffffff",
+                        "background-off": "#f9fafb",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            /* Palet 2026 (Refined TaraKreasi Blue + Orange) */
+            --bg-color: #F8FAFC;
+            /* Softer Slate 50 */
+            --text-primary: #1E293B;
+            /* Slate 800 */
+            --accent-blue: #135bec;
+            /* Tara Blue */
+            --accent-orange: #FF5F1F;
+            /* Electric Orange - Tara Orange */
+            --glass-bg: rgba(255, 255, 255, 0.90);
+            /* Clarity Upgrade: Higher Opacity for Contrast */
+            --glass-border: rgba(255, 255, 255, 0.6);
+            /* Diamond Edge: Cleaner white border */
+            --shadow-ambient: 0 12px 40px -10px rgba(68, 133, 238, 0.15);
+            /* Blue glow */
+        }
+
+        .dark {
+            --bg-color: #0F172A;
+            --text-primary: #F1F5F9;
+            --accent-blue: #3b82f6;
+            --accent-orange: #fb923c;
+            --glass-bg: rgba(15, 23, 42, 0.80);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            /* Clarity Upgrade: Relaxed reading */
+            /* Blue gradient glow */
+            /* background-image: radial-gradient(circle at 50% 0%, rgba(68, 133, 238, 0.1) 0%, transparent 60%); */
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Improved Text Readability on Glass */
+        p,
+        li,
+        a {
+            font-weight: 500;
+            /* Clarity Upgrade: Medium weight for better legibility */
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .dark .noise-overlay {
+            opacity: 0.07;
+        }
+
+        /* Liquid Glass Component (Deep Glass Upgrade) */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+                /* Diamond Edge: Inner Light */
+                var(--shadow-ambient);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Bioluminescent Glow */
+        .glass-panel:hover {
+            transform: translateY(-4px) scale(1.005);
+            border-color: rgba(255, 95, 31, 0.4);
+            box-shadow:
+                0 20px 60px -10px rgba(255, 95, 31, 0.15),
+                0 0 15px rgba(255, 95, 31, 0.1);
+            /* Inner/Outer Glow */
+        }
+
+        .dark .glass-panel:hover {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(68, 133, 238, 0.5);
+            box-shadow:
+                0 20px 60px -10px rgba(68, 133, 238, 0.2),
+                0 0 20px rgba(68, 133, 238, 0.15);
+            /* Stronger bioluminescence */
+        }
+
+        /* Typography */
+        .text-gradient-orange {
+            background: linear-gradient(135deg, var(--accent-orange), #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Custom underline style */
+        .highlight-orange {
+            background: linear-gradient(120deg, #ffedd5 0%, #ffedd5 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            display: inline;
+        }
+
+        /* 2026 Living Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.03);
+                opacity: 1;
+            }
+        }
+
+        @keyframes reveal-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-breathe {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <script>
+        // Init theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+
+<body class="text-[#111318] font-body">
+    <div class="noise-overlay"></div>
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <!-- Navigation -->
+        <div class="layout-container flex w-full flex-col sticky top-4 z-50 px-4">
+            <div class="flex justify-center w-full">
+                <div class="flex flex-col max-w-[1200px] flex-1">
+                    <header class="glass-panel flex items-center justify-between whitespace-nowrap px-4 py-3 md:px-10">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-sm border border-white/50 flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                                <img src="images/logo_tarakreasi.png" alt="TaraKreasi Notes Logo"
+                                    class="h-8 w-auto object-contain">
+                            </div>
+                        </div>
+                        <div class="hidden md:flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-6">
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="index.html">Home</a>
+                                <a class="text-primary text-sm font-bold leading-normal relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
+                                    href="about.html">Living Portfolio</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="topics.html">Garden</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="contact.html">Contact</a>
+                            </div>
+                            <button
+                                class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary-dark transition-colors shadow-sm">
+                                <span class="truncate">Subscribe</span>
+                            </button>
+                            <button id="theme-toggle"
+                                class="p-2 ml-4 rounded-full text-primary hover:bg-black/5 dark:text-white dark:hover:bg-white/10 transition-colors"
+                                aria-label="Toggle Dark Mode">
+                                <span class="material-symbols-outlined dark:hidden">light_mode</span>
+                                <span class="material-symbols-outlined hidden dark:block">dark_mode</span>
+                            </button>
+                        </div>
+                        <!-- Mobile Menu Icon -->
+                        <div class="md:hidden text-[#111318]">
+                            <span class="material-symbols-outlined">menu</span>
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Section -->
+        <div class="layout-container flex flex-col w-full">
+            <div class="flex flex-1 justify-center py-5">
+                <!-- Ambient Background Blob -->
+                <div
+                    class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary/5 dark:bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0">
+                </div>
+
+                <div class="layout-content-container flex flex-col max-w-[1200px] flex-1 px-4 md:px-10 relative z-10">
+                    <div class="@container">
+                        <div class="flex flex-col-reverse gap-6 py-10 @[480px]:gap-8 @[864px]:flex-row items-center">
+                            <!-- Text Content -->
+                            <div
+                                class="flex flex-col gap-6 @[480px]:min-w-[400px] @[480px]:gap-8 @[864px]:justify-center flex-1">
+                                <div class="flex flex-col gap-4 text-left">
+                                    <div
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-orange/10 border border-accent-orange/20 rounded-full w-fit shadow-[0_0_15px_rgba(255,140,0,0.1)]">
+                                        <span
+                                            class="material-symbols-outlined text-accent-orange-text text-[18px]">waving_hand</span>
+                                        <span
+                                            class="text-accent-orange-text text-xs font-bold uppercase tracking-wide">About
+                                            Me</span>
+                                    </div>
+                                    <h1
+                                        class="font-display text-gray-900 dark:text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                                        Hi, I'm Tara. <br />
+                                        <span class="text-primary">A Digital Craftsman.</span>
+                                    </h1>
+                                    <p class="text-[#637588] text-base font-normal leading-relaxed max-w-[500px]">
+                                        Building <span class="text-[#111318] font-medium">TaraKreasi Notes</span>. This
+                                        is where I document my journey, share my process, and showcase the raw,
+                                        unfinished reality of creative work. I believe in <span
+                                            class="highlight-orange">learning in public</span>.
+                                    </p>
+                                </div>
+                                <div class="flex gap-4">
+                                    <button onclick="window.location.href='contact.html'"
+                                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary-dark transition-all hover:scale-105 shadow-md">
+                                        <span class="truncate">Get in Touch</span>
+                                    </button>
+                                    <button onclick="window.location.href='topics.html'"
+                                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white border border-[#dbdfe6] text-[#111318] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#f0f2f4] transition-colors">
+                                        <span class="truncate">Read Blog</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Image: The Craftsman -->
+                            <div
+                                class="relative w-full @[864px]:w-1/2 flex justify-center @[864px]:justify-end group perspective-1000">
+                                <!-- Abstract decorative bg -->
+                                <div
+                                    class="absolute top-4 right-4 w-full h-full bg-accent-orange rounded-full opacity-30 blur-[80px] transform translate-x-4 translate-y-4 -z-10 group-hover:opacity-50 transition-opacity duration-700">
+                                </div>
+                                <div class="w-full max-w-[400px] aspect-square bg-center bg-no-repeat bg-cover rounded-2xl shadow-xl z-10 glass-panel border-4 border-white/10 group-hover:shadow-[0_0_50px_rgba(255,140,0,0.3)] transition-all duration-500 ease-out transform group-hover:rotate-1 group-hover:scale-[1.01]"
+                                    data-alt="Portrait of Tara, a creative professional, smiling in a modern office setting"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3v2QYxt4qAn1hmWpwr7dz6Zv_LQLCkyOtS7oIELbzXAw4xV8XQTCqzWb7VjUK8KKak2Vyv2wUYQ0Hi53vl6BFUf_X6B7CObZW8m2AW3oYJMPxiVQDizMgG6UfalDCN7zhbK1mq2L4Q606KlxVA3rrnLdUHfhc0GN48z96Vj1zhN9ehIKMZ8Eatyk9HSYkmtNHON3i0xdGF4_bX2V3oe6yM6LdNg8SlGPShOpzBJM41ACkrwx_ZdfDtjmoAsKAyb_lExpGj1bwmuI-");'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Philosophy Section -->
+        <div class="w-full py-16 border-y border-[var(--glass-border)]">
+            <div class="flex justify-center w-full">
+                <div class="layout-content-container flex flex-col max-w-[1200px] flex-1 px-4 md:px-10">
+                    <div class="flex flex-col gap-10 @container">
+                        <div class="flex flex-col gap-4 text-center items-center">
+                            <h2
+                                class="text-primary text-[32px] font-bold leading-tight @[480px]:text-4xl tracking-[-0.033em] max-w-[720px]">
+                                The Living Portfolio Philosophy
+                            </h2>
+                            <p class="text-[#4b5563] text-lg font-normal leading-normal max-w-[720px]">
+                                This portfolio is a garden, not a museum. It prioritizes <span
+                                    class="font-bold text-primary">process over perfection</span> and evolves as I
+                                learn.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Card 1 -->
+                            <div class="glass-panel flex flex-1 gap-4 rounded-xl p-6 flex-col">
+                                <div
+                                    class="text-primary bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[28px]">update</span>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="text-[#111318] text-lg font-bold leading-tight">Always Evolving</h3>
+                                    <p class="text-[#637588] text-sm font-normal leading-relaxed">Work is never truly
+                                        finished, only abandoned or improved. I update projects as they grow.</p>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="glass-panel flex flex-1 gap-4 rounded-xl p-6 flex-col">
+                                <div
+                                    class="text-primary bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[28px]">construction</span>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="text-[#111318] text-lg font-bold leading-tight">Process First</h3>
+                                    <p class="text-[#637588] text-sm font-normal leading-relaxed">Documenting the 'how'
+                                        is as important as the 'what'. Expect sketches and drafts.</p>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="glass-panel flex flex-1 gap-4 rounded-xl p-6 flex-col">
+                                <div
+                                    class="text-primary bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[28px]">menu_book</span>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="text-[#111318] text-lg font-bold leading-tight">Open Learning</h3>
+                                    <p class="text-[#637588] text-sm font-normal leading-relaxed">Building in public to
+                                        share knowledge, resources, and even failures openly.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Two Column Content: Current Focus & Featured Work -->
+        <div class="layout-container flex w-full justify-center py-12">
+            <div class="layout-content-container flex flex-col md:flex-row gap-12 max-w-[1200px] flex-1 px-4 md:px-10">
+                <!-- Left Column: Current Focus (Timeline) -->
+                <div class="flex flex-col w-full md:w-1/3 gap-6">
+                    <div class="flex items-center gap-2 pb-2 border-b border-[#f0f2f4]">
+                        <span class="material-symbols-outlined text-primary">radar</span>
+                        <h2 class="text-[#111318] text-xl font-bold leading-tight tracking-[-0.015em]">Current Focus
+                        </h2>
+                    </div>
+                    <div class="flex flex-col gap-0 relative">
+                        <!-- Vertical Line -->
+                        <div class="absolute left-[15px] top-2 bottom-2 w-[2px] bg-[#f0f2f4]"></div>
+                        <!-- Item 1 -->
+                        <div class="flex gap-4 pb-8 relative z-10">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 border-4 border-white shadow-sm">
+                                <span class="material-symbols-outlined text-white text-[16px]">brush</span>
+                            </div>
+                            <div class="flex flex-col pt-1">
+                                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Now</span>
+                                <h3 class="text-[#111318] font-bold text-sm">Refining the Design System</h3>
+                                <p class="text-[#637588] text-sm mt-1">Standardizing components for TaraKreasi V2.</p>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="flex gap-4 pb-8 relative z-10">
+                            <div
+                                class="w-8 h-8 rounded-full bg-accent-orange flex items-center justify-center shrink-0 border-4 border-white shadow-sm">
+                                <span class="material-symbols-outlined text-accent-orange-text text-[16px]">code</span>
+                            </div>
+                            <div class="flex flex-col pt-1">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Last
+                                    Week</span>
+                                <h3 class="text-[#111318] font-bold text-sm">HTMX Integration Experiment</h3>
+                                <p class="text-[#637588] text-sm mt-1">Testing server-side interactions for the blog.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="flex gap-4 relative z-10">
+                            <div
+                                class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 border-4 border-white shadow-sm">
+                                <span class="material-symbols-outlined text-gray-500 text-[16px]">school</span>
+                            </div>
+                            <div class="flex flex-col pt-1">
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Ongoing</span>
+                                <h3 class="text-[#111318] font-bold text-sm">Learning Advanced Tailwind</h3>
+                                <p class="text-[#637588] text-sm mt-1">Exploring container queries and plugins.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-[#f9fafb] rounded-lg border border-[#f0f2f4]">
+                        <p class="text-xs text-[#637588] italic">"The only way to do great work is to love what you do."
+                        </p>
+                    </div>
+                </div>
+                <!-- Right Column: Featured Projects -->
+                <div class="flex flex-col w-full md:w-2/3 gap-6">
+                    <div class="flex items-center justify-between pb-2 border-b border-[#f0f2f4]">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">grid_view</span>
+                            <h2 class="text-[#111318] text-xl font-bold leading-tight tracking-[-0.015em]">Featured
+                                Projects</h2>
+                        </div>
+                        <a class="text-sm font-bold text-primary hover:text-primary-dark" href="#">View All -&gt;</a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Project Card 1 -->
+                        <div
+                            class="glass-panel group flex flex-col overflow-hidden hover:border-primary/50 cursor-pointer">
+                            <div class="h-48 w-full bg-cover bg-center relative"
+                                data-alt="Screenshot of a minimal dashboard interface with charts and sidebar"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjfXeZTaydEMpdINzXzDPQAE9bpgGzHPug-T8X9QoUaC_qkXS9Zr8voPg_AYff4irCkgXIcZHX8XpnfkC4q8O9Eb-Lx_Dh_EYRB8B-8IYtw3WZf7Vgnnb4PvZQFjxmXLgv0RYzNz9hxhVd2K7xPQ0HsXUtwF8gSOh9mGSWEuHbkFYcw_9zOZwgfLA8Eyx4sBReFA12rHiZ3JsN6FuJvknprGkaMn5GMTQ0gb_azAX_54UIKdhl3lN-ODIaK4r8Fh-d_EyfqkGA8Wwt');">
+                                <div
+                                    class="absolute inset-0 bg-black/0 group-hover:bg-primary/10 transition-colors duration-300">
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col gap-3 flex-1">
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-1 bg-accent-orange rounded text-[10px] font-bold uppercase text-accent-orange-text tracking-wide">UX
+                                        Design</span>
+                                    <span
+                                        class="px-2 py-1 bg-gray-100 rounded text-[10px] font-bold uppercase text-gray-600 tracking-wide">Case
+                                        Study</span>
+                                </div>
+                                <h3
+                                    class="text-[#111318] font-bold text-lg leading-tight group-hover:text-primary transition-colors">
+                                    E-Commerce Redesign</h3>
+                                <p class="text-[#637588] text-sm leading-relaxed line-clamp-2">A comprehensive overhaul
+                                    of a checkout flow focusing on reducing cart abandonment.</p>
+                            </div>
+                        </div>
+                        <!-- Project Card 2 -->
+                        <div
+                            class="glass-panel group flex flex-col overflow-hidden hover:border-primary/50 cursor-pointer">
+                            <div class="h-48 w-full bg-cover bg-center relative"
+                                data-alt="Macro photography of a fountain pen writing on textured paper"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPCSdEzNokC6ONTwAKwgu9lMdl4OJkcUfuYavmzdbWOkF9T1q_QFX5bXHs-9_iiGqtnm9U10qYz_8cyGIs_lIlIIt29bwUmJZANYgjWePiIOuObfVxaSiB-T30YeSzNYXbKu4K8tC2NTg_Z3OWweVBChIAx4g500HPwoqB15HUj8_WrV9wQIqVod6kNDl9mSufsXEfDi6nm8-_ubHrVvaQCjR3Z_dbWZ0FHy0aRyn7gd1Z9uLqF7GbyFXxhtPKCNY7dsuIx5-rBShY');">
+                                <div
+                                    class="absolute inset-0 bg-black/0 group-hover:bg-primary/10 transition-colors duration-300">
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col gap-3 flex-1">
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-1 bg-accent-orange rounded text-[10px] font-bold uppercase text-accent-orange-text tracking-wide">Writing</span>
+                                    <span
+                                        class="px-2 py-1 bg-gray-100 rounded text-[10px] font-bold uppercase text-gray-600 tracking-wide">Essay</span>
+                                </div>
+                                <h3
+                                    class="text-[#111318] font-bold text-lg leading-tight group-hover:text-primary transition-colors">
+                                    Digital Minimalism</h3>
+                                <p class="text-[#637588] text-sm leading-relaxed line-clamp-2">Exploring the impact of
+                                    notification fatigue on creative output and deep work.</p>
+                            </div>
+                        </div>
+                        <!-- Project Card 3 -->
+                        <div
+                            class="group flex flex-col bg-white border border-[#dbdfe6] rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                            <div class="h-48 w-full bg-cover bg-center relative"
+                                data-alt="Mockup of mobile app screens displaying a fitness tracking application"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJipQNXieIoTDfwQpLQlclt_zf1uSiKaTo7sEflLZWLyrSzP_57L3Rj0j80GT-K3gMXOhuBunMQZ1_VfgW3OjkWA_ckt0fqHuCOVlvhcFdOiLgwhDxqQ1N76x6LuEBMnBG8guME0ue8IU6dzQkiCBhsMqxOXA8dCLpyFsAcWUeq3PS5jpHXHTPA6zOq3MO6WcvSE_LI8W6qrlY9AugoyhrdBOhvWQrLYFWmxC_ucpaFirHZIrh8M7QNH5Wr1oJ-ANkMuDW0qHg8FUq');">
+                                <div
+                                    class="absolute inset-0 bg-black/0 group-hover:bg-primary/10 transition-colors duration-300">
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col gap-3 flex-1">
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-1 bg-accent-orange rounded text-[10px] font-bold uppercase text-accent-orange-text tracking-wide">Mobile
+                                        Dev</span>
+                                </div>
+                                <h3
+                                    class="text-[#111318] font-bold text-lg leading-tight group-hover:text-primary transition-colors">
+                                    FitTrack Pro</h3>
+                                <p class="text-[#637588] text-sm leading-relaxed line-clamp-2">Building a React Native
+                                    application for tracking personal bests in the gym.</p>
+                            </div>
+                        </div>
+                        <!-- Project Card 4 -->
+                        <div
+                            class="group flex flex-col bg-gray-50 border border-dashed border-primary/40 rounded-xl overflow-hidden hover:border-primary hover:bg-blue-50/50 transition-all duration-300 cursor-pointer justify-center items-center h-full min-h-[300px]">
+                            <div class="flex flex-col items-center gap-3 text-center p-6">
+                                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+                                    <span class="material-symbols-outlined text-primary">add</span>
+                                </div>
+                                <h3 class="text-primary font-bold text-lg leading-tight">What's Next?</h3>
+                                <p class="text-[#637588] text-sm leading-relaxed max-w-[200px]">Check back soon for the
+                                    upcoming design system case study.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Newsletter / Footer CTA -->
+        <!-- Hybrid Footer System -->
+        <footer class="mt-20 reveal-on-scroll">
+            <!-- Contextual Pre-Footer: About (Collaboration) -->
+            <div class="px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto mb-12">
+                <div class="glass-panel p-8 md:p-12 relative overflow-hidden border-2 border-primary/10">
+                    <!-- Glow effect -->
+                    <div
+                        class="absolute top-0 right-0 -transtale-y-1/2 translate-x-1/2 w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none">
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center text-center gap-6">
+                        <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                            Let's Build <span class="text-gradient-orange">The Future</span>
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-xl max-w-2xl mx-auto">
+                            I'm currently accepting new projects. Whether you need a system architect or a full-stack
+                            partner, let's talk.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="contact.html"
+                                class="bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 px-8 rounded-full transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-95 flex items-center gap-2">
+                                <span class="material-symbols-outlined">mail</span>
+                                Get in Touch
+                            </a>
+                            <a href="#"
+                                class="glass-panel px-8 py-4 text-gray-900 dark:text-white font-bold rounded-full hover:bg-white/10 transition-colors">
+                                View Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Uniform Base Footer -->
+            <div class="border-t border-gray-200 dark:border-white/5 bg-white/50 dark:bg-black/20 backdrop-blur-lg">
+                <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                        <!-- Brand -->
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                                <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                            </div>
+                            <span
+                                class="font-display font-bold text-xl text-gray-900 dark:text-white tracking-tight">TaraKreasi</span>
+                        </div>
+
+                        <!-- Links -->
+                        <div class="flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                            <a href="index.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                            <a href="about.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">About</a>
+                            <a href="topics.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Garden</a>
+                            <a href="contact.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Contact</a>
+                        </div>
+
+                        <!-- Socials -->
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">Twitter</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">GitHub</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-8 pt-8 border-t border-gray-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
+                        <p>&copy; 2026 TaraKreasi Notes. Built with ❤️ and ☕.</p>
+                        <p class="flex items-center gap-2">
+                            <span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+                            All systems operational
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.theme = 'dark';
+                } else {
+                    localStorage.theme = 'light';
+                }
+            });
+        }
+
+        // 2026 Living Interactions: Scroll Reveal Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>

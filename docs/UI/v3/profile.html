@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaraKreasi Notes - User Profile</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2b6cee",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+              "card-light": "#ffffff",
+              "card-dark": "#1a2230",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-card-dark px-10 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">TaraKreasi Notes</h2>
+</div>
+<!-- Nav Links -->
+<div class="hidden md:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Explore</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Writers</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About</a>
+</div>
+</div>
+<!-- Right Side Actions -->
+<div class="flex items-center gap-4 md:gap-8">
+<label class="hidden sm:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f0f2f4] dark:bg-gray-800">
+<div class="text-[#616f89] dark:text-gray-400 flex border-none items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent border-none text-base font-normal leading-normal placeholder:text-[#616f89] dark:placeholder:text-gray-500 text-[#111318] dark:text-white px-4 focus:ring-0" placeholder="Search"/>
+</div>
+</label>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal hover:bg-blue-600 transition-colors">
+<span class="truncate">Sign In</span>
+</button>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 flex justify-center py-8 px-4 sm:px-8">
+<div class="w-full max-w-[960px] flex flex-col gap-6">
+<!-- Profile Header Section -->
+<section class="flex flex-col items-center bg-white dark:bg-card-dark rounded-xl p-8 shadow-sm border border-[#e5e7eb] dark:border-gray-800">
+<div class="flex flex-col items-center gap-4">
+<!-- Avatar -->
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full h-32 w-32 border-4 border-[#f0f2f4] dark:border-gray-700 shadow-sm" data-alt="Portrait of Sarah Jenkins, smiling professional woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzBtzkcKKj4Uz9jou2J5ZSi5UiGAJGb0Ktlbl8NRh88oBle859KCnui_DEs4ekyOLeoONItWVJqDPnPVS52D7wOhKe6gIgDZl06gvSgbvXydpIC6jV4Hh6K4V_dJ6vx5ziEvk7NKBM1aISdTiv97lYyXvv2k2R5PzdVdBp4xnZngIghB26oKG_X7QThYGVVVFw2WhpfRfLUCKzTlMAq86492PLJszi-lhAIW8-5njLdidjMmRyOULLsCzv1qGMGjeXj8XpNa_uvw8z");'>
+</div>
+<div class="absolute bottom-1 right-1 bg-green-500 border-2 border-white dark:border-card-dark rounded-full w-6 h-6"></div>
+</div>
+<!-- Bio Text -->
+<div class="flex flex-col items-center justify-center text-center max-w-lg">
+<h1 class="text-2xl font-bold leading-tight tracking-[-0.015em]">Sarah Jenkins</h1>
+<p class="text-primary font-medium text-base mt-1">Full Stack Engineer &amp; UI Enthusiast</p>
+<p class="text-[#616f89] dark:text-gray-400 text-base mt-3 leading-relaxed">
+                                Building scalable web applications and writing about the process. Lover of clean code, cleaner coffee, and modern design systems.
+                            </p>
+</div>
+<!-- Social Actions Bar -->
+<div class="flex items-center gap-4 mt-2">
+<a class="group flex items-center justify-center w-10 h-10 rounded-full bg-[#f0f2f4] dark:bg-gray-800 hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" title="GitHub">code</span>
+</a>
+<a class="group flex items-center justify-center w-10 h-10 rounded-full bg-[#f0f2f4] dark:bg-gray-800 hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" title="LinkedIn">work</span>
+</a>
+<a class="group flex items-center justify-center w-10 h-10 rounded-full bg-[#f0f2f4] dark:bg-gray-800 hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" title="Twitter/X">chat_bubble</span>
+</a>
+<a class="group flex items-center justify-center w-10 h-10 rounded-full bg-[#f0f2f4] dark:bg-gray-800 hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" title="Portfolio">brush</span>
+</a>
+</div>
+<div class="mt-4 flex gap-3">
+<button class="bg-primary hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium text-sm transition-colors">Follow</button>
+<button class="bg-white dark:bg-gray-800 border border-[#dbdfe6] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-[#111318] dark:text-white px-6 py-2 rounded-lg font-medium text-sm transition-colors">Message</button>
+</div>
+</div>
+</section>
+<!-- Navigation Tabs -->
+<nav class="border-b border-[#dbdfe6] dark:border-gray-700">
+<div class="flex gap-8 px-4">
+<a class="flex items-center justify-center border-b-[3px] border-b-transparent text-[#616f89] dark:text-gray-400 hover:text-[#111318] dark:hover:text-gray-200 pb-3 pt-2 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Articles</p>
+</a>
+<a class="flex items-center justify-center border-b-[3px] border-primary text-[#111318] dark:text-white pb-3 pt-2" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Portfolio</p>
+</a>
+<a class="flex items-center justify-center border-b-[3px] border-b-transparent text-[#616f89] dark:text-gray-400 hover:text-[#111318] dark:hover:text-gray-200 pb-3 pt-2 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Snippets</p>
+</a>
+</div>
+</nav>
+<!-- Portfolio Grid Content -->
+<section class="py-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Project Card 1 -->
+<div class="group flex flex-col bg-white dark:bg-card-dark rounded-xl border border-[#e5e7eb] dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="h-48 w-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Dashboard interface showing charts and data tables" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8TQDH5SHz4ejLHx72sXszaYMjCFH63R5gA5placxmjIGQFq7_S_yLI8ejxfdE3GYVqT4l0tnxD_eFaObboNzQ8MF09b7QM1fG96dqx4gPLpPRtyFYInKQWySWMR54-2AlyRGBm5KA5FqLuGP1tUie2JbKG8hxOQHdCPnCoqtt_Sb9XCcemfWQtUiy2pL_NG6ECLA3BD90Cse7XW9wrNewrtUoOmJfD_kSBjbSoAQukvjSLImG5dxDezAeC1BrWawNk_HnjGmHA062");'>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">E-Commerce Dashboard</h3>
+<span class="material-symbols-outlined text-gray-400 text-sm">open_in_new</span>
+</div>
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal leading-normal mt-2 line-clamp-2">
+                                        A comprehensive analytics dashboard for shop owners to track sales, inventory, and customer insights in real-time.
+                                    </p>
+</div>
+<div class="mt-auto flex flex-wrap gap-2 pt-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200">
+                                        React
+                                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200">
+                                        Node.js
+                                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-200">
+                                        Tailwind
+                                    </span>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group flex flex-col bg-white dark:bg-card-dark rounded-xl border border-[#e5e7eb] dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="h-48 w-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Kanban board application on a laptop screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCbnhJVwjsa5ALtgj4dAyyGWLPOztGEWVJKyzPkzNghxfJQa-fl6gQfM25dOeEH2vNKP7GinxrADdjAyf_yFbaoRXrKklUEGx6lONQuwfPuVl8SjBEnkZVS-KzhvGsNLeh-oYG_XMxrLk1eQ_qPWwAt3JbmxitzvlhwmJrLmVLx4BkU2M2Js3q4zLesKVDwBsQXmYwro81pWmc_XQETmPrOHz4qI0GeP9bAM6fXRfFnwbwaWD6k8OPp3qdduTJ7vCAOCvqCYbf4sMAs");'>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">TaskFlow App</h3>
+<span class="material-symbols-outlined text-gray-400 text-sm">open_in_new</span>
+</div>
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal leading-normal mt-2 line-clamp-2">
+                                        Productivity management tool designed for remote teams with integrated video calling and async chat.
+                                    </p>
+</div>
+<div class="mt-auto flex flex-wrap gap-2 pt-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200">
+                                        Vue.js
+                                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-200">
+                                        Firebase
+                                    </span>
+</div>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="group flex flex-col bg-white dark:bg-card-dark rounded-xl border border-[#e5e7eb] dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="h-48 w-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Abstract digital visualization of blockchain nodes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxPC6O1WkloU_PIiDVF0vPkmwpO7DmvLIk9GcztlilwKgfaQ4UX_Fky3xlhjfpnNnQEJyRyNLK9YjSZ9XOO2RWiplx76gbWOCw8Rz0KQ5VSI38YHAGRrwQjy6D8Y9loeYguziAQqJfH_OfAV8JUKXfnmMiYX1KlJwLhw-YVnDzqfDqX1HadGeVvZ1BjLbogdLff0em0WPWx456FeglnreZ-i1k8zMyZ7W04j4iDMzguhd8po2yD_WlRP3VYZWl7mgz8eleN-Az9G9A");'>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">CryptoTracker API</h3>
+<span class="material-symbols-outlined text-gray-400 text-sm">open_in_new</span>
+</div>
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal leading-normal mt-2 line-clamp-2">
+                                        High-performance backend API for tracking real-time cryptocurrency prices across multiple exchanges.
+                                    </p>
+</div>
+<div class="mt-auto flex flex-wrap gap-2 pt-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200">
+                                        Python
+                                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200">
+                                        Docker
+                                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-200">
+                                        PostgreSQL
+                                    </span>
+</div>
+</div>
+</div>
+<!-- Project Card 4 (Additional Filler) -->
+<div class="group flex flex-col bg-white dark:bg-card-dark rounded-xl border border-[#e5e7eb] dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="h-48 w-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist smartphone mockups showing a travel app" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZPzHXT6P0KuzoTCzxbRlifSyNQRaVvoJMDq-4hpsaI78e6gZkCEPBrkV65xF3UE-ZNXw8ZQBrNHJfaTrzHdofVv5QIIAuEjDUHEIin4J66rZresoLCnzgVJycuOjsuW5CWLkgumvwCV3jECk6Mdx1yskJo1cZoH8NQrE6piaboGufn541eIRQany7FtQlhIoNvCM0CLyU94fvzS8K5BmTWdXac0OXSx4ftJoirNMLc8BaaDn7cVtb4yvWQOUhJV1LLO84UUO1TXsu");'>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Wanderlust Mobile</h3>
+<span class="material-symbols-outlined text-gray-400 text-sm">open_in_new</span>
+</div>
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal leading-normal mt-2 line-clamp-2">
+                                        A cross-platform mobile application for planning trips and discovering local hidden gems.
+                                    </p>
+</div>
+<div class="mt-auto flex flex-wrap gap-2 pt-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-200">
+                                        Flutter
+                                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-200">
+                                        Dart
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

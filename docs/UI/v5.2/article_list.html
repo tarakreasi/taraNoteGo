@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaraKreasi - Living Portfolio (v5.2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #135bec;
+            --accent-orange: #FF5F1F;
+            --accent-blue: #135bec;
+            --bg-color: #FAFAFA;
+            --text-color: #1E293B;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --text-color: #F1F5F9;
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .text-gradient-orange {
+            background: linear-gradient(135deg, #FF5F1F 0%, #FF8C00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(3, 200px);
+            }
+        }
+
+        .bento-cell {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bento-cell:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Float Navigation */
+        .floating-dock {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            display: flex;
+            gap: 1.5rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 50;
+        }
+
+        body.dark-mode .floating-dock {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dock-item {
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .dock-item:hover {
+            transform: scale(1.2) translateY(-10px);
+        }
+
+        /* Masonry */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            transition: all 0.3s;
+        }
+
+        .masonry-card.large {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-card.large {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+        }
+
+        .badge-blue {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(68, 133, 238, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(68, 133, 238, 0.3);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 50;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="theme-toggle">☀️</button>
+
+    <!-- Bento Grid Hero -->
+    <section class="max-w-[1400px] mx-auto px-6 lg:px-20 py-12">
+        <div class="bento-grid">
+
+            <!-- Large Title Cell -->
+            <div class="bento-cell"
+                style="grid-column: 1 / 3; grid-row: 1 / 3; flex-direction: column; align-items: flex-start; justify-content: center;">
+                <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+                    Deep dives into<br>
+                    <span class="text-gradient-orange">code & servers</span>
+                </h1>
+                <p class="text-lg opacity-70 font-medium">
+                    Technical musings on System Administration and Web Development
+                </p>
+            </div>
+
+            <!-- Featured Article Cell -->
+            <div class="bento-cell"
+                style="grid-column: 3 / 4; grid-row: 1 / 2; padding: 0; background: linear-gradient(135deg, rgba(68, 133, 238, 0.1), rgba(255, 95, 31, 0.1));">
+                <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center">
+                    <span class="material-symbols-outlined text-6xl mb-4 text-[#FF5F1F]">article</span>
+                    <p class="text-sm font-bold opacity-60 uppercase tracking-wider">Latest</p>
+                    <p class="text-base font-bold mt-2 line-clamp-2">Understanding Kubernetes Pods</p>
+                </div>
+            </div>
+
+            <!-- Stats Cell -->
+            <div class="bento-cell"
+                style="grid-column: 4 / 5; grid-row: 1 / 2; flex-direction: column; background: linear-gradient(135deg, rgba(68, 133, 238, 0.05), rgba(255, 95, 31, 0.05));">
+                <div class="text-5xl font-black text-gradient-orange" id="article-count">0+</div>
+                <div class="text-sm opacity-60 uppercase tracking-wider font-bold mt-4">Articles</div>
+            </div>
+
+            <!-- Info Cell -->
+            <div class="bento-cell"
+                style="grid-column: 3 / 5; grid-row: 2 / 3; align-items: flex-start; flex-direction: column;">
+                <h3 class="text-xl font-bold mb-3 text-[#135bec]">🌱 Living Portfolio</h3>
+                <p class="opacity-70 leading-relaxed">
+                    This is not a static blog. It's a digital garden where ideas grow, evolve, and flourish.
+                </p>
+            </div>
+
+            <!-- CTA Cell -->
+            <a href="dashboard.html" class="bento-cell"
+                style="grid-column: 1 / 3; grid-row: 3 / 4; background: linear-gradient(135deg, #FF5F1F, #FF8C00); border-color: #FF5F1F; cursor: pointer; color: white;">
+                <h2 class="text-3xl md:text-4xl font-black flex items-center gap-4">
+                    Start Writing <span class="text-4xl">→</span>
+                </h2>
+            </a>
+
+            <!-- Topics Cell -->
+            <div class="bento-cell"
+                style="grid-column: 3 / 5; grid-row: 3 / 4; background: linear-gradient(135deg, rgba(68, 133, 238, 0.05), rgba(255, 95, 31, 0.05)); flex-direction: column; align-items: flex-start;">
+                <h3 class="text-lg font-bold mb-4 text-[#135bec]">📚 Topics</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span
+                        class="px-3 py-1 rounded-full text-xs font-bold bg-[#135bec]/10 text-[#135bec] border border-[#135bec]/30">DevOps</span>
+                    <span
+                        class="px-3 py-1 rounded-full text-xs font-bold bg-[#135bec]/10 text-[#135bec] border border-[#135bec]/30">Vue.js</span>
+                    <span
+                        class="px-3 py-1 rounded-full text-xs font-bold bg-[#135bec]/10 text-[#135bec] border border-[#135bec]/30">Laravel</span>
+                    <span
+                        class="px-3 py-1 rounded-full text-xs font-bold bg-[#135bec]/10 text-[#135bec] border border-[#135bec]/30">System
+                        Design</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Digital Garden Section -->
+    <section class="max-w-[1400px] mx-auto px-6 lg:px-20 py-20">
+        <h2 class="text-5xl md:text-6xl font-black mb-16 text-gradient-orange">Digital Garden</h2>
+
+        <div class="masonry-grid">
+
+            <!-- Card 1 -->
+            <a href="#" class="glass-panel masonry-card large"
+                style="padding: 2rem; display: flex; flex-direction: column;">
+                <span
+                    class="inline-block px-4 py-2 rounded-full text-xs font-bold mb-6 bg-orange-500/10 text-orange-500 border border-orange-500/30">🌳
+                    Evergreen</span>
+                <div class="mb-4">
+                    <span class="badge-blue">Infrastructure</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 leading-tight">Mastering Kubernetes: A Deep Dive into Pods</h3>
+                <p class="opacity-70 leading-relaxed mb-6 flex-grow line-clamp-6">
+                    In this comprehensive guide, we explore the fundamental building block of Kubernetes: the Pod. We'll
+                    verify how containers communicate, share storage, and manage their lifecycles within these ephemeral
+                    environments...
+                </p>
+                <div
+                    class="flex items-center justify-between text-sm opacity-60 pt-4 border-t border-gray-200 dark:border-white/10">
+                    <span>Oct 24, 2025</span>
+                    <span class="flex items-center gap-2 font-bold text-[#FF5F1F]">Read <span
+                            class="material-symbols-outlined text-base">arrow_forward</span></span>
+                </div>
+            </a>
+
+            <!-- Card 2 -->
+            <a href="#" class="glass-panel masonry-card" style="padding: 2rem; display: flex; flex-direction: column;">
+                <span
+                    class="inline-block px-4 py-2 rounded-full text-xs font-bold mb-6 bg-blue-500/10 text-blue-500 border border-blue-500/30">🌿
+                    Budding</span>
+                <div class="mb-4">
+                    <span class="badge-blue">Frontend</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 leading-tight">Vue 3 Composition API Patterns</h3>
+                <p class="opacity-70 leading-relaxed mb-6 flex-grow line-clamp-3">
+                    Moving from Options API to Composition API can be daunting. Here are 5 patterns to smooth the
+                    transition.
+                </p>
+                <div
+                    class="flex items-center justify-between text-sm opacity-60 pt-4 border-t border-gray-200 dark:border-white/10">
+                    <span>Dec 10, 2025</span>
+                    <span class="flex items-center gap-2 font-bold text-[#FF5F1F]">Read <span
+                            class="material-symbols-outlined text-base">arrow_forward</span></span>
+                </div>
+            </a>
+
+            <!-- Card 3 -->
+            <a href="#" class="glass-panel masonry-card" style="padding: 2rem; display: flex; flex-direction: column;">
+                <span
+                    class="inline-block px-4 py-2 rounded-full text-xs font-bold mb-6 bg-green-500/10 text-green-500 border border-green-500/30">🌱
+                    Seedling</span>
+                <div class="mb-4">
+                    <span class="badge-blue">Thoughts</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 leading-tight">The Future of AI in Coding</h3>
+                <p class="opacity-70 leading-relaxed mb-6 flex-grow line-clamp-3">
+                    Reflections on using AI assistants for system architecture and debugging complex race conditions.
+                </p>
+                <div
+                    class="flex items-center justify-between text-sm opacity-60 pt-4 border-t border-gray-200 dark:border-white/10">
+                    <span>Dec 18, 2025</span>
+                    <span class="flex items-center gap-2 font-bold text-[#FF5F1F]">Read <span
+                            class="material-symbols-outlined text-base">arrow_forward</span></span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Floating Dock -->
+    <nav class="floating-dock">
+        <a href="index.html" class="dock-item" title="Home">🏠</a>
+        <a href="dashboard.html" class="dock-item" title="Dashboard">💼</a>
+        <a href="colab.html" class="dock-item" title="Colab">📝</a>
+        <a href="profile.html" class="dock-item" title="Profile">👤</a>
+        <a href="login.html" class="dock-item" title="Login">🔑</a>
+    </nav>
+
+    <script>
+        // Theme Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.theme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.innerText = '🌙';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.theme = 'dark';
+                toggleBtn.innerText = '🌙';
+            } else {
+                localStorage.theme = 'light';
+                toggleBtn.innerText = '☀️';
+            }
+        });
+
+        // Counter Animation
+        const countSpan = document.getElementById('article-count');
+        const target = 42;
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+
+        const updateCount = () => {
+            current += increment;
+            if (current < target) {
+                countSpan.innerText = Math.floor(current) + '+';
+                requestAnimationFrame(updateCount);
+            } else {
+                countSpan.innerText = target + '+';
+            }
+        };
+        updateCount();
+    </script>
+</body>
+
+</html>

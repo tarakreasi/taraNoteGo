@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login - TaraKreasi Notes</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e45b5",
+                        "accent-orange": "#FF5F1F",
+                        "accent-orange-text": "#c2410c",
+                        "background-light": "#F8FAFC",
+                        "background-dark": "#0F172A",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px" },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        :root {
+            /* Palet 2026 */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --input-bg: rgba(255, 255, 255, 0.5);
+        }
+
+        .dark {
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --input-bg: rgba(15, 23, 42, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Deep Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .glass-card {
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 20px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Material Symbols */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+
+<body
+    class="h-screen w-full flex items-center justify-center bg-[#F8FAFC] dark:bg-[#020617] text-slate-800 dark:text-slate-100 transition-colors duration-500 relative">
+    <div class="noise-overlay"></div>
+
+    <!-- Living Background: Animated Blobs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <!-- Blue Blob -->
+        <div
+            class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/20 dark:bg-primary/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[80px] opacity-70 animate-blob">
+        </div>
+        <!-- Purple Blob -->
+        <div
+            class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-500/20 dark:bg-purple-500/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[80px] opacity-70 animate-blob animation-delay-2000">
+        </div>
+        <!-- Orange Blob (Subtle warmth) -->
+        <div
+            class="absolute -bottom-32 left-1/3 w-[600px] h-[600px] bg-accent-orange/10 dark:bg-accent-orange/5 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[100px] opacity-50 animate-blob animation-delay-4000">
+        </div>
+    </div>
+
+    <!-- Theme Toggle (Absolute Top Right) -->
+    <button id="theme-toggle"
+        class="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 transition-all text-slate-600 dark:text-slate-300 z-50">
+        <span class="material-symbols-outlined dark:hidden">light_mode</span>
+        <span class="material-symbols-outlined hidden dark:block">dark_mode</span>
+    </button>
+
+    <!-- Main Card -->
+    <main class="w-full max-w-md p-6 relative z-10 animate-slide-up">
+        <div class="glass-card rounded-3xl p-8 md:p-10 w-full relative overflow-hidden group">
+
+            <!-- Top Shine Effect -->
+            <div
+                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-50">
+            </div>
+
+            <!-- Content -->
+            <div class="flex flex-col gap-8 relative z-10">
+                <!-- Header -->
+                <div class="text-center">
+                    <div
+                        class="inline-flex items-center justify-center size-14 rounded-2xl bg-gradient-to-br from-primary to-primary-dark shadow-lg shadow-primary/30 mb-6 animate-float">
+                        <span class="material-symbols-outlined text-white text-[28px]">rocket_launch</span>
+                    </div>
+                    <h1 class="font-display text-3xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+                        Welcome Back</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Enter your coordinates to access the portal.</p>
+                </div>
+
+                <!-- Login Form -->
+                <form class="flex flex-col gap-5">
+
+                    <!-- Email Input Group -->
+                    <div class="space-y-1.5">
+                        <label
+                            class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 ml-1">Email
+                            Address</label>
+                        <div class="relative group/input">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-primary to-purple-500 rounded-xl opacity-0 group-focus-within/input:opacity-100 blur transition-opacity duration-500">
+                            </div>
+                            <div
+                                class="relative flex items-center bg-white/50 dark:bg-[#0F172A]/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 h-12 transition-all focus-within:bg-white dark:focus-within:bg-[#0F172A]">
+                                <span class="material-symbols-outlined text-slate-400 mr-3">mail</span>
+                                <input type="email" placeholder="you@tarakreasi.com"
+                                    class="w-full bg-transparent border-none focus:ring-0 text-gray-900 dark:text-white placeholder-slate-400 text-sm font-medium">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password Input Group -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between items-center ml-1">
+                            <label
+                                class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Password</label>
+                            <a href="#"
+                                class="text-xs font-medium text-primary hover:text-primary-dark transition-colors">Forgot?</a>
+                        </div>
+                        <div class="relative group/input">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-primary to-purple-500 rounded-xl opacity-0 group-focus-within/input:opacity-100 blur transition-opacity duration-500">
+                            </div>
+                            <div
+                                class="relative flex items-center bg-white/50 dark:bg-[#0F172A]/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 h-12 transition-all focus-within:bg-white dark:focus-within:bg-[#0F172A]">
+                                <span class="material-symbols-outlined text-slate-400 mr-3">lock</span>
+                                <input type="password" placeholder="••••••••"
+                                    class="w-full bg-transparent border-none focus:ring-0 text-gray-900 dark:text-white placeholder-slate-400 text-sm font-medium">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="button" onclick="window.location.href='dashboard.html'"
+                        class="mt-4 w-full h-12 bg-primary hover:bg-primary-dark text-white font-display font-bold rounded-xl shadow-[0_0_20px_rgba(19,91,236,0.3)] hover:shadow-[0_0_30px_rgba(19,91,236,0.5)] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                        <span>Initiate Sequence</span>
+                        <span
+                            class="material-symbols-outlined text-[18px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+
+                </form>
+
+                <!-- Footer / Divider -->
+                <div class="relative py-2">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-200 dark:border-white/10"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-4 bg-white/0 dark:bg-[#0F172A]/0 backdrop-blur-xl text-slate-400">Or continue
+                            with</span>
+                    </div>
+                </div>
+
+                <!-- Socials -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button
+                        class="flex items-center justify-center gap-2 h-11 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="size-5" alt="Google">
+                        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Google</span>
+                    </button>
+                    <button
+                        class="flex items-center justify-center gap-2 h-11 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
+                        <img src="https://www.svgrepo.com/show/448224/github.svg" class="size-5 invert dark:invert-0"
+                            alt="GitHub">
+                        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">GitHub</span>
+                    </button>
+                </div>
+
+                <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-2">
+                    No access code? <a href="#"
+                        class="font-bold text-primary hover:text-primary-dark transition-colors">Request Access</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom copyright -->
+        <p class="text-center text-xs text-slate-400/60 mt-8">
+            &copy; 2026 TaraKreasi System. Secure Connection.
+        </p>
+    </main>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.theme = 'dark';
+                } else {
+                    localStorage.theme = 'light';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

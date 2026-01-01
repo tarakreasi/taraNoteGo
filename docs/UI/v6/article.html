@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Article Detail Page V2 - TaraKreasi Notes</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e45b5",
+                        "accent-orange": "#ffedd5",
+                        "accent-orange-text": "#c2410c",
+                        "background-light": "#ffffff",
+                        "background-off": "#f9fafb",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "md": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            /* Palet 2026 (Refined TaraKreasi Blue + Orange) */
+            --bg-color: #F8FAFC;
+            /* Softer Slate 50 */
+            --text-primary: #1E293B;
+            /* Slate 800 */
+            --accent-blue: #135bec;
+            /* Tara Blue */
+            --accent-orange: #FF5F1F;
+            /* Electric Orange - Tara Orange */
+            --glass-bg: rgba(255, 255, 255, 0.90);
+            /* Clarity Upgrade: Higher Opacity for Contrast */
+            --glass-border: rgba(255, 255, 255, 0.6);
+            /* Diamond Edge: Cleaner white border */
+            --shadow-ambient: 0 12px 40px -10px rgba(68, 133, 238, 0.15);
+            /* Blue glow */
+        }
+
+        .dark {
+            --bg-color: #0F172A;
+            --text-primary: #F1F5F9;
+            --accent-blue: #3b82f6;
+            --accent-orange: #fb923c;
+            --glass-bg: rgba(15, 23, 42, 0.80);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            line-height: 1.7;
+            /* Clarity Upgrade: Relaxed reading */
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Improved Text Readability on Glass */
+        p,
+        li,
+        a {
+            font-weight: 500;
+            /* Clarity Upgrade: Medium weight for better legibility */
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .dark .noise-overlay {
+            opacity: 0.07;
+        }
+
+        /* Liquid Glass Component (Deep Glass Upgrade) */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+                /* Diamond Edge: Inner Light */
+                var(--shadow-ambient);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Bioluminescent Glow */
+        .glass-panel:hover {
+            transform: translateY(-4px) scale(1.005);
+            border-color: rgba(255, 95, 31, 0.4);
+            box-shadow:
+                0 20px 60px -10px rgba(255, 95, 31, 0.15),
+                0 0 15px rgba(255, 95, 31, 0.1);
+            /* Inner/Outer Glow */
+        }
+
+        .dark .glass-panel:hover {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(68, 133, 238, 0.5);
+            box-shadow:
+                0 20px 60px -10px rgba(68, 133, 238, 0.2),
+                0 0 20px rgba(68, 133, 238, 0.15);
+            /* Stronger bioluminescence */
+        }
+
+        /* Typography */
+        .text-gradient-orange {
+            background: linear-gradient(135deg, var(--accent-orange), #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Custom scrollbar for code blocks */
+        .code-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .code-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .code-scroll::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        .prose p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+
+        .dark .prose p {
+            color: #cbd5e1;
+        }
+
+        /* 2026 Living Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.03);
+                opacity: 1;
+            }
+        }
+
+        @keyframes reveal-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-breathe {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <script>
+        // Init theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+
+<body class="text-[#181511] dark:text-white antialiased transition-colors duration-200 font-body">
+    <div class="noise-overlay"></div>
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Top Navigation Bar -->
+        <div class="layout-container flex w-full flex-col sticky top-4 z-50 px-4">
+            <div class="flex justify-center w-full">
+                <div class="flex flex-col max-w-[1200px] flex-1">
+                    <header class="glass-panel flex items-center justify-between whitespace-nowrap px-4 py-3 md:px-10">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-sm border border-white/50 flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                                <img src="images/logo_tarakreasi.png" alt="TaraKreasi Notes Logo"
+                                    class="h-8 w-auto object-contain">
+                            </div>
+                        </div>
+                        <div class="hidden md:flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-6">
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="index.html">Home</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="about.html">Living Portfolio</a>
+                                <a class="text-primary text-sm font-bold leading-normal relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-primary"
+                                    href="topics.html">Garden</a>
+                                <a class="text-[#637588] text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="contact.html">Contact</a>
+                            </div>
+                            <button
+                                class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary-dark transition-colors shadow-sm">
+                                <span class="truncate">Subscribe</span>
+                            </button>
+                            <button id="theme-toggle"
+                                class="p-2 ml-4 rounded-full text-primary hover:bg-black/5 dark:text-white dark:hover:bg-white/10 transition-colors"
+                                aria-label="Toggle Dark Mode">
+                                <span class="material-symbols-outlined dark:hidden">light_mode</span>
+                                <span class="material-symbols-outlined hidden dark:block">dark_mode</span>
+                            </button>
+                        </div>
+                        <!-- Mobile Menu Icon -->
+                        <div class="md:hidden text-[#111318]">
+                            <span class="material-symbols-outlined">menu</span>
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <main class="flex-grow flex flex-col relative w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10 gap-10">
+            <!-- Ambient Background Blob -->
+            <div
+                class="absolute top-[0%] right-[0%] w-[50%] h-[50%] bg-primary/5 dark:bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]">
+            </div>
+            <!-- Grid Layout: Sidebar Left (Social), Main Content, Sidebar Right (TOC) -->
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <!-- Left Sidebar: Social Sharing (Sticky) -->
+                <aside class="hidden lg:block lg:col-span-1 lg:col-start-2">
+                    <div class="sticky top-32 flex flex-col gap-6 items-center">
+                        <button
+                            class="group flex flex-col items-center gap-1 text-gray-400 hover:text-primary transition-colors">
+                            <div class="p-2 rounded-full group-hover:bg-primary/10 transition-colors">
+                                <span class="material-symbols-outlined">favorite</span>
+                            </div>
+                            <span class="text-xs font-medium">124</span>
+                        </button>
+                        <button
+                            class="group flex flex-col items-center gap-1 text-gray-400 hover:text-blue-400 transition-colors">
+                            <div class="p-2 rounded-full group-hover:bg-blue-400/10 transition-colors">
+                                <span class="material-symbols-outlined">chat_bubble</span>
+                            </div>
+                            <span class="text-xs font-medium">18</span>
+                        </button>
+                        <button
+                            class="group flex flex-col items-center gap-1 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                            <div
+                                class="p-2 rounded-full group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors">
+                                <span class="material-symbols-outlined">bookmark</span>
+                            </div>
+                        </button>
+                        <div class="w-px h-8 bg-gray-200 dark:bg-gray-700"></div>
+                        <button class="p-2 text-gray-400 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">share</span>
+                        </button>
+                    </div>
+                </aside>
+                <!-- Main Content Area: The Deep Dive -->
+                <article
+                    class="glass-panel relative overflow-hidden p-8 md:p-12 col-span-12 lg:col-span-8 lg:col-start-3 max-w-[760px] mx-auto w-full">
+                    <!-- Ambient Glow -->
+                    <div
+                        class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px] opacity-50 pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3">
+                    </div>
+                    <!-- Breadcrumbs -->
+                    <nav class="flex flex-wrap gap-2 items-center text-sm mb-6 text-gray-500 dark:text-gray-400">
+                        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                        <span class="material-symbols-outlined text-[16px] leading-none">chevron_right</span>
+                        <a class="hover:text-primary transition-colors" href="topics.html">Articles</a>
+                        <span class="material-symbols-outlined text-[16px] leading-none">chevron_right</span>
+                        <span class="text-primary font-medium">JavaScript</span>
+                    </nav>
+                    <!-- Article Header -->
+                    <header class="mb-10">
+                        <!-- Tags -->
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-accent-orange/30 text-orange-800 dark:text-orange-200 dark:bg-accent-orange/10">
+                                JavaScript
+                            </span>
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200">
+                                Web Dev
+                            </span>
+                        </div>
+                        <h1
+                            class="font-display text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white leading-[1.15] mb-6">
+                            Mastering Asynchronous JavaScript in 2024: From Callbacks to Await
+                        </h1>
+                        <!-- Author Meta -->
+                        <div
+                            class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-8">
+                            <div class="flex items-center gap-4">
+                                <div class="relative">
+                                    <div class="size-12 rounded-full bg-cover bg-center ring-2 ring-white dark:ring-gray-800 shadow-sm"
+                                        data-alt="Portrait of the author Tara"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVzyRj2Ldfb0OJaqJvHnQAq5JiSSA2DGZ86wnctl8mHkiKDLwn9y8mf5wJWenIZu7MsQGcUhhiMVAC4_QK-YQoUhZ0tcpWCOTHDZh6q-64lcp3q1PoJL2SVP8XtPnitSn26QygwTAVFOHB-Tg6zxujcCPg0JpGv2_kIKFxyP2DjBd3S2XUtgp3F_irgleAgaiiAwmdWz3GZWBk-rmUhml9rUmpOBj5dK3SR1JUTGXgBO-KD2v5igp6tF7McF5shui41MeSWFX9WLRK');">
+                                    </div>
+                                    <div
+                                        class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white dark:border-gray-900 rounded-full">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-base font-bold text-gray-900 dark:text-white">Tara Kreasi</span>
+                                    <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                        <span>Oct 24, 2023</span>
+                                        <span>•</span>
+                                        <span>8 min read</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 md:hidden">
+                                <!-- Mobile Share Buttons shown here -->
+                                <button
+                                    class="p-2 rounded-full bg-gray-50 dark:bg-gray-800 text-gray-500 hover:text-primary">
+                                    <span class="material-symbols-outlined text-[20px]">share</span>
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Article Body -->
+                    <div class="prose prose-lg dark:prose-invert max-w-none">
+                        <p class="lead text-xl text-gray-600 dark:text-gray-300 font-medium">
+                            Asynchronous programming is a fundamental concept in JavaScript that enables non-blocking
+                            operations. Whether you're fetching data from an API or reading a file, understanding how to
+                            handle these operations efficiently is crucial for building performant applications.
+                        </p>
+                        <p>
+                            In the early days of JavaScript, we relied heavily on callbacks. While effective, they often
+                            led
+                            to the infamous <span
+                                class="bg-accent-orange/40 dark:bg-accent-orange/20 px-1 rounded mx-0.5 text-gray-800 dark:text-gray-200 font-medium">Callback
+                                Hell</span>, making code difficult to read and maintain. Today, we have robust tools
+                            like
+                            Promises and the <code>async/await</code> syntax that streamline this process significantly.
+                        </p>
+                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4 flex items-center gap-3">
+                            <span class="w-1.5 h-8 bg-primary rounded-full"></span>
+                            Why Async Matters
+                        </h2>
+                        <p>
+                            JavaScript is single-threaded. This means it can only execute one command at a time. If a
+                            function takes a long time to complete (like downloading a large file), it would freeze the
+                            entire interface if executed synchronously. Asynchronous code allows the browser to continue
+                            responding to user input while the heavy lifting happens in the background.
+                        </p>
+                        <!-- Stylized Blockquote -->
+                        <div
+                            class="my-8 pl-6 border-l-4 border-accent-orange bg-orange-50 dark:bg-orange-900/10 p-6 rounded-r-xl">
+                            <div
+                                class="flex gap-3 mb-2 text-accent-orange-text font-bold text-sm uppercase tracking-wider items-center">
+                                <span class="material-symbols-outlined text-[20px]">lightbulb</span>
+                                Pro Tip
+                            </div>
+                            <p class="text-gray-800 dark:text-gray-200 italic m-0 font-medium">
+                                "Always handle errors in your async functions using try/catch blocks. Silent failures in
+                                asynchronous code are notoriously difficult to debug."
+                            </p>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Modern Approach:
+                            Async/Await</h3>
+                        <p>
+                            Introduced in ES2017, <code>async/await</code> is syntactic sugar built on top of Promises.
+                            It
+                            allows us to write asynchronous code that looks and behaves a lot like synchronous code.
+                        </p>
+                        <!-- Code Block -->
+                        <div class="my-8 rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-gray-700">
+                            <div
+                                class="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-700">
+                                <div class="flex gap-1.5">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <span class="text-xs text-gray-400 font-mono">fetchData.js</span>
+                                <button class="text-gray-400 hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                                </button>
+                            </div>
+                            <div class="p-6 overflow-x-auto code-scroll">
+                                <pre class="font-mono text-sm leading-relaxed text-blue-100"><span class="text-purple-400">async</span> <span class="text-purple-400">function</span> <span class="text-blue-400">fetchUserData</span><span class="text-gray-300">(</span><span class="text-orange-300">userId</span><span class="text-gray-300">)</span> <span class="text-gray-300">{</span>
+  <span class="text-purple-400">try</span> <span class="text-gray-300">{</span>
+    <span class="text-gray-500">// Wait for the fetch to complete</span>
+    <span class="text-purple-400">const</span> <span class="text-gray-300">response</span> <span class="text-purple-400">=</span> <span class="text-purple-400">await</span> <span class="text-blue-300">fetch</span><span class="text-gray-300">(</span><span class="text-green-300">`https://api.example.com/users/${userId}`</span><span class="text-gray-300">);</span>
+    
+    <span class="text-purple-400">if</span> <span class="text-gray-300">(!response.ok)</span> <span class="text-gray-300">{</span>
+      <span class="text-purple-400">throw</span> <span class="text-purple-400">new</span> <span class="text-yellow-300">Error</span><span class="text-gray-300">(</span><span class="text-green-300">'Network response was not ok'</span><span class="text-gray-300">);</span>
+    <span class="text-gray-300">}</span>
+
+    <span class="text-purple-400">const</span> <span class="text-gray-300">userData</span> <span class="text-purple-400">=</span> <span class="text-purple-400">await</span> <span class="text-gray-300">response.json();</span>
+    <span class="text-purple-400">return</span> <span class="text-gray-300">userData;</span>
+    
+  <span class="text-gray-300">}</span> <span class="text-purple-400">catch</span> <span class="text-gray-300">(</span><span class="text-orange-300">error</span><span class="text-gray-300">)</span> <span class="text-gray-300">{</span>
+    <span class="text-blue-300">console</span><span class="text-gray-300">.</span><span class="text-blue-300">error</span><span class="text-gray-300">(</span><span class="text-green-300">'There was a problem fetching the user data:'</span><span class="text-gray-300">,</span> <span class="text-orange-300">error</span><span class="text-gray-300">);</span>
+  <span class="text-gray-300">}</span>
+<span class="text-gray-300">}</span>
+</pre>
+                            </div>
+                        </div>
+                        <p>
+                            Notice how the highlighted code reads sequentially. The <code>await</code> keyword pauses
+                            the
+                            execution of the function until the promise is resolved, making the logic much easier to
+                            follow
+                            than nested callbacks.
+                        </p>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Conclusion</h3>
+                        <p>
+                            Mastering these patterns is essential for modern web development. Start refactoring your old
+                            promise chains today, and enjoy cleaner, more readable codebases.
+                        </p>
+                    </div>
+                    <!-- Action Footer -->
+                    <div class="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
+                        <div
+                            class="flex flex-col sm:flex-row justify-between items-center gap-6 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+                            <div class="text-center sm:text-left">
+                                <h4 class="font-bold text-gray-900 dark:text-white text-lg">Enjoyed this article?</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Subscribe to get the latest
+                                    posts
+                                    sent to your inbox.</p>
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto">
+                                <input
+                                    class="flex-1 min-w-0 sm:w-64 rounded-lg border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-primary focus:border-primary"
+                                    placeholder="Email address" type="email" />
+                                <button
+                                    class="bg-primary hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-sm shadow-blue-500/30">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Right Sidebar: TOC (Sticky) -->
+                <aside class="hidden xl:block xl:col-span-3 xl:col-start-11">
+                    <!-- Only visible on extra large screens -->
+                    <div class="sticky top-32">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">On this page</h5>
+                        <ul class="space-y-3 text-sm border-l border-gray-100 dark:border-gray-800 pl-4">
+                            <li>
+                                <a class="block text-gray-900 dark:text-white font-medium -ml-[17px] pl-4 border-l-2 border-primary"
+                                    href="#">Introduction</a>
+                            </li>
+                            <li>
+                                <a class="block text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
+                                    href="#">Why Async Matters</a>
+                            </li>
+                            <li>
+                                <a class="block text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
+                                    href="#">Pro Tip: Error Handling</a>
+                            </li>
+                            <li>
+                                <a class="block text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
+                                    href="#">Async/Await Syntax</a>
+                            </li>
+                            <li>
+                                <a class="block text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
+                                    href="#">Conclusion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <!-- Read Next Section -->
+            <section
+                class="max-w-[1200px] mx-auto w-full mt-10 lg:mt-20 pt-10 border-t border-gray-100 dark:border-gray-800">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Read Next</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <a class="glass-panel group flex flex-col gap-4 p-4" href="#">
+                        <div class="aspect-video w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+                            <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
+                                data-alt="Abstract blue digital network connections"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDy5uh6pBimkI4abNQZimD2AjiUFKlInzHhq-D8tkyXVVYofGkz_c2EI2sBPqaVz2ElY5UzioRVpwR7qA-dsiOoklso6gEa8K9H2B7C4Z7e4jqFMXTAWnUsjqb4oUrlwvlhPOajfh23bl1XkROB5CyUbSYlGldNZ6d4kEiWIDC0GfkMs9ypxQFdKQRNSIBw3p7XRyGpuOYryz9uUKuFZSRPkqANN7zWH-U_oyDtGkiNLu7MgDxyfjY32KELh5j1NKCkvwEvI2tgurOZ');">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex gap-2 items-center mb-2">
+                                <span
+                                    class="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">CSS</span>
+                                <span class="text-xs text-gray-500">5 min read</span>
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                                CSS Grid vs Flexbox: Which One Should You Use?</h4>
+                        </div>
+                    </a>
+                    <!-- Card 2 -->
+                    <a class="glass-panel group flex flex-col gap-4 p-4" href="#">
+                        <div class="aspect-video w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+                            <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
+                                data-alt="Laptop screen showing code editor"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFVbkLjuJfVNP_OCqU1ADrMGxP6HYMv--QDMMkb9seqK5TLwxFrnF80roPaxusQ0MZd_ijiAZyKLUxMDUdrWCf2IVEE-TQbm_uEeR9i1ts0EnQW10mD7i6II2uZ9-hEdNobbc1N7IqnHoGn0gIiITpUkcu0zbyA-8RgajrBYfdHKCPaOhLx0B3RPjam0CsSHh1QXDfsel0u3Rx3AAzuWb1A--9-C1-UPUtE-nMWGGXW9aaKEF1rOMAHpgltJlFCb4LyZyMZJFM-vED');">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex gap-2 items-center mb-2">
+                                <span
+                                    class="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">React</span>
+                                <span class="text-xs text-gray-500">10 min read</span>
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                                Understanding React Hooks in Depth</h4>
+                        </div>
+                    </a>
+                    <!-- Card 3 -->
+                    <a class="glass-panel group flex flex-col gap-4 md:hidden lg:flex p-4" href="#">
+                        <div class="aspect-video w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+                            <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
+                                data-alt="Minimalist desk setup with coffee"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlAs0uUcE7xK8YxEsGvWw8LeYyRsqmXq3mso2uiEvET2Wq-a01G59tQ1dJNhH8I2rs2eE8FjE95Y5y12ExpqH7z_YAehqwWHa5k4aiFo4rKkAT4X4zzWKH6ltHgyPzGtlcXaenSQfshUeeCnv0WZfiTthRLv3LSJkYNe-nQhI68P-VHLYrqWiPqfVXkve-6m0FEUjQihPyVYORR-jToBVWJOVmXURkqpsgTcjCcYDU6QItkTqlToh-OR9ZxSut69q5aiV7qgw_0GIv');">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex gap-2 items-center mb-2">
+                                <span
+                                    class="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">Productivity</span>
+                                <span class="text-xs text-gray-500">3 min read</span>
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                                5 Tools for Better Developer Productivity</h4>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+        <!-- Hybrid Footer System -->
+        <footer class="mt-20 reveal-on-scroll">
+            <!-- Contextual Pre-Footer: Article (Explore) -->
+            <div class="px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto mb-12">
+                <div class="glass-panel p-8 md:p-12 relative overflow-hidden border-2 border-primary/10">
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center justify-between">
+                        <div class="text-center md:text-left max-w-lg">
+                            <h2 class="font-display text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                                Continue the <span class="text-gradient-orange">Journey</span>
+                            </h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg">
+                                Don't stop here. The garden is vast. Deep dive into more engineering topics or browse
+                                the full collection.
+                            </p>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="topics.html"
+                                class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-95 flex items-center gap-2">
+                                <span class="material-symbols-outlined">category</span>
+                                Explore Topics
+                            </a>
+                            <a href="index.html"
+                                class="glass-panel px-6 py-3 text-gray-900 dark:text-white font-bold rounded-xl hover:bg-white/10 transition-colors">
+                                Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Uniform Base Footer -->
+            <div class="border-t border-gray-200 dark:border-white/5 bg-white/50 dark:bg-black/20 backdrop-blur-lg">
+                <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                        <!-- Brand -->
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                                <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                            </div>
+                            <span
+                                class="font-display font-bold text-xl text-gray-900 dark:text-white tracking-tight">TaraKreasi</span>
+                        </div>
+
+                        <!-- Links -->
+                        <div class="flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                            <a href="index.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                            <a href="about.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">About</a>
+                            <a href="topics.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Garden</a>
+                            <a href="contact.html"
+                                class="hover:text-primary dark:hover:text-white transition-colors">Contact</a>
+                        </div>
+
+                        <!-- Socials -->
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">Twitter</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-all">
+                                <span class="sr-only">GitHub</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-8 pt-8 border-t border-gray-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
+                        <p>&copy; 2026 TaraKreasi Notes. Built with ❤️ and ☕.</p>
+                        <p class="flex items-center gap-2">
+                            <span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+                            All systems operational
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    if (document.documentElement.classList.contains('dark')) {
+                        localStorage.theme = 'dark';
+                    } else {
+                        localStorage.theme = 'light';
+                    }
+                });
+            }
+
+            // 2026 Living Interactions: Scroll Reveal Observer
+            document.addEventListener('DOMContentLoaded', () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+            });
+        </script>
+</body>
+
+</html>

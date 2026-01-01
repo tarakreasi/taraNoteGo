@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaraKreasi Notes - Digital Garden</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f09f42",
+                        "accent-blue": "#1e3a8a", // Medium-bold blue requested
+                        "accent-blue-light": "#3b82f6",
+                        "background-light": "#ffffff",
+                        "background-dark": "#181511",
+                        "surface-light": "#f4f2f0",
+                        "surface-dark": "#221a10",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#181511] dark:text-white transition-colors duration-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-[#f4f2f0] dark:border-white/10">
+<div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-accent-blue flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">compost</span>
+</div>
+<h2 class="text-accent-blue dark:text-white text-xl font-bold tracking-tight">TaraKreasi</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-accent-blue dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-accent-blue dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Garden</a>
+<a class="text-accent-blue dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-accent-blue dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-surface-light dark:bg-surface-dark rounded-full px-3 py-1.5 border border-transparent focus-within:border-accent-blue focus-within:ring-1 focus-within:ring-accent-blue transition-all">
+<span class="material-symbols-outlined text-gray-500" style="font-size: 20px;">search</span>
+<input class="bg-transparent border-none text-sm focus:ring-0 w-32 md:w-48 placeholder-gray-500 dark:text-white" placeholder="Search notes..." type="text"/>
+</div>
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold shadow-sm transition-transform active:scale-95">
+                            Subscribe
+                        </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative pt-12 pb-16 md:pt-20 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-6 order-2 lg:order-1">
+<h1 class="text-accent-blue dark:text-white text-4xl md:text-6xl font-black leading-[1.1] tracking-tight">
+                            Deep dives into <span class="text-primary underline decoration-4 underline-offset-4 decoration-primary/30">code</span> &amp; <span class="text-primary underline decoration-4 underline-offset-4 decoration-primary/30">servers</span>
+</h1>
+<p class="text-slate-600 dark:text-slate-300 text-lg md:text-xl font-medium leading-relaxed max-w-xl">
+                            Welcome to TaraKreasi Notes. A living collection of thoughts, tutorials, and experiments growing in my digital garden.
+                        </p>
+<div class="flex flex-wrap gap-4 mt-2">
+<button class="flex items-center justify-center rounded-lg h-12 px-6 bg-accent-blue text-white text-base font-bold shadow-lg hover:shadow-xl hover:bg-accent-blue/90 transition-all transform hover:-translate-y-0.5">
+                                Explore Garden
+                            </button>
+<button class="flex items-center justify-center rounded-lg h-12 px-6 bg-surface-light dark:bg-surface-dark text-accent-blue dark:text-white border border-transparent hover:border-accent-blue/20 text-base font-bold transition-all">
+                                View Portfolio
+                            </button>
+</div>
+</div>
+<div class="order-1 lg:order-2 relative group">
+<div class="absolute -inset-1 bg-gradient-to-tr from-primary to-accent-blue rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative w-full aspect-[4/3] bg-surface-light dark:bg-surface-dark rounded-xl overflow-hidden shadow-2xl" data-alt="Abstract visualization of code structure growing like a plant">
+<img alt="Coding monitor screen" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZy2BhljKlOWChUB3uRfmChnydrpcwp9nK-RhOhr6A2m0UDrjurWxGzYpBACWxs1smojuwr9FlVz5xCquJvtM6QejdCjU2FU5NP-CZRxIZFCMRyfVNq4x-eZK9OBhvVDAcSj8iaqWj-h8MkReeB4mjWH_A34utc98m9dUDv53zWAAk36W982gxkO3fviBZewa6PAmpK8uHi4WD714bKiwwbyNwwn0NZd5FX9TN2SQHZkseKzTUblXKhvpl3OQHs7RTcB-xM4lxubmi"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats/Highlights -->
+<section class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stat Card 1 -->
+<div class="p-6 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex items-center justify-between mb-4">
+<p class="text-slate-500 dark:text-slate-400 font-medium text-sm uppercase tracking-wider">Latest Article</p>
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">article</span>
+</div>
+<h3 class="text-accent-blue dark:text-white text-2xl font-bold leading-tight mb-2 group-hover:text-primary transition-colors">Optimizing React VDOM</h3>
+<a class="text-sm font-semibold text-accent-blue dark:text-primary flex items-center gap-1 mt-4" href="#">
+                            Read Note <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+<!-- Stat Card 2 -->
+<div class="p-6 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex items-center justify-between mb-4">
+<p class="text-slate-500 dark:text-slate-400 font-medium text-sm uppercase tracking-wider">Garden Size</p>
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">forest</span>
+</div>
+<h3 class="text-accent-blue dark:text-white text-2xl font-bold leading-tight mb-2">42 Notes planted</h3>
+<div class="flex gap-2 mt-4">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
+                                12 Evergreen
+                            </span>
+<span class="inline-flex items-center gap-1 rounded-full bg-yellow-50 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-300 ring-1 ring-inset ring-yellow-600/20">
+                                30 Seedlings
+                            </span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="p-6 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex items-center justify-between mb-4">
+<p class="text-slate-500 dark:text-slate-400 font-medium text-sm uppercase tracking-wider">Status</p>
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">person_check</span>
+</div>
+<h3 class="text-accent-blue dark:text-white text-2xl font-bold leading-tight mb-2">Open for hire</h3>
+<p class="text-slate-600 dark:text-slate-300 text-sm mt-2">Currently accepting new freelance projects for Q4.</p>
+</div>
+</div>
+</section>
+<!-- Digital Garden Content -->
+<section class="bg-surface-light/30 dark:bg-surface-dark/30 py-16 border-t border-[#f4f2f0] dark:border-white/5">
+<div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<h2 class="text-accent-blue dark:text-white text-3xl font-bold tracking-tight mb-2">Digital Garden</h2>
+<p class="text-slate-600 dark:text-slate-400">Notes ranging from raw ideas to polished tutorials.</p>
+</div>
+<!-- Filter Chips -->
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full bg-accent-blue text-white text-sm font-semibold shadow-md transition-transform hover:-translate-y-0.5">All</button>
+<button class="px-4 py-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-accent-blue hover:text-accent-blue dark:hover:text-white transition-colors text-sm font-medium">Evergreen 🌲</button>
+<button class="px-4 py-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-accent-blue hover:text-accent-blue dark:hover:text-white transition-colors text-sm font-medium">Budding 🌿</button>
+<button class="px-4 py-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-accent-blue hover:text-accent-blue dark:hover:text-white transition-colors text-sm font-medium">Seedling 🌱</button>
+</div>
+</div>
+<!-- Article Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<article class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-white/5">
+<div class="h-48 w-full bg-gray-100 overflow-hidden relative" data-alt="Blue abstract geometric shapes representing Kubernetes pods">
+<img alt="Kubernetes abstract representation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQPl8gqy7ZrjTIYM5WaYx-3YBxKZhdmrvfI2GIXkAg10l5dM9mtAqbfO5YlXFN_6d-8Z_Jmc8yr4BUWY7BNRbxxGU-ublXKdx7v4ibOK8eF5-grYnNQzX6kvE8fapNoxxe8Ncmh9mc3Lhx6ULmZ-YsboeFE4PF-BGc-OsVSR6vMqVHvsPzxn-XVJ0c4bPJ7Qd9fr45j89HdNYBo9Uad7IrdceJ5zdME0M99-o4stf9cAqVkWprVX3FDruAx4lZoFBWhO3IM0qPsK-"/>
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-green-100 dark:bg-green-900/50 px-2 py-1 text-xs font-semibold text-green-700 dark:text-green-200 shadow-sm backdrop-blur-sm border border-green-200 dark:border-green-800">
+                                        Evergreen 🌲
+                                    </span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+<span>Oct 24, 2023</span>
+<span>•</span>
+<span>8 min read</span>
+</div>
+<h3 class="text-xl font-bold text-accent-blue dark:text-white mb-3 group-hover:text-primary transition-colors">Understanding Kubernetes Pods</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    A deep dive into the smallest deployable units of computing that you can create and manage in Kubernetes.
+                                </p>
+<a class="inline-flex items-center text-sm font-bold text-accent-blue dark:text-white hover:text-primary transition-colors group/link" href="#">
+                                    Read Article 
+                                    <span class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-white/5">
+<div class="h-48 w-full bg-gray-100 overflow-hidden relative" data-alt="Dark terminal screen with code text">
+<img alt="Vim code editor setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf-weY-xf4CgQJxHgs9ZbaXIWqdEPHiAj2CMKWWUYvp6K-n8UhFWFZAKeilYZvJV8FdKhTWWidFWyq24gBLUXad2Dc-YIDwv_BpGanyi1i1aRfj9782qFFqFlEKTNYIYjLlkV6a1g202Ko4lu_T_M-jFe1tRGtIvBBqTzrBeqPpg6JicvtR_yaidX6RFkuDmUhNv1z9ml4MaEv1DFBuafeVZHMIyo64UQ7hqarfNH-ncb03dlOrd_MA_e2pXZ7dhXre3c1L7xEYQwU"/>
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-blue-100 dark:bg-blue-900/50 px-2 py-1 text-xs font-semibold text-blue-700 dark:text-blue-200 shadow-sm backdrop-blur-sm border border-blue-200 dark:border-blue-800">
+                                        Budding 🌿
+                                    </span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+<span>Nov 12, 2023</span>
+<span>•</span>
+<span>5 min read</span>
+</div>
+<h3 class="text-xl font-bold text-accent-blue dark:text-white mb-3 group-hover:text-primary transition-colors">My VIM Setup 2024</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Configuration, plugins, and keybindings that make my daily workflow efficient and keyboard-centric.
+                                </p>
+<a class="inline-flex items-center text-sm font-bold text-accent-blue dark:text-white hover:text-primary transition-colors group/link" href="#">
+                                    Read Article 
+                                    <span class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-white/5">
+<div class="h-48 w-full bg-gray-100 overflow-hidden relative" data-alt="Abstract neural network connection nodes">
+<img alt="AI Neural network" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2N8IE00v9Xxr-GmIZqHpZpGwSvYIKzFR1kcSZCW1uZ1vIAKYsF-kj9MMLsjDHlq2Nt9B8duk85PnzgrfbvwbouL6apezd18816L4-yXUNg7FRaLazQaaosBoiNByZG5SS-blajO0-9A9cuqFlkem_a1Er4nO9U3O0O5RcHsAZOmg7US9sY2Ijw0bWd8aI2lsBBtl6e40uJn3187OxLp7ZmRTaPGuz0YY9uziMNOSW4YfB5T3icuPT1or6unxLijLeQlbnqj3Wu1Vo"/>
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-yellow-100 dark:bg-yellow-900/50 px-2 py-1 text-xs font-semibold text-yellow-700 dark:text-yellow-200 shadow-sm backdrop-blur-sm border border-yellow-200 dark:border-yellow-800">
+                                        Seedling 🌱
+                                    </span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+<span>Dec 01, 2023</span>
+<span>•</span>
+<span>3 min read</span>
+</div>
+<h3 class="text-xl font-bold text-accent-blue dark:text-white mb-3 group-hover:text-primary transition-colors">Thoughts on AI Pair Programming</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Initial impressions on using Copilot and ChatGPT for complex refactoring tasks. Is it really faster?
+                                </p>
+<a class="inline-flex items-center text-sm font-bold text-accent-blue dark:text-white hover:text-primary transition-colors group/link" href="#">
+                                    Read Article 
+                                    <span class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-white/5">
+<div class="h-48 w-full bg-gray-100 overflow-hidden relative" data-alt="Minimalist desk setup with coffee and notebook">
+<img alt="Desk setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEmLZkhpI4Zj0G_oXoE8zQjtku_t1yEFYZKpM1Jg7wNWY2HVULI-1jzrlFkw8dTe3-m3Xu6jq4MGIFvbAN8dMKLlLX5NY5rfjQarrVs2KfA7gExEu87hjjRY-QR7ZBkKxdIzOBSyifeAuemnOiUZCgBzHau336UyLDl7XuoAM_90LK79I3eeJziDf4xaX6wbHEp-T9r3mDOTLoxn9_0xKfOs7jN51PScywTHiEF9rEeZKWqcJycA4H5UtYGkGrmT8aPN25g8clEP9v"/>
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-yellow-100 dark:bg-yellow-900/50 px-2 py-1 text-xs font-semibold text-yellow-700 dark:text-yellow-200 shadow-sm backdrop-blur-sm border border-yellow-200 dark:border-yellow-800">
+                                        Seedling 🌱
+                                    </span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+<span>Dec 15, 2023</span>
+<span>•</span>
+<span>4 min read</span>
+</div>
+<h3 class="text-xl font-bold text-accent-blue dark:text-white mb-3 group-hover:text-primary transition-colors">Digital Minimalism</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Reducing digital clutter to focus on what truly matters in work and life.
+                                </p>
+<a class="inline-flex items-center text-sm font-bold text-accent-blue dark:text-white hover:text-primary transition-colors group/link" href="#">
+                                    Read Article 
+                                    <span class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-white/5">
+<div class="h-48 w-full bg-gray-100 overflow-hidden relative" data-alt="A server room with blue lights">
+<img alt="Server room blue lights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBREXQLm1RpGnc-oEaU3s3pqXcbl1G2iKL-6oSipm4r5lhx63TKbFnVZUvobJpZCSWemCi9N9hgVKdWIhteC8GRlXwStJEsisXcBf4LWW037lA0ncEYAHt-eUap6lZKq_ofQveXu-Su5arJKQ0ixeK1mLA1TOFGjOAXgrN7nA66JhW09b5xV2FVBFnWqUZ1QneFO_D8nRR_fo5y6CrWHMw-m5FR5kTgNTXV9U4R9aGtZ-mIQstLRW7ridL3AkeA4IzKuCNOh8T2WC_f"/>
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-blue-100 dark:bg-blue-900/50 px-2 py-1 text-xs font-semibold text-blue-700 dark:text-blue-200 shadow-sm backdrop-blur-sm border border-blue-200 dark:border-blue-800">
+                                        Budding 🌿
+                                    </span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+<span>Jan 05, 2024</span>
+<span>•</span>
+<span>6 min read</span>
+</div>
+<h3 class="text-xl font-bold text-accent-blue dark:text-white mb-3 group-hover:text-primary transition-colors">Rust for Web Devs</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Why a JavaScript developer might want to learn Rust in 2024, and where to start.
+                                </p>
+<a class="inline-flex items-center text-sm font-bold text-accent-blue dark:text-white hover:text-primary transition-colors group/link" href="#">
+                                    Read Article 
+                                    <span class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-white/5">
+<div class="h-48 w-full bg-gray-100 overflow-hidden relative" data-alt="Close up of mechanical keyboard switches">
+<img alt="Mechanical keyboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUveOUncx76awV7kM5aXhsG6scM-srrQSLmgVE8KUL2cYYVvTSQQMLGXtqmLksamxQnRi-qqkZGiNbcAsxbPAlqtFWR58l2vgQxt3u8GvbUzNCyRZhy_UHkIKoEM2oocTccMLLyHQUQrfMI69s_X-fvuRcng_u9R8zIz1erwXJa3dlEcyjsWQRIL7eqYoFlxuujegqwOT_nwyc715EdwEbhVp_kgrqbe3_DaOlEjSxF30238Ro00SI6gdRjSNmm104yxLEA1dmbCbT"/>
+<div class="absolute top-4 right-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-green-100 dark:bg-green-900/50 px-2 py-1 text-xs font-semibold text-green-700 dark:text-green-200 shadow-sm backdrop-blur-sm border border-green-200 dark:border-green-800">
+                                        Evergreen 🌲
+                                    </span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-3">
+<span>Jan 12, 2024</span>
+<span>•</span>
+<span>10 min read</span>
+</div>
+<h3 class="text-xl font-bold text-accent-blue dark:text-white mb-3 group-hover:text-primary transition-colors">Building a Homelab</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                                    Setting up a Proxmox cluster at home for learning and hosting personal services.
+                                </p>
+<a class="inline-flex items-center text-sm font-bold text-accent-blue dark:text-white hover:text-primary transition-colors group/link" href="#">
+                                    Read Article 
+                                    <span class="material-symbols-outlined ml-1 text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white dark:bg-surface-dark border-t border-[#f4f2f0] dark:border-white/5 py-12">
+<div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2 text-center md:text-left">
+<div class="flex items-center gap-2 justify-center md:justify-start">
+<div class="size-6 rounded bg-accent-blue flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-size: 16px;">compost</span>
+</div>
+<span class="text-lg font-bold text-accent-blue dark:text-white">TaraKreasi</span>
+</div>
+<p class="text-sm text-slate-500">© 2024 TaraKreasi Notes. All rights reserved.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-accent-blue transition-colors" href="#">Twitter</a>
+<a class="text-slate-500 hover:text-accent-blue transition-colors" href="#">GitHub</a>
+<a class="text-slate-500 hover:text-accent-blue transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-accent-blue transition-colors" href="#">RSS</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

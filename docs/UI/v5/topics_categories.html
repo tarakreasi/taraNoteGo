@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaraKreasi Notes - Topics</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eaab53",
+                        "brand-blue": "#1e3a8a", // Medium-bold blue requested by user
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211a11",
+                        "neutral-light": "#887863",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#181511] font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="bg-white dark:bg-[#2a2218] border-b border-[#f4f3f0] dark:border-[#3a3228] sticky top-0 z-50">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-10 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-brand-blue flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">description</span>
+</div>
+<h2 class="text-brand-blue dark:text-white text-lg font-bold leading-tight tracking-tight group-hover:opacity-80 transition-opacity">TaraKreasi Notes</h2>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#181511] dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-[#181511] dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors" href="#">Articles</a>
+<a class="text-[#181511] dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-[#181511] dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex h-9 items-center justify-center rounded-lg bg-primary text-[#181511] text-sm font-bold px-4 hover:bg-primary/90 transition-colors">
+                    Subscribe
+                </button>
+<button class="md:hidden p-2 text-[#181511] dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative bg-brand-blue py-16 sm:py-24 px-4 overflow-hidden">
+<!-- Background Pattern/Image -->
+<div class="absolute inset-0 z-0 opacity-20" data-alt="Abstract subtle gradient background texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCIPceFGOG14-8slaJ_s7fa2HKtirf79znNLRHvPsbNb1D7VdIV9htEZLDv0RJkq45v6VijOmd6CrqA4ArL9gg7eCnGsN3tl49NchTwkrdbX5HiYhglTsCa4zvxXaEcF0rAC5t5ByoOHGpiiWdU6DDEl4kY9qXLDt7zq0Q6lqdC1VhMR7VkN9VPQYXg6jwlHo1CPosBVs9kJrVY94TbrFHFcWQi4SB5JM9g8_NCYYSXQvHeW0p9Ek6lQ5_8oyidkeuTDBWXSqSy5yb"); background-size: cover; background-position: center;'>
+</div>
+<div class="absolute inset-0 z-0 bg-gradient-to-b from-brand-blue/90 to-brand-blue/100"></div>
+<div class="relative z-10 max-w-3xl mx-auto text-center flex flex-col gap-6 items-center">
+<h1 class="text-white text-4xl sm:text-5xl font-black tracking-tight leading-tight">
+                    Explore Topics
+                </h1>
+<p class="text-blue-100 text-lg sm:text-xl font-normal max-w-xl mx-auto">
+                    Discover what matters to you. Browse our curated collection of thoughts, tutorials, and insights.
+                </p>
+<!-- Search Box -->
+<div class="w-full max-w-lg mt-4 shadow-xl rounded-lg overflow-hidden">
+<div class="flex w-full h-14 bg-white rounded-lg items-center p-1">
+<div class="pl-4 pr-2 text-neutral-light flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input class="w-full h-full bg-transparent border-none focus:ring-0 text-[#181511] placeholder:text-neutral-light/70 text-base" placeholder="Find a topic like 'Design' or 'Python'..." type="text"/>
+<button class="h-10 sm:h-12 px-6 bg-primary hover:bg-primary/90 text-[#181511] text-sm sm:text-base font-bold rounded-md transition-colors whitespace-nowrap">
+                            Search
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<div class="max-w-[1280px] mx-auto px-4 sm:px-10 py-12 flex flex-col lg:flex-row gap-10">
+<!-- Left Column: Topic Grid -->
+<div class="flex-1 flex flex-col gap-8">
+<div class="flex items-center justify-between border-b border-[#e5e1dc] dark:border-[#3a3228] pb-4">
+<h2 class="text-[#181511] dark:text-white text-2xl font-bold tracking-tight">All Categories</h2>
+<div class="flex items-center gap-2 text-sm text-neutral-light dark:text-gray-400">
+<span>Sort by:</span>
+<select class="bg-transparent border-none py-0 pl-2 pr-8 text-brand-blue dark:text-primary font-bold focus:ring-0 cursor-pointer text-sm">
+<option>Popularity</option>
+<option>A-Z</option>
+<option>Newest</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+<!-- Card 1 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">12 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">palette</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">Design Systems</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Building scalable UI libraries and maintaining visual consistency across products.</p>
+</a>
+<!-- Card 2 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">24 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">code</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">Frontend Dev</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Deep dives into React, Vue, modern CSS techniques, and web performance.</p>
+</a>
+<!-- Card 3 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">8 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">trending_up</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">Career Growth</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Navigating the tech industry, negotiations, and leadership skills.</p>
+</a>
+<!-- Card 4 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">15 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">search_insights</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">UX Research</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Understanding user needs through qualitative and quantitative methods.</p>
+</a>
+<!-- Card 5 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">18 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">view_kanban</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">Product Mgmt</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Roadmap strategies, agile methodologies, and stakeholder management.</p>
+</a>
+<!-- Card 6 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">6 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">database</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">Data Science</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Python, machine learning basics, and analytics visualization.</p>
+</a>
+<!-- Card 7 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">9 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">cloud</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">Cloud Computing</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Deploying on AWS, Azure, and Google Cloud Platform.</p>
+</a>
+<!-- Card 8 -->
+<a class="group flex flex-col bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:shadow-lg hover:border-primary transition-all duration-300 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-primary/20 text-brand-blue dark:text-primary text-xs font-bold px-2 py-1 rounded-full">5 Articles</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-brand-blue dark:text-blue-300 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-[#181511] transition-colors">
+<span class="material-symbols-outlined text-[28px]">smartphone</span>
+</div>
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-2 group-hover:text-primary transition-colors">Mobile Dev</h3>
+<p class="text-neutral-light dark:text-gray-400 text-sm leading-relaxed">Building for iOS and Android with Swift, Kotlin, and Flutter.</p>
+</a>
+<!-- Card 9 - View All -->
+<a class="group flex flex-col items-center justify-center bg-gray-50 dark:bg-[#2a2218] border-2 border-dashed border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-5 hover:border-primary hover:bg-white dark:hover:bg-[#332b21] transition-all duration-300 min-h-[180px]" href="#">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-brand-blue dark:text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">arrow_forward</span>
+</div>
+<h3 class="text-base font-bold text-brand-blue dark:text-white mb-1">View All Topics</h3>
+</a>
+</div>
+</div>
+<!-- Right Sidebar: Trending -->
+<aside class="w-full lg:w-80 flex flex-col gap-6">
+<div class="bg-white dark:bg-[#2a2218] border border-[#e5e1dc] dark:border-[#3a3228] rounded-xl p-6">
+<h3 class="text-lg font-bold text-brand-blue dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_fire_department</span>
+                        Trending Now
+                    </h3>
+<ul class="flex flex-col gap-4">
+<li>
+<a class="flex gap-3 group" href="#">
+<span class="text-2xl font-black text-gray-200 dark:text-gray-700 group-hover:text-primary transition-colors">01</span>
+<div class="flex flex-col">
+<span class="text-brand-blue dark:text-white font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">How to implement Dark Mode in Tailwind CSS</span>
+<span class="text-xs text-neutral-light mt-1">in Frontend Dev</span>
+</div>
+</a>
+</li>
+<li>
+<a class="flex gap-3 group" href="#">
+<span class="text-2xl font-black text-gray-200 dark:text-gray-700 group-hover:text-primary transition-colors">02</span>
+<div class="flex flex-col">
+<span class="text-brand-blue dark:text-white font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">The Future of AI in Design Systems</span>
+<span class="text-xs text-neutral-light mt-1">in Design Systems</span>
+</div>
+</a>
+</li>
+<li>
+<a class="flex gap-3 group" href="#">
+<span class="text-2xl font-black text-gray-200 dark:text-gray-700 group-hover:text-primary transition-colors">03</span>
+<div class="flex flex-col">
+<span class="text-brand-blue dark:text-white font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">Salary Negotiation Tips for 2024</span>
+<span class="text-xs text-neutral-light mt-1">in Career Growth</span>
+</div>
+</a>
+</li>
+</ul>
+</div>
+<div class="bg-brand-blue rounded-xl p-6 text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 opacity-10 transform translate-x-4 -translate-y-4">
+<span class="material-symbols-outlined text-[100px]">mail</span>
+</div>
+<h3 class="text-lg font-bold mb-2 relative z-10">Weekly Digest</h3>
+<p class="text-blue-100 text-sm mb-4 relative z-10">Get the best articles delivered to your inbox every Monday.</p>
+<form class="flex flex-col gap-3 relative z-10">
+<input class="rounded-lg border-none text-[#181511] text-sm px-3 py-2 focus:ring-2 focus:ring-primary" placeholder="Your email address" type="email"/>
+<button class="bg-primary text-[#181511] font-bold text-sm py-2 rounded-lg hover:bg-white hover:text-brand-blue transition-colors">Subscribe</button>
+</form>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-[#2a2218] border-t border-[#f4f3f0] dark:border-[#3a3228] py-10 mt-auto">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-6 text-brand-blue dark:text-white">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<span class="text-sm font-semibold text-[#181511] dark:text-white">TaraKreasi Notes</span>
+</div>
+<div class="flex gap-6">
+<a class="text-neutral-light hover:text-brand-blue dark:hover:text-primary transition-colors" href="#">
+<span class="sr-only">Twitter</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+</svg>
+</a>
+<a class="text-neutral-light hover:text-brand-blue dark:hover:text-primary transition-colors" href="#">
+<span class="sr-only">GitHub</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+<div class="text-sm text-neutral-light">
+                © 2024 TaraKreasi Notes. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

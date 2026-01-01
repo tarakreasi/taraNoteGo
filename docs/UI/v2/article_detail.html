@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Future of Minimalist Web Design in 2024 - TaraKreasi Notes</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;family=Spline+Sans:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3B82F6", // Sharper vibrant blue from logo
+                        "primary-dark": "#2563EB", // Darker shade for hover
+                        "secondary": "#0f172a", // Darker, cleaner navy-black for text
+                        "background-light": "#ffffff",
+                        "background-dark": "#1a1a1a",
+                        "pastel-blue": "#E0F2FE", // Very light blue for backgrounds
+                        "pastel-orange": "#F97316", // Adjusted to match the logo's orange accent
+                        "soft-gray": "#f8fafc",
+                        "code-bg": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px"},
+                    boxShadow: {
+                        "soft": "0 10px 40px -10px rgba(0, 0, 0, 0.08)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Spline Sans", "Noto Sans", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }.code-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .code-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .code-scroll::-webkit-scrollbar-thumb {
+            background-color: #475569;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-secondary dark:text-white transition-colors duration-200">
+<nav class="sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/95 backdrop-blur-md border-b border-slate-100 dark:border-zinc-800">
+<div class="absolute top-0 left-0 h-1 bg-primary z-50" style="width: 35%;"></div>
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16 sm:h-20">
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="flex items-center justify-center size-8 sm:size-10 bg-primary text-white rounded-lg group-hover:bg-primary-dark transition-colors">
+<span class="material-symbols-outlined text-2xl">edit_note</span>
+</div>
+<h2 class="text-lg sm:text-xl font-bold tracking-tight hidden sm:block text-slate-900 dark:text-white">TaraKreasi <span class="text-primary">Notes</span></h2>
+</div>
+<div class="flex items-center gap-3 sm:gap-4">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-soft-gray dark:hover:bg-zinc-800 transition-colors text-slate-600 dark:text-white">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="hidden sm:flex items-center h-10 px-6 rounded-full bg-secondary hover:bg-slate-800 text-white font-bold text-sm tracking-wide transition-colors shadow-lg shadow-slate-200/50 dark:shadow-none">
+                        Subscribe
+                    </button>
+<button class="sm:hidden flex items-center justify-center size-10 rounded-full hover:bg-soft-gray text-secondary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="relative flex flex-col items-center w-full min-h-screen pb-20">
+<article class="w-full max-w-[800px] px-6 sm:px-8 mt-10 sm:mt-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<header class="flex flex-col gap-6 mb-10">
+<div class="flex">
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-pastel-blue text-primary-dark dark:bg-blue-900/30 dark:text-blue-200 text-sm font-bold tracking-wide">
+                        UI Design
+                    </span>
+</div>
+<h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                    The Future of Minimalist Web Design in 2024
+                </h1>
+<div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200 shadow-sm" data-alt="Portrait of Sarah Jenkins, the author" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDEO0E7MctOl_YiI-dkSVYZUNOLRmHAEyZjkFWVGPDUtzIBZkPrdWBMt9pK-nAhk3oR70u0EfH96q1UmHTeTJmdFToEh3a1I4ygAZ7O_4EXZjq53i42xNU8E91S0kGabWqtqz8oHCgkHkTlqZNHJhemBtpjRnLv0O6KqWRL2t0a-7ZypfbIUAGe0r8Y1AYcp35XMzVQ67T6QnRZ2EdnHRYblt3T8JyRF5nrgzVvM6MHBGbjSb2sfx2rrELIBGgn3TmfhpbzXzPjpgeq');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</span>
+<span class="text-xs text-slate-500 dark:text-gray-400">Product Designer</span>
+</div>
+</div>
+<div class="hidden sm:block h-8 w-px bg-slate-200 dark:bg-zinc-700"></div>
+<div class="flex items-center gap-4 text-sm text-slate-500 dark:text-gray-400 font-medium">
+<span>Oct 24, 2023</span>
+<span class="flex items-center gap-1">
+<span class="size-1 rounded-full bg-slate-400"></span>
+                            5 min read
+                        </span>
+</div>
+</div>
+</header>
+<figure class="w-full aspect-[16/9] mb-12 rounded-xl sm:rounded-2xl overflow-hidden shadow-soft">
+<div class="w-full h-full bg-cover bg-center transform hover:scale-105 transition-transform duration-700" data-alt="Modern clean workspace with a laptop and pastel colored notebooks" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_zaU7QYUYWdoL61xhD2z3VaINdg0JItps_EzO0HxZINzR8PFL1DmnxQ_rtlQrtem1qE4mjtUr-hiXJKA6oWcUa79f1A60ekwlJBvvk7c4YgBF08amxbP2TSBTgxQtEeh-bu1inpOlHqA8SXhRS-hiNaK4jLWu3Y9QbaDAbGDmyLxg1_34TNJTlwAWRPCysfs8FrHefEiZ4h06NyjgVNaPsvGXW00jsKI1W3CFsM_bFKeWEpYvm-OM2yPi2ujLmY2DSoAHElnyx79B');">
+</div>
+</figure>
+<div class="prose prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-600 prose-p:dark:text-slate-300 prose-a:text-primary prose-a:font-semibold prose-a:no-underline hover:prose-a:text-primary-dark max-w-none">
+<p class="text-xl leading-relaxed text-slate-600 dark:text-slate-300 font-normal mb-8">
+                    Minimalism isn't just about stripping away elements; it's about clarity of purpose. As we move into 2024, web design is evolving from "less is more" to "less, but better." The focus is shifting towards intentional white space, bold typography, and micro-interactions that delight without distracting.
+                </p>
+<h2 class="text-2xl sm:text-3xl font-bold mt-12 mb-6">Why Negative Space Matters</h2>
+<p class="mb-6 leading-relaxed">
+                    In the cluttered digital landscape, negative space acts as a visual palate cleanser. It allows users to process information at a comfortable pace. We are seeing a trend where designers are reclaiming the margins, using generous padding not just as a separator, but as an active design element that guides the eye.
+                </p>
+<blockquote class="relative my-12 pl-8 pr-4 py-2 border-l-4 border-pastel-orange bg-gradient-to-r from-orange-50/50 to-transparent dark:from-orange-900/10 rounded-r-lg not-italic">
+<p class="text-xl sm:text-2xl italic font-medium text-slate-800 dark:text-white leading-relaxed font-serif">
+                        "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
+                    </p>
+<footer class="mt-4 text-xs font-bold text-pastel-orange uppercase tracking-widest flex items-center gap-2">
+<span class="h-px w-6 bg-pastel-orange"></span>
+                        Antoine de Saint-Exupéry
+                    </footer>
+</blockquote>
+<p class="mb-6 leading-relaxed">
+                    Implementing this requires a shift in how we structure our layouts. Instead of grid-locked containers, fluid layouts that breathe are becoming the standard.
+                </p>
+<h2 class="text-2xl sm:text-3xl font-bold mt-12 mb-6">Technical Implementation</h2>
+<p class="mb-6 leading-relaxed">
+                    Modern CSS gives us the tools to create these fluid spaces dynamically. Here is a simple example of how we might structure a minimalist card component using modern Flexbox properties.
+                </p>
+<div class="my-10 rounded-xl bg-slate-900 overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-800 ring-1 ring-white/10">
+<div class="flex items-center justify-between px-4 py-3 bg-slate-800/80 backdrop-blur border-b border-slate-700/50">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-[#ff5f56]"></div>
+<div class="size-3 rounded-full bg-[#ffbd2e]"></div>
+<div class="size-3 rounded-full bg-[#27c93f]"></div>
+</div>
+<span class="text-xs text-slate-400 font-mono">card.css</span>
+</div>
+<div class="p-6 overflow-x-auto code-scroll bg-[#0f172a]">
+<pre class="font-mono text-sm leading-6 text-slate-300"><span class="text-pink-400">.minimal-card</span> {
+  <span class="text-blue-400">display</span>: flex;
+  <span class="text-blue-400">flex-direction</span>: column;
+  <span class="text-blue-400">gap</span>: 1.5rem;
+  <span class="text-blue-400">padding</span>: 2rem;
+  <span class="text-blue-400">background</span>: white;
+  <span class="text-blue-400">border-radius</span>: 1rem;
+  <span class="text-blue-400">box-shadow</span>: 0 4px 20px rgba(0,0,0,0.05);
+  <span class="text-blue-400">transition</span>: transform 0.3s ease;
+}</pre>
+</div>
+</div>
+<p class="mb-6 leading-relaxed">
+                    By combining soft shadows with generous padding, we create depth without needing heavy borders or gradients. This flat-2.0 approach will dominate interfaces in the coming year.
+                </p>
+<div class="flex items-center gap-4 my-16 opacity-50">
+<div class="h-px bg-slate-200 dark:bg-zinc-700 flex-1"></div>
+<div class="flex gap-2">
+<div class="size-1.5 rounded-full bg-slate-300 dark:bg-zinc-600"></div>
+<div class="size-1.5 rounded-full bg-slate-300 dark:bg-zinc-600"></div>
+<div class="size-1.5 rounded-full bg-slate-300 dark:bg-zinc-600"></div>
+</div>
+<div class="h-px bg-slate-200 dark:bg-zinc-700 flex-1"></div>
+</div>
+</div>
+<section class="mt-8 mb-20 p-8 rounded-2xl bg-slate-50 dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 shadow-sm">
+<div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+<div class="shrink-0 relative">
+<div class="size-20 sm:size-24 rounded-full bg-cover bg-center border-4 border-white dark:border-zinc-800 shadow-md" data-alt="Author profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZ4EjRetTHV7JOuUX6N2lcw_1dJt0vTEqJLk8NiLso8rJPXq-JfEgD9WlrJvfrZF9AiKlXWFHd4T_iKvBb390o3b4iB9EuRJCZnF-jFdN7UU08wyVlr_-_eDcQ7DOxaUc0WJuHnBCLE0K5wcupurZEUmioYTulp_62CSQWccKXL1QRbk1_BhnmSMrYw3r4DB-d4uCATdSZBcM_yBozy6q5CWsbT2TMCCK3AczWsRsPXCMUPPiPX3PUknD6pEwFGLtSkQ9ugKLTI293');">
+</div>
+<div class="absolute bottom-0 right-0 p-1 bg-primary rounded-full text-white flex items-center justify-center border-2 border-white dark:border-zinc-800">
+<span class="material-symbols-outlined text-sm" style="font-size: 16px;">verified</span>
+</div>
+</div>
+<div class="flex flex-col text-center sm:text-left w-full">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full">
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Written by Sarah Jenkins</h3>
+<p class="text-sm font-bold text-primary uppercase tracking-wide mt-1 mb-3">Product Designer @ TaraKreasi</p>
+</div>
+<button class="hidden sm:block px-5 h-9 rounded-full bg-secondary dark:bg-white text-white dark:text-secondary text-sm font-bold hover:bg-primary transition-colors hover:text-white">
+                                Follow
+                            </button>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-5 max-w-lg">
+                            Sarah is a product designer obsessed with typography and grid systems. She writes about the intersection of design, technology, and mindfulness.
+                        </p>
+<div class="flex items-center justify-center sm:justify-start gap-3">
+<button class="flex items-center justify-center size-9 rounded-full bg-white dark:bg-zinc-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-zinc-700 hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">mail</span>
+</button>
+<button class="flex items-center justify-center size-9 rounded-full bg-white dark:bg-zinc-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-zinc-700 hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">link</span>
+</button>
+<button class="sm:hidden px-4 h-9 rounded-full bg-secondary dark:bg-white text-white dark:text-secondary text-sm font-bold">
+                                Follow
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</article>
+</main>
+<div class="fixed bottom-8 right-8 z-40 flex flex-col gap-4">
+<button class="group flex items-center justify-center size-14 rounded-full bg-white dark:bg-zinc-800 text-slate-400 shadow-xl shadow-slate-200/50 dark:shadow-black/50 hover:text-red-500 transition-all border border-slate-100 dark:border-zinc-700 hover:scale-105">
+<span class="material-symbols-outlined group-hover:filled-icon transition-all">favorite</span>
+</button>
+<button class="group flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-xl shadow-blue-300/50 dark:shadow-blue-900/30 hover:bg-primary-dark hover:-translate-y-1 transition-all hover:shadow-blue-400/50">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - UI Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FAFAFA;
+            color: #201F1E;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* OneNote Colors */
+        :root {
+            --onenote-purple: #7719AA;
+            --onenote-purple-dark: #5A0F87;
+            --onenote-purple-light: #9333D6;
+            --sidebar-bg: #F3F2F1;
+            --hover-bg: #EDEBE9;
+            --active-bg: #E1DFDD;
+            --border-color: #EDEBE9;
+        }
+
+        /* Layout */
+        .app-container {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            height: 48px;
+            background: var(--onenote-purple);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .app-icon {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--onenote-purple);
+            font-size: 14px;
+        }
+
+        .app-title {
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .top-bar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-bar-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .top-bar-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Left Sidebar - Notebooks */
+        .notebooks-sidebar {
+            width: 300px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #201F1E;
+            margin-bottom: 12px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            border: 1px solid #8A8886;
+            border-radius: 2px;
+            font-size: 14px;
+            background: white;
+            position: relative;
+        }
+
+        .search-box:focus {
+            outline: 2px solid var(--onenote-purple);
+            border-color: var(--onenote-purple);
+        }
+
+        .notebooks-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .notebook-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 2px;
+        }
+
+        .notebook-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .notebook-item.active {
+            background: var(--active-bg);
+        }
+
+        .notebook-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            color: var(--onenote-purple);
+        }
+
+        .notebook-name {
+            flex: 1;
+            font-size: 14px;
+            color: #201F1E;
+        }
+
+        .notebook-count {
+            font-size: 12px;
+            color: #605E5C;
+        }
+
+        /* Middle Sidebar - Sections */
+        .sections-sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sections-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sections-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #201F1E;
+        }
+
+        .add-section-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 2px;
+            background: transparent;
+            border: none;
+            color: #605E5C;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .add-section-btn:hover {
+            background: var(--hover-bg);
+        }
+
+        .sections-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .section-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .section-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .section-item.active {
+            background: #FFF4CE;
+            border-left: 3px solid var(--onenote-purple);
+        }
+
+        .section-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #201F1E;
+            margin-bottom: 4px;
+        }
+
+        .section-meta {
+            font-size: 12px;
+            color: #605E5C;
+        }
+
+        /* Main Content - Pages List */
+        .pages-content {
+            flex: 1;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pages-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pages-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #201F1E;
+        }
+
+        .new-page-btn {
+            padding: 8px 16px;
+            background: var(--onenote-purple);
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .new-page-btn:hover {
+            background: var(--onenote-purple-dark);
+        }
+
+        .pages-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 24px;
+        }
+
+        .page-item {
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .page-item:hover {
+            border-color: var(--onenote-purple);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #201F1E;
+        }
+
+        .page-status {
+            padding: 4px 8px;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-published {
+            background: #DFF6DD;
+            color: #107C10;
+        }
+
+        .status-draft {
+            background: #FFF4CE;
+            color: #8A8886;
+        }
+
+        .page-preview {
+            font-size: 14px;
+            color: #605E5C;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .page-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 12px;
+            color: #8A8886;
+        }
+
+        .page-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C8C6C4;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A19F9D;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- DISCLAIMER: This is an educational prototype exploring 3-column layouts. It is not affiliated with any specific product. -->
+
+    <!-- App Container -->
+    <div class="app-container">
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <div class="app-icon">N</div>
+                <div class="app-title">TaraNote</div>
+            </div>
+            <div class="top-bar-right">
+                <button class="top-bar-btn" title="Settings">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+                </button>
+                <button class="top-bar-btn" title="Profile">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">account_circle</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+
+            <!-- Left Sidebar - Notebooks -->
+            <div class="notebooks-sidebar">
+                <div class="sidebar-header">
+                    <h2 class="sidebar-title">Notebooks</h2>
+                    <div style="position: relative;">
+                        <span class="material-symbols-outlined"
+                            style="position: absolute; left: 8px; top: 8px; font-size: 18px; color: #605E5C;">search</span>
+                        <input type="text" class="search-box" placeholder="Search notebooks">
+                    </div>
+                </div>
+                <div class="notebooks-list">
+                    <div class="notebook-item active">
+                        <span class="material-symbols-outlined notebook-icon">book</span>
+                        <span class="notebook-name">All Notes</span>
+                        <span class="notebook-count">42</span>
+                    </div>
+                    <div class="notebook-item">
+                        <span class="material-symbols-outlined notebook-icon">book</span>
+                        <span class="notebook-name">Web Development</span>
+                        <span class="notebook-count">12</span>
+                    </div>
+                    <div class="notebook-item">
+                        <span class="material-symbols-outlined notebook-icon">book</span>
+                        <span class="notebook-name">DevOps</span>
+                        <span class="notebook-count">8</span>
+                    </div>
+                    <div class="notebook-item">
+                        <span class="material-symbols-outlined notebook-icon">book</span>
+                        <span class="notebook-name">Design</span>
+                        <span class="notebook-count">5</span>
+                    </div>
+                    <div class="notebook-item">
+                        <span class="material-symbols-outlined notebook-icon">book</span>
+                        <span class="notebook-name">Personal</span>
+                        <span class="notebook-count">3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Sidebar - Sections -->
+            <div class="sections-sidebar">
+                <div class="sections-header">
+                    <h3 class="sections-title">Sections</h3>
+                    <button class="add-section-btn" title="Add section">
+                        <span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+                    </button>
+                </div>
+                <div class="sections-list">
+                    <div class="section-item active">
+                        <div class="section-name">Quick Notes</div>
+                        <div class="section-meta">8 pages • Updated today</div>
+                    </div>
+                    <div class="section-item">
+                        <div class="section-name">Laravel</div>
+                        <div class="section-meta">5 pages • Updated 2 days ago</div>
+                    </div>
+                    <div class="section-item">
+                        <div class="section-name">Vue.js</div>
+                        <div class="section-meta">4 pages • Updated 1 week ago</div>
+                    </div>
+                    <div class="section-item">
+                        <div class="section-name">Server Setup</div>
+                        <div class="section-meta">3 pages • Updated 2 weeks ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content - Pages -->
+            <div class="pages-content">
+                <div class="pages-header">
+                    <h1 class="pages-title">Quick Notes</h1>
+                    <button class="new-page-btn">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                        New Page
+                    </button>
+                </div>
+                <div class="pages-list">
+
+                    <div class="page-item">
+                        <div class="page-header">
+                            <div class="page-title">Building a Modern Blog with Laravel</div>
+                            <div class="page-status status-draft">Draft</div>
+                        </div>
+                        <div class="page-preview">
+                            Laravel provides an excellent foundation for building modern web applications. In this
+                            guide, we'll explore how to create a feature-rich blog platform...
+                        </div>
+                        <div class="page-meta">
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                                <span>2 hours ago</span>
+                            </div>
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">person</span>
+                                <span>Tara Admin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-item">
+                        <div class="page-header">
+                            <div class="page-title">Understanding Docker Containers</div>
+                            <div class="page-status status-published">Published</div>
+                        </div>
+                        <div class="page-preview">
+                            Docker has revolutionized the way we deploy applications. Learn the fundamentals of
+                            containerization and how to leverage Docker in your workflow...
+                        </div>
+                        <div class="page-meta">
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                                <span>1 day ago</span>
+                            </div>
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">person</span>
+                                <span>Tara Admin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-item">
+                        <div class="page-header">
+                            <div class="page-title">Vue 3 Composition API Guide</div>
+                            <div class="page-status status-published">Published</div>
+                        </div>
+                        <div class="page-preview">
+                            The Composition API is a set of additive, function-based APIs that allow flexible
+                            composition of component logic. Here's everything you need to know...
+                        </div>
+                        <div class="page-meta">
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                                <span>3 days ago</span>
+                            </div>
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">person</span>
+                                <span>Tara Admin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-item">
+                        <div class="page-header">
+                            <div class="page-title">Tailwind CSS Best Practices</div>
+                            <div class="page-status status-draft">Draft</div>
+                        </div>
+                        <div class="page-preview">
+                            Tailwind CSS is a utility-first CSS framework. Discover the best practices for organizing
+                            your styles and maintaining a scalable codebase...
+                        </div>
+                        <div class="page-meta">
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                                <span>5 days ago</span>
+                            </div>
+                            <div class="page-meta-item">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">person</span>
+                                <span>Tara Admin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

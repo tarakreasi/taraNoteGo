@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>TaraKreasi Admin Note Editor</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4285F4", "accent": "#FFB347", "background-light": "#F9FAFB",
+            "background-dark": "#111827",
+            "text-main": "#374151", "text-subtle": "#9CA3AF",
+            "surface-light": "#FFFFFF",
+            "surface-dark": "#1F2937",
+            "border-light": "#E5E7EB",
+            "border-dark": "#374151",
+          },
+          fontFamily: {
+            "display": ["Spline Sans", "sans-serif"],
+            "body": ["Noto Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "2xl": "2rem",
+            "full": "9999px"
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+            'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9CA3AF;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased selection:bg-primary/20 selection:text-primary">
+  <div class="flex h-screen w-full flex-col overflow-hidden">
+    <header
+      class="flex h-16 w-full shrink-0 items-center justify-between border-b border-border-light bg-surface-light dark:bg-surface-dark dark:border-border-dark px-6">
+      <div class="flex items-center gap-4">
+        <button
+          class="flex size-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-main dark:text-gray-200">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div class="flex flex-col">
+          <h1 class="text-lg font-bold leading-tight text-primary dark:text-blue-400">TaraKreasi Notes</h1>
+          <span class="text-xs text-text-subtle">Drafting: "Untitled Post"</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <button
+          class="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-text-main hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 transition-colors">
+          <span class="material-symbols-outlined text-[20px] text-primary">visibility</span>
+          <span>Preview</span>
+        </button>
+        <div class="size-10 rounded-full bg-cover bg-center ring-2 ring-gray-100 dark:ring-gray-700"
+          data-alt="User avatar profile picture"
+          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-uWNntgEz-u6tcLN8WB9zPI8yo3aWrLxhyh3nYvCE684hl9Qt_qwkLeBI1AtabXPuP3Pw1zDPobm2oTSMGyZMEYgXQwKKgy4F4OIsyx34_cjlMAyyPu-FkmHMw0IsgKn93rCeE-LU-Za54D-z1heEpiavQEwOqdxP0IzlkJGcMrqbQcfWoNoEy6P029e_iZPs6eCtvipAXecU47Tl8F-x1x3sigrmo2MLijxkWz9mGOxQiXU3yS7FRUBKjRWkmznoS_AbBmNaH1rC");'>
+        </div>
+      </div>
+    </header>
+    <div class="flex flex-1 overflow-hidden">
+      <main class="flex flex-1 flex-col overflow-y-auto bg-white dark:bg-background-dark">
+        <div class="mx-auto w-full max-w-4xl px-8 py-10 md:px-12">
+          <div class="mb-8">
+            <textarea
+              class="w-full resize-none overflow-hidden bg-transparent p-0 text-4xl font-bold leading-tight text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-0 dark:text-gray-100 dark:placeholder:text-gray-700 md:text-5xl"
+              oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
+              placeholder="Enter a captivating title..." rows="1"></textarea>
+          </div>
+          <div
+            class="sticky top-0 z-10 mb-6 flex flex-wrap items-center gap-1 rounded-2xl bg-white/80 p-2 shadow-soft backdrop-blur-md ring-1 ring-black/5 dark:bg-surface-dark/90 dark:ring-white/10">
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="Bold">
+              <span class="material-symbols-outlined">format_bold</span>
+            </button>
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="Italic">
+              <span class="material-symbols-outlined">format_italic</span>
+            </button>
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="Underline">
+              <span class="material-symbols-outlined">format_underlined</span>
+            </button>
+            <div class="mx-2 h-6 w-px bg-gray-200 dark:bg-gray-700"></div>
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="Heading 1">
+              <span class="material-symbols-outlined">title</span>
+            </button>
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="Quote">
+              <span class="material-symbols-outlined">format_quote</span>
+            </button>
+            <div class="mx-2 h-6 w-px bg-gray-200 dark:bg-gray-700"></div>
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="Link">
+              <span class="material-symbols-outlined">link</span>
+            </button>
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="Image">
+              <span class="material-symbols-outlined">image</span>
+            </button>
+            <button
+              class="rounded-xl p-2 text-text-main hover:bg-blue-50 hover:text-primary hover:shadow-sm dark:text-gray-300 dark:hover:bg-gray-700 transition-all"
+              title="List">
+              <span class="material-symbols-outlined">format_list_bulleted</span>
+            </button>
+          </div>
+          <div class="min-h-[500px] w-full text-lg leading-relaxed text-gray-700 dark:text-gray-300 font-body">
+            <p class="mb-4">The creative process often begins with a single spark - a fleeting thought, a sudden
+              observation, or a quiet moment of reflection.</p>
+            <p class="mb-4">However, capturing that spark and transforming it into something tangible requires more than
+              just inspiration; it demands discipline and the right tools. In this article, we'll explore how modern
+              minimalist design can actually enhance your workflow by removing distractions.</p>
+            <p class="mb-4 text-text-subtle italic">Start writing your story here...</p>
+          </div>
+        </div>
+      </main>
+      <aside
+        class="w-[320px] shrink-0 border-l border-border-light bg-background-light dark:bg-surface-dark dark:border-border-dark overflow-y-auto hidden lg:block">
+        <div class="flex flex-col gap-8 p-6">
+          <div class="flex flex-col gap-3">
+            <label class="text-xs font-bold uppercase tracking-wider text-text-subtle">Notebook</label>
+            <div class="relative">
+              <select
+                class="w-full appearance-none rounded-xl border-none bg-white p-3 pr-10 text-sm font-medium text-text-main shadow-sm ring-1 ring-gray-200 focus:ring-2 focus:ring-primary dark:bg-background-dark dark:text-gray-200 dark:ring-gray-700 dark:focus:ring-primary outline-none transition-all">
+                <option>Design Thoughts</option>
+                <option>Tech Reviews</option>
+                <option>Personal Journal</option>
+                <option>Tutorials</option>
+              </select>
+              <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-text-subtle">
+                <span class="material-symbols-outlined">expand_more</span>
+              </span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-3">
+            <label class="text-xs font-bold uppercase tracking-wider text-text-subtle">Cover Image</label>
+            <div
+              class="group relative flex aspect-video w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-gray-300 bg-white transition-all hover:border-primary hover:bg-blue-50/50 dark:bg-background-dark dark:border-gray-600 dark:hover:border-primary dark:hover:bg-gray-800">
+              <div
+                class="flex size-10 items-center justify-center rounded-full bg-gray-100 text-text-subtle group-hover:bg-primary group-hover:text-white transition-colors dark:bg-gray-800">
+                <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+              </div>
+              <p class="text-xs font-medium text-text-subtle group-hover:text-primary transition-colors">Click to upload
+              </p>
+              <input class="absolute inset-0 cursor-pointer opacity-0" type="file" />
+            </div>
+          </div>
+          <div class="flex flex-col gap-3">
+            <label class="text-xs font-bold uppercase tracking-wider text-text-subtle">Tags</label>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="inline-flex items-center gap-1 rounded-full bg-white ring-1 ring-gray-200 px-3 py-1 text-xs font-medium text-text-main dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200">
+                #minimalism
+                <button class="ml-1 text-gray-400 hover:text-red-500"><span
+                    class="material-symbols-outlined text-[14px]">close</span></button>
+              </span>
+              <span
+                class="inline-flex items-center gap-1 rounded-full bg-white ring-1 ring-gray-200 px-3 py-1 text-xs font-medium text-text-main dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200">
+                #design
+                <button class="ml-1 text-gray-400 hover:text-red-500"><span
+                    class="material-symbols-outlined text-[14px]">close</span></button>
+              </span>
+              <button
+                class="inline-flex items-center gap-1 rounded-full border border-dashed border-gray-300 px-3 py-1 text-xs font-medium text-text-subtle hover:border-primary hover:text-primary hover:bg-blue-50 transition-colors dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800">
+                <span class="material-symbols-outlined text-[14px]">add</span> Add Tag
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200 dark:bg-background-dark dark:ring-gray-700">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-text-main dark:text-gray-200">Allow Comments</span>
+              <label class="relative inline-flex cursor-pointer items-center">
+                <input checked="" class="peer sr-only" type="checkbox" value="" />
+                <div
+                  class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-accent peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none dark:bg-gray-700 dark:border-gray-600">
+                </div>
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-text-main dark:text-gray-200">Pin to Top</span>
+              <label class="relative inline-flex cursor-pointer items-center">
+                <input class="peer sr-only" type="checkbox" value="" />
+                <div
+                  class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-accent peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none dark:bg-gray-700 dark:border-gray-600">
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="mt-auto pt-8">
+            <div class="flex flex-col gap-4">
+              <div class="flex w-full overflow-hidden rounded-full bg-gray-200 p-1 dark:bg-gray-800">
+                <button
+                  class="flex-1 rounded-full bg-white py-2 text-xs font-bold shadow-sm text-primary dark:bg-gray-600 dark:text-white">DRAFT</button>
+                <button
+                  class="flex-1 rounded-full py-2 text-xs font-bold text-text-subtle hover:text-text-main dark:hover:text-white transition-colors">PUBLISH</button>
+              </div>
+              <button
+                class="group flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-sm font-bold tracking-wide text-white shadow-lg shadow-orange-200 transition-all hover:-translate-y-0.5 hover:shadow-orange-300 active:translate-y-0 active:scale-[0.98] dark:shadow-none">
+                <span class="material-symbols-outlined transition-transform group-hover:scale-110">save</span>
+                SAVE &amp; PUBLISH
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+
+</html>
