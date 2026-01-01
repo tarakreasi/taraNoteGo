@@ -19,7 +19,7 @@ const navItems = computed(() => [
     {
         name: 'Home',
         icon: 'home',
-        route: '/taraNote',
+        route: '/',
         active: page.url === '/' || (page.url.startsWith('/taraNote') && !page.url.includes('/docs')),
     },
     {
@@ -39,7 +39,7 @@ const navItems = computed(() => [
     {
         name: 'Docs',
         icon: 'menu_book',
-        route: '/taraNote/docs',
+        route: '/docs',
         active: page.url.includes('/docs'),
     }
 ]);
