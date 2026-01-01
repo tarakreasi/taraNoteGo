@@ -64,6 +64,28 @@ My understanding of software didn’t start with frameworks or libraries, but gr
 
 > **Note**: Production builds use `go-sqlite3` via CGO for maximum reliability.
 
+### Frontend Architecture Decisions
+
+#### Why Vue 3 + Inertia.js?
+- **Vue 3 Composition API**: Better logic reuse than Options API
+- **Inertia.js**: SPA experience without API boilerplate
+- **Tailwind CSS**: Rapid UI development with design consistency
+
+#### Performance Optimizations:
+- Component lazy loading for routes
+- Image optimization pipeline
+- Minimal bundle size (< 500KB gzipped)
+
+#### Accessibility & UX:
+- ARIA labels for screen readers
+- Keyboard navigation support
+- Reduced motion preferences
+
+### Performance Verification (Sprint 2)
+- **Success Rate**: 100% (436/436 requests succeeded).
+- **Optimization**: Enabled WAL mode and increased busy timeout. Jitter added to prevent "Thundering Herd".
+- **Conclusion**: The backend can handle the load. Occasional *database is locked* errors during massive startup storms are expected with SQLite; the Agent implementation must include retry logic.
+
 ---
 
 ## 4. Completed Sprints (Migration Phase)
