@@ -47,15 +47,12 @@ func main() {
 	// --- ROUTES ---
 
 	// Guest Routes
-	app.Get("/", func(c *fiber.Ctx) error {
-		// Mock Auth for now (nil)
-		return c.Render("app", fiber.Map{
-			"InertiaJSON": string(utils.CreateInertiaPage(c, "TaraNote", fiber.Map{
-				"can": fiber.Map{"login": true, "register": true},
-			})),
-		})
-	})
+	// Guest Routes (Public)
+	app.Get("/", handlers.PublicList)               // Home/Articles List
+	app.Get("/articles/:slug", handlers.PublicShow) // Single Article
+	app.Get("/taranote", handlers.TaraNoteBrowser)  // 3-Column Browser
 
+	// Auth Routes
 	app.Get("/login", handlers.ShowLogin)
 	app.Post("/login", handlers.Login)
 	app.Post("/logout", handlers.Logout)
