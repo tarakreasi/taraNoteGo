@@ -25,7 +25,9 @@ func Connect() {
 	// For now we assume sqlite for simplicity of migration startup
 	// You can add Postgres/MySQL drivers here as needed.
 
-	DB, err = gorm.Open(sqlite.Open(dbName), &gorm.Config{})
+	// Enable WAL mode and busy timeout for concurrent writes
+	dsn := fmt.Sprintf("%s?_journal_mode=WAL&_busy_timeout=5000&_synchronous=NORMAL", dbName)
+	DB, err = gorm.Open(sqlite.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
