@@ -12,30 +12,22 @@ func PublicList(c *fiber.Ctx) error {
 	var notes []models.Note
 
 	// Fetch published notes, latest first
-	// Preload User and Notebook for display
 	if err := database.DB.Where("status = ?", "PUBLISHED").
 		Preload("User").Preload("Notebook").
 		Order("published_at desc").
-		Limit(9). // Pagination limit
+		Limit(9).
 		Find(&notes).Error; err != nil {
 		return c.Status(500).SendString("Error fetching notes")
 	}
 
-	// Mock settings for now (as seen in legacy controller)
-	settings := fiber.Map{
-		"articles_hero_title":    "Welcome to TaraNote",
-		"articles_hero_subtitle": "Thoughts, stories, and ideas.",
-		"footer_brand_name":      "TaraCreations",
-		"footer_copyright_text":  "© 2025 TaraCreations. All rights reserved.",
-	}
+	// Fetch notebooks for sidebar
+	var notebooks []models.Notebook
+	database.DB.Find(&notebooks)
 
 	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "Articles", fiber.Map{
-			"notes": fiber.Map{
-				"data": notes, // Inertia expects paginated 'data' usually
-			},
-			"topics":   []string{}, // Placeholder
-			"settings": settings,
+		"InertiaJSON": string(utils.CreateInertiaPage(c, "TaraNote", fiber.Map{
+			"notes":     notes,
+			"notebooks": notebooks,
 		})),
 	})
 }
@@ -59,7 +51,7 @@ func PublicShow(c *fiber.Ctx) error {
 	}
 
 	return c.Render("app", fiber.Map{
-		"InertiaJSON": string(utils.CreateInertiaPage(c, "Article", fiber.Map{
+		"InertiaJSON": string(utils.CreateInertiaPage(c, "Docs", fiber.Map{
 			"article":  note,
 			"settings": fiber.Map{},
 		})),
