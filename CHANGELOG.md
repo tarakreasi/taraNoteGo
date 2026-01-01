@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file.
 - **Frontend**: Fixed `route()` helper error by adding global mixin.
 - **Assets**: Replaced broken placeholder images with `placehold.co`.
 - **Accessibility**: Added missing form attributes (`id`/`name`) to inputs.
+- **Data Integrity**: Fixed "Uncategorized Notes" bug by ensuring `notebook_id` is saved on note creation.
+- **Data Integrity**: Fixed empty slugs in legacy notebooks.
+- **Dashboard**: Fixed note filtering by `notebook_id` and `status`.
+- **Auth**: Fixed incorrect guest state on public pages (Home/TaraNote).
+- **Docs**: Resolved 404 errors for README and unreachable code warning.
 
 ## [Unreleased] - Sprint 5 (Polish & Deployment)
 ### Added

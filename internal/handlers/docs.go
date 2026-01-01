@@ -41,13 +41,6 @@ func DocsView(c *fiber.Ctx) error {
 		if _, err := os.Stat(docPathIndex); err == nil {
 			docPath = docPathIndex
 		} else {
-			return c.Status(404).JSON(fiber.Map{ // For API 404? No, this is a page.
-				// Since RenderInertia handles JSON/HTML switch, we should use it.
-				// But RenderInertia returns error. We need to handle status code.
-				// Actually, utils.RenderInertia doesn't support setting status code easily unless we modify it or set it on context before.
-			})
-			// Simpler approach for now: Use RenderInertia but set status before if possible
-			// Correction: RenderInertia just does c.JSON or c.Render. We can set status on c before calling it.
 			// Force HTML content type for 404 error page to avoid quirks mode
 			c.Set("Content-Type", "text/html; charset=utf-8")
 			c.Status(404)
