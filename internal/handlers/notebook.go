@@ -1,10 +1,13 @@
 package handlers
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/tarakreasi/taraNote_go/internal/config"
 	"github.com/tarakreasi/taraNote_go/internal/database"
 	"github.com/tarakreasi/taraNote_go/internal/models"
+	"github.com/tarakreasi/taraNote_go/internal/utils"
 )
 
 // ListNotebooks returns all notebooks for the authenticated user
@@ -43,6 +46,24 @@ func CreateNotebook(c *fiber.Ctx) error {
 		Description: req.Description,
 	}
 
+	// Generate slug if empty
+	if notebook.Slug == "" {
+		notebook.Slug = utils.GenerateSlug(notebook.Name)
+	}
+
+	// Ensure uniqueness
+	originalSlug := notebook.Slug
+	counter := 1
+	for {
+		var count int64
+		database.DB.Model(&models.Notebook{}).Where("slug = ?", notebook.Slug).Count(&count)
+		if count == 0 {
+			break
+		}
+		notebook.Slug = fmt.Sprintf("%s-%d", originalSlug, counter)
+		counter++
+	}
+
 	if err := database.DB.Create(&notebook).Error; err != nil {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to create notebook"})
 	}
@@ -75,6 +96,24 @@ func UpdateNotebook(c *fiber.Ctx) error {
 	notebook.Name = req.Name
 	notebook.Slug = req.Slug
 	notebook.Description = req.Description
+
+	// Generate slug if empty
+	if notebook.Slug == "" {
+		notebook.Slug = utils.GenerateSlug(notebook.Name)
+	}
+
+	// Ensure uniqueness
+	originalSlug := notebook.Slug
+	counter := 1
+	for {
+		var count int64
+		database.DB.Model(&models.Notebook{}).Where("slug = ? AND id != ?", notebook.Slug, notebook.ID).Count(&count)
+		if count == 0 {
+			break
+		}
+		notebook.Slug = fmt.Sprintf("%s-%d", originalSlug, counter)
+		counter++
+	}
 
 	if err := database.DB.Save(&notebook).Error; err != nil {
 		return c.Status(500).JSON(fiber.Map{"error": "Failed to update notebook"})

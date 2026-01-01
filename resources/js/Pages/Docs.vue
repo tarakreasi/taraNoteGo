@@ -202,164 +202,168 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head :title="`${displayName} - TaraNote Documentation`" />
-    <FloatingDock />
+    <div>
+        <Head :title="`${displayName} - TaraNote Documentation`" />
+        <FloatingDock />
 
-    <div class="h-screen flex text-slate-800 dark:text-white bg-slate-50 dark:bg-[#0F172A] transition-colors duration-200 font-sans overflow-hidden relative">
-        
-        <!-- Noise Overlay (Subtle) -->
-        <div class="fixed inset-0 z-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none"
-             :style="noiseOverlayStyle">
-        </div>
-
-        <!-- Ambient Background (Subtle) -->
-        <div class="fixed inset-0 overflow-hidden pointer-events-none z-0"
-             style="background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);">
-             <!-- Primary Blob (Top Left) -->
-             <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full animate-pulse"></div>
-             <!-- Accent Blob (Bottom Right) -->
-             <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-500/5 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
-        </div>
-
-        <!-- App Layout -->
-        <div class="relative z-10 flex w-full h-full max-w-[1920px] mx-auto overflow-hidden">
-
-            <!-- 1. LEFT SIDEBAR: Categories Navigation -->
-            <aside class="w-[260px] flex flex-col bg-slate-50/50 dark:bg-[#0b1121] transition-all duration-300">
-                <!-- Brand -->
-                <div class="h-16 flex items-center px-4 gap-3 shrink-0">
-                    <div class="size-8 rounded-lg bg-indigo-500 flex items-center justify-center text-white shadow-sm">
-                        <span class="material-symbols-outlined text-[20px]">description</span>
-                    </div>
-                    <span class="font-sans font-bold text-base tracking-tight text-slate-800 dark:text-white">Documentation</span>
-                </div>
-
-                <!-- Navigation -->
-                <nav class="flex-1 px-3 space-y-0.5 overflow-y-auto custom-scrollbar">
-                    <!-- All Docs -->
-                    <button 
-                         @click="selectCategory(null)"
-                         class="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm group text-left"
-                         :class="selectedCategory === null 
-                            ? 'bg-white dark:bg-white/5 text-slate-900 dark:text-white font-medium shadow-sm ring-1 ring-black/5 dark:ring-white/5' 
-                            : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200'"
-                    >
-                        <span class="material-symbols-outlined text-[20px]">library_books</span>
-                        <span class="flex-1">All Documentation</span>
-                        <span class="font-mono text-[10px] text-slate-400 opacity-80">{{ allDocs.length }}</span>
-                    </button>
-
-                    <!-- Spaces Header -->
-                    <div class="px-3 mt-8 mb-2">
-                        <span class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider font-sans">Categories</span>
-                    </div>
-
-                    <!-- Categories List -->
-                    <button 
-                        v-for="category in categories" 
-                        :key="category"
-                        @click="selectCategory(category)"
-                        class="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm group text-left relative"
-                        :class="selectedCategory === category 
-                             ? 'bg-white dark:bg-white/10 ring-1 ring-indigo-500 text-slate-900 dark:text-white font-medium shadow-sm' 
-                            : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-700 dark:hover:text-slate-300'"
-                    >
-                        <span class="material-symbols-outlined text-[18px] shrink-0" :class="selectedCategory === category ? 'text-indigo-500 dark:text-indigo-400' : 'text-slate-400 opacity-80'">folder</span>
-                        <span class="flex-1 truncate">{{ category }}</span>
-                    </button>
-                </nav>
-            </aside>
-
-            <!-- 2. MIDDLE COLUMN: Docs List -->
-            <div class="w-[320px] flex flex-col bg-white/50 dark:bg-[#0b1121]/80 transition-all duration-300">
-                
-                <!-- Header -->
-                <div class="h-14 flex items-center justify-between px-5 shrink-0">
-                    <h2 class="font-sans font-bold text-[13px] uppercase tracking-wide opacity-80 text-slate-800 dark:text-slate-200 select-none truncate flex-1" :title="currentCategoryName">{{ currentCategoryName }}</h2>
-                </div>
-
-                <!-- Search -->
-                <div class="px-5 py-2 shrink-0">
-                    <div class="relative group">
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-[18px] group-focus-within:text-indigo-500 transition-colors">search</span>
-                        <input 
-                            type="text" 
-                            v-model="searchQuery" 
-                            placeholder="Search docs..."
-                            class="w-full h-9 bg-slate-100 dark:bg-white/5 border-none rounded-lg pl-9 pr-3 text-sm focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-slate-400 text-slate-700 dark:text-slate-200"
-                        >
-                    </div>
-                </div>
-
-                <!-- Docs List -->
-                <div class="flex-1 overflow-y-auto custom-scrollbar px-3 font-sans">
-                    <div v-if="filteredDocs.length === 0" class="flex flex-col items-center justify-center h-full text-center px-6 opacity-60">
-                        <span class="material-symbols-outlined text-4xl mb-2 text-slate-300">description</span>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">No documentation found</p>
-                    </div>
-
-                    <div v-else class="space-y-1 py-2">
-                        <Link 
-                            v-for="doc in filteredDocs" 
-                            :key="doc.name"
-                            :href="selectedCategory ? route('docs.show', { path: doc.name, category: selectedCategory }) : route('docs.show', { path: doc.name })"
-                            class="block group p-3 rounded-lg cursor-pointer transition-all duration-200"
-                            :class="currentPath === doc.name 
-                                ? 'bg-white dark:bg-white/10 shadow-md ring-1 ring-black/5 dark:ring-white/5 z-10' 
-                                : 'hover:bg-white/60 dark:hover:bg-white/5 hover:shadow-sm'"
-                        >
-                            <h3 class="font-medium text-[13px] tracking-tight text-slate-800 dark:text-white line-clamp-2 mb-1.5 leading-snug"
-                                :class="{'text-indigo-600 dark:text-indigo-400': currentPath === doc.name}"
-                            >
-                                {{ doc.title }}
-                            </h3>
-                            
-                            <div class="flex items-center gap-2 mt-2 text-[11px] text-slate-400 font-medium">
-                                <span class="material-symbols-outlined text-[14px] opacity-70">folder_open</span> 
-                                {{ doc.category }}
-                            </div>
-                        </Link>
-                    </div>
-                </div>
+        <div class="h-screen flex text-slate-800 dark:text-white bg-slate-50 dark:bg-[#0F172A] transition-colors duration-200 font-sans overflow-hidden relative">
+            
+            <!-- Noise Overlay (Subtle) -->
+            <div class="fixed inset-0 z-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none"
+                 :style="noiseOverlayStyle">
             </div>
 
-            <!-- 3. RIGHT PANEL: Doc Reader -->
-            <main class="flex-1 flex flex-col bg-slate-50 dark:bg-[#0F172A] relative transition-all duration-300 overflow-hidden border-l border-slate-100 dark:border-white/5">
-                
-                <!-- Doc Reader -->
-                <div class="flex-1 overflow-y-auto custom-scrollbar">
-                    <article class="w-full max-w-7xl px-8 py-10 md:px-12 pb-40 xl:pr-[280px]">
-                        <!-- Breadcrumbs -->
-                        <nav class="flex flex-wrap gap-2 items-center text-xs mb-8 text-slate-400 font-sans tracking-wide">
-                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('home')">Home</Link>
-                            <span class="text-slate-300">/</span>
-                            <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('docs.index')">Docs</Link>
-                            <span class="text-slate-300">/</span>
-                            <span class="text-indigo-500 font-medium">{{ displayName }}</span>
-                        </nav>
+            <!-- Ambient Background (Subtle) -->
+            <div class="fixed inset-0 overflow-hidden pointer-events-none z-0"
+                 style="background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);">
+                 <!-- Primary Blob (Top Left) -->
+                 <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full animate-pulse"></div>
+                 <!-- Accent Blob (Bottom Right) -->
+                 <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-500/5 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
+            </div>
 
-                        <!-- Doc Header -->
-                        <div class="mb-10 border-b border-slate-100 dark:border-white/5 pb-8">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
-                                    Documentation
-                                </span>
-                            </div>
-                            <h1 class="font-sans text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight mb-2">
-                                {{ displayName }}
-                            </h1>
+            <!-- App Layout -->
+            <div class="relative z-10 flex w-full h-full max-w-[1920px] mx-auto overflow-hidden">
+
+                <!-- 1. LEFT SIDEBAR: Categories Navigation -->
+                <aside class="w-[260px] flex flex-col bg-slate-50/50 dark:bg-[#0b1121] transition-all duration-300">
+                    <!-- Brand -->
+                    <div class="h-16 flex items-center px-4 gap-3 shrink-0">
+                        <div class="size-8 rounded-lg bg-indigo-500 flex items-center justify-center text-white shadow-sm">
+                            <span class="material-symbols-outlined text-[20px]">description</span>
+                        </div>
+                        <span class="font-sans font-bold text-base tracking-tight text-slate-800 dark:text-white">Documentation</span>
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="flex-1 px-3 space-y-0.5 overflow-y-auto custom-scrollbar">
+                        <!-- All Docs -->
+                        <button 
+                             @click="selectCategory(null)"
+                             class="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm group text-left"
+                             :class="selectedCategory === null 
+                                ? 'bg-white dark:bg-white/5 text-slate-900 dark:text-white font-medium shadow-sm ring-1 ring-black/5 dark:ring-white/5' 
+                                : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200'"
+                        >
+                            <span class="material-symbols-outlined text-[20px]">library_books</span>
+                            <span class="flex-1">All Documentation</span>
+                            <span class="font-mono text-[10px] text-slate-400 opacity-80">{{ allDocs.length }}</span>
+                        </button>
+
+                        <!-- Spaces Header -->
+                        <div class="px-3 mt-8 mb-2">
+                            <span class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider font-sans">Categories</span>
                         </div>
 
-                        <!-- Doc Content -->
-                        <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-headings:font-bold prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-a:text-indigo-500 hover:prose-a:text-indigo-600" v-html="renderedHtml" @click="handleContentClick"></div>
-                    </article>
+                        <!-- Categories List -->
+                        <button 
+                            v-for="category in categories" 
+                            :key="category"
+                            @click="selectCategory(category)"
+                            class="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm group text-left relative"
+                            :class="selectedCategory === category 
+                                 ? 'bg-white dark:bg-white/10 ring-1 ring-indigo-500 text-slate-900 dark:text-white font-medium shadow-sm' 
+                                : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-700 dark:hover:text-slate-300'"
+                        >
+                            <span class="material-symbols-outlined text-[18px] shrink-0" :class="selectedCategory === category ? 'text-indigo-500 dark:text-indigo-400' : 'text-slate-400 opacity-80'">folder</span>
+                            <span class="flex-1 truncate">{{ category }}</span>
+                        </button>
+                    </nav>
+                </aside>
+
+                <!-- 2. MIDDLE COLUMN: Docs List -->
+                <div class="w-[320px] flex flex-col bg-white/50 dark:bg-[#0b1121]/80 transition-all duration-300">
+                    
+                    <!-- Header -->
+                    <div class="h-14 flex items-center justify-between px-5 shrink-0">
+                        <h2 class="font-sans font-bold text-[13px] uppercase tracking-wide opacity-80 text-slate-800 dark:text-slate-200 select-none truncate flex-1" :title="currentCategoryName">{{ currentCategoryName }}</h2>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="px-5 py-2 shrink-0">
+                        <div class="relative group">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-[18px] group-focus-within:text-indigo-500 transition-colors">search</span>
+                            <input 
+                                type="text" 
+                                name="search_docs"
+                                id="search_docs"
+                                v-model="searchQuery" 
+                                placeholder="Search docs..."
+                                class="w-full h-9 bg-slate-100 dark:bg-white/5 border-none rounded-lg pl-9 pr-3 text-sm focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-slate-400 text-slate-700 dark:text-slate-200"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Docs List -->
+                    <div class="flex-1 overflow-y-auto custom-scrollbar px-3 font-sans">
+                        <div v-if="filteredDocs.length === 0" class="flex flex-col items-center justify-center h-full text-center px-6 opacity-60">
+                            <span class="material-symbols-outlined text-4xl mb-2 text-slate-300">description</span>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">No documentation found</p>
+                        </div>
+
+                        <div v-else class="space-y-1 py-2">
+                            <Link 
+                                v-for="doc in filteredDocs" 
+                                :key="doc.name"
+                                :href="selectedCategory ? route('docs.show', { path: doc.name, category: selectedCategory }) : route('docs.show', { path: doc.name })"
+                                class="block group p-3 rounded-lg cursor-pointer transition-all duration-200"
+                                :class="currentPath === doc.name 
+                                    ? 'bg-white dark:bg-white/10 shadow-md ring-1 ring-black/5 dark:ring-white/5 z-10' 
+                                    : 'hover:bg-white/60 dark:hover:bg-white/5 hover:shadow-sm'"
+                            >
+                                <h3 class="font-medium text-[13px] tracking-tight text-slate-800 dark:text-white line-clamp-2 mb-1.5 leading-snug"
+                                    :class="{'text-indigo-600 dark:text-indigo-400': currentPath === doc.name}"
+                                >
+                                    {{ doc.title }}
+                                </h3>
+                                
+                                <div class="flex items-center gap-2 mt-2 text-[11px] text-slate-400 font-medium">
+                                    <span class="material-symbols-outlined text-[14px] opacity-70">folder_open</span> 
+                                    {{ doc.category }}
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-            </main>
+
+                <!-- 3. RIGHT PANEL: Doc Reader -->
+                <main class="flex-1 flex flex-col bg-slate-50 dark:bg-[#0F172A] relative transition-all duration-300 overflow-hidden border-l border-slate-100 dark:border-white/5">
+                    
+                    <!-- Doc Reader -->
+                    <div class="flex-1 overflow-y-auto custom-scrollbar">
+                        <article class="w-full max-w-7xl px-8 py-10 md:px-12 pb-40 xl:pr-[280px]">
+                            <!-- Breadcrumbs -->
+                            <nav class="flex flex-wrap gap-2 items-center text-xs mb-8 text-slate-400 font-sans tracking-wide">
+                                <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('home')">Home</Link>
+                                <span class="text-slate-300">/</span>
+                                <Link class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" :href="route('docs.index')">Docs</Link>
+                                <span class="text-slate-300">/</span>
+                                <span class="text-indigo-500 font-medium">{{ displayName }}</span>
+                            </nav>
+
+                            <!-- Doc Header -->
+                            <div class="mb-10 border-b border-slate-100 dark:border-white/5 pb-8">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
+                                        Documentation
+                                    </span>
+                                </div>
+                                <h1 class="font-sans text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight mb-2">
+                                    {{ displayName }}
+                                </h1>
+                            </div>
+
+                            <!-- Doc Content -->
+                            <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-headings:font-bold prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-a:text-indigo-500 hover:prose-a:text-indigo-600" v-html="renderedHtml" @click="handleContentClick"></div>
+                        </article>
+                    </div>
+                </main>
+            </div>
         </div>
+        <!-- Watermark -->
+        <!-- Watermark -->
+        <img src="/images/logo_tarakreasi.png" class="fixed bottom-6 right-6 h-16 w-auto z-[100] pointer-events-none transition-all duration-300 dark:bg-white dark:rounded-xl dark:p-2 dark:shadow-lg shadow-sm opacity-90 hover:opacity-100">
     </div>
-    <!-- Watermark -->
-    <!-- Watermark -->
-    <img src="/images/logo_tarakreasi.png" class="fixed bottom-6 right-6 h-16 w-auto z-[100] pointer-events-none transition-all duration-300 dark:bg-white dark:rounded-xl dark:p-2 dark:shadow-lg shadow-sm opacity-90 hover:opacity-100">
 </template>
 
 <style scoped>

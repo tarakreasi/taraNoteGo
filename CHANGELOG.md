@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - Sprint 6 (Bug Fixes & Refinement)
+### Fixed
+- **UI Navigation**: Resolved stacking issue by wrapping page templates in single root element.
+- **Notebooks**: Fixed `unique constraint` error by auto-generating slugs.
+- **Frontend**: Fixed `route()` helper error by adding global mixin.
+- **Assets**: Replaced broken placeholder images with `placehold.co`.
+- **Accessibility**: Added missing form attributes (`id`/`name`) to inputs.
+
 ## [Unreleased] - Sprint 5 (Polish & Deployment)
 ### Added
 - Frontend `route()` helper (Ziggy-lite).

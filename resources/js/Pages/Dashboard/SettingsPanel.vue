@@ -132,7 +132,7 @@ const handleAvatarUpload = async (event) => {
                 <div class="p-6 flex flex-col items-center border-b border-gray-200 dark:border-white/5 mb-2">
                     <div class="relative group cursor-pointer" @click="selectedPage = 'profile'">
                         <div class="size-20 rounded-full bg-cover bg-center ring-4 ring-white dark:ring-white/10 shadow-xl transition-transform group-hover:scale-105"
-                             :style="{ backgroundImage: `url(${localUser.avatar || 'https://via.placeholder.com/150'})` }">
+                             :style="{ backgroundImage: `url(${localUser.avatar || 'https://placehold.co/150'})` }">
                         </div>
                         <div class="absolute bottom-0 right-0 p-1.5 bg-primary rounded-full text-white shadow-lg border-2 border-white dark:border-[#0F172A]">
                             <span class="material-symbols-outlined text-[14px] font-bold block">edit</span>
@@ -202,7 +202,7 @@ const handleAvatarUpload = async (event) => {
                                     <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Avatar URL</label>
                                     <div class="flex gap-4 items-center">
                                          <input v-model="localUser.avatar" type="text" class="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="https://...">
-                                         <div class="size-10 rounded-full bg-cover bg-center shrink-0 border border-gray-200 dark:border-white/10" :style="{ backgroundImage: `url(${localUser.avatar || 'https://via.placeholder.com/150'})` }"></div>
+                                         <div class="size-10 rounded-full bg-cover bg-center shrink-0 border border-gray-200 dark:border-white/10" :style="{ backgroundImage: `url(${localUser.avatar || 'https://placehold.co/150'})` }"></div>
                                          
                                          <!-- Upload Button -->
                                          <div class="relative">

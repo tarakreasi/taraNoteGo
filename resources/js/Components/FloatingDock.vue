@@ -19,27 +19,27 @@ const navItems = computed(() => [
     {
         name: 'Home',
         icon: 'home',
-        route: '/',
+        route: route('home'),
         active: page.url === '/' || (page.url.startsWith('/taraNote') && !page.url.includes('/docs')),
     },
     {
         name: 'Dashboard',
         icon: 'dashboard',
-        route: '/dashboard',
+        route: route('dashboard'),
         active: page.url.startsWith('/dashboard'),
         show: !!user.value,
     },
     {
         name: 'Login',
         icon: 'login',
-        route: '/login',
+        route: route('login.view'),
         active: page.url.startsWith('/login'),
         show: !user.value,
     },
     {
         name: 'Docs',
         icon: 'menu_book',
-        route: '/docs',
+        route: route('docs.index'),
         active: page.url.includes('/docs'),
     }
 ]);

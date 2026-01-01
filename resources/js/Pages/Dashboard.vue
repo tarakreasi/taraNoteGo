@@ -316,83 +316,85 @@ const noiseOverlayStyle = {
 </script>
 
 <template>
-    <Head title="Dashboard" />
-    <FloatingDock />
+    <div>
+        <Head title="Dashboard" />
+        <FloatingDock />
 
-    <div class="min-h-screen bg-slate-50 dark:bg-[#0B1121] transition-colors duration-300 relative overflow-hidden flex flex-col h-screen">
-        
-        <!-- Watermark -->
-        <!-- Watermark -->
-        <img src="/images/logo_tarakreasi.png" class="fixed bottom-6 right-6 h-16 w-auto z-[100] pointer-events-none transition-all duration-300 dark:bg-white dark:rounded-xl dark:p-2 dark:shadow-lg shadow-sm opacity-90 hover:opacity-100">
-        
-        <!-- Noise Overlay (Subtle) -->
-        <div class="fixed inset-0 z-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none"
-             :style="noiseOverlayStyle">
-        </div>
+        <div class="min-h-screen bg-slate-50 dark:bg-[#0B1121] transition-colors duration-300 relative overflow-hidden flex flex-col h-screen">
+            
+            <!-- Watermark -->
+            <!-- Watermark -->
+            <img src="/images/logo_tarakreasi.png" class="fixed bottom-6 right-6 h-16 w-auto z-[100] pointer-events-none transition-all duration-300 dark:bg-white dark:rounded-xl dark:p-2 dark:shadow-lg shadow-sm opacity-90 hover:opacity-100">
+            
+            <!-- Noise Overlay (Subtle) -->
+            <div class="fixed inset-0 z-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none"
+                 :style="noiseOverlayStyle">
+            </div>
 
-        <!-- Ambient Background (Subtle) -->
-        <div class="fixed inset-0 overflow-hidden pointer-events-none z-0"
-             style="background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);">
-             <!-- Primary Blob (Top Left) -->
-             <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full animate-pulse"></div>
-             <!-- Accent Blob (Bottom Right) -->
-             <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-500/5 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
-        </div>
+            <!-- Ambient Background (Subtle) -->
+            <div class="fixed inset-0 overflow-hidden pointer-events-none z-0"
+                 style="background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);">
+                 <!-- Primary Blob (Top Left) -->
+                 <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full animate-pulse"></div>
+                 <!-- Accent Blob (Bottom Right) -->
+                 <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-500/5 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
+            </div>
 
-        <!-- App Layout -->
-        <div class="relative z-10 flex w-full h-full max-w-[1920px] mx-auto overflow-hidden">
+            <!-- App Layout -->
+            <div class="relative z-10 flex w-full h-full max-w-[1920px] mx-auto overflow-hidden">
 
-            <!-- 1. LEFT SIDEBAR -->
-            <Sidebar 
-                ref="sidebarRef"
-                :notebooks="notebooks"
-                :selected-notebook-id="selectedNotebookId"
-                :view-mode="viewMode"
-                :notebooks-loading="notebooksLoading"
-                @update:view-mode="viewMode = $event"
-                @select-notebook="onSelectNotebook"
-                @create-notebook="handleCreateNotebook"
-                @rename-notebook="handleRenameNotebook"
-                @delete-notebook="handleDeleteNotebook"
-            />
-
-            <!-- 2. MIDDLE COLUMN -->
-            <NoteList 
-                v-if="viewMode === 'EDITOR'"
-                :notes="notes"
-                :selected-note-id="selectedNote?.id"
-                :search-query="searchQuery"
-                :filter-status="filterStatus"
-                :current-notebook-name="currentNotebookName"
-                :is-loading="isLoading"
-                @update:search-query="searchQuery = $event"
-                @update:filter-status="onSetFilter"
-                @select-note="handleSelectNote"
-                @create-page="handleCreatePage"
-                @request-create-space="handleRequestCreateSpace"
-                @rename-note="handleRenameNote"
-                @delete-note="handleDeleteNote"
-            />
-
-            <!-- 3. MAIN AREA -->
-            <main v-if="viewMode === 'SETTINGS'" class="flex-1 flex flex-col bg-white/50 dark:bg-[#0F172A]/50 relative transition-all duration-300 backdrop-blur-sm">
-                <SettingsPanel 
-                    :user="$page.props.auth.user"
-                    :save-status="saveStatus"
-                    @close="viewMode = 'EDITOR'" 
-                    @save-profile="handleSaveProfile"
+                <!-- 1. LEFT SIDEBAR -->
+                <Sidebar 
+                    ref="sidebarRef"
+                    :notebooks="notebooks"
+                    :selected-notebook-id="selectedNotebookId"
+                    :view-mode="viewMode"
+                    :notebooks-loading="notebooksLoading"
+                    @update:view-mode="viewMode = $event"
+                    @select-notebook="onSelectNotebook"
+                    @create-notebook="handleCreateNotebook"
+                    @rename-notebook="handleRenameNotebook"
+                    @delete-notebook="handleDeleteNotebook"
                 />
-            </main>
 
-            <EditorSection 
-                v-else
-                :note="selectedNote"
-                :save-status="saveStatus"
-                @save="handleSaveNote"
-                @delete="handleDeleteNote"
-                @request-create-space="handleRequestCreateSpace"
-            />
+                <!-- 2. MIDDLE COLUMN -->
+                <NoteList 
+                    v-if="viewMode === 'EDITOR'"
+                    :notes="notes"
+                    :selected-note-id="selectedNote?.id"
+                    :search-query="searchQuery"
+                    :filter-status="filterStatus"
+                    :current-notebook-name="currentNotebookName"
+                    :is-loading="isLoading"
+                    @update:search-query="searchQuery = $event"
+                    @update:filter-status="onSetFilter"
+                    @select-note="handleSelectNote"
+                    @create-page="handleCreatePage"
+                    @request-create-space="handleRequestCreateSpace"
+                    @rename-note="handleRenameNote"
+                    @delete-note="handleDeleteNote"
+                />
 
+                <!-- 3. MAIN AREA -->
+                <main v-if="viewMode === 'SETTINGS'" class="flex-1 flex flex-col bg-white/50 dark:bg-[#0F172A]/50 relative transition-all duration-300 backdrop-blur-sm">
+                    <SettingsPanel 
+                        :user="$page.props.auth.user"
+                        :save-status="saveStatus"
+                        @close="viewMode = 'EDITOR'" 
+                        @save-profile="handleSaveProfile"
+                    />
+                </main>
+
+                <EditorSection 
+                    v-else
+                    :note="selectedNote"
+                    :save-status="saveStatus"
+                    @save="handleSaveNote"
+                    @delete="handleDeleteNote"
+                    @request-create-space="handleRequestCreateSpace"
+                />
+
+            </div>
         </div>
     </div>
 </template>

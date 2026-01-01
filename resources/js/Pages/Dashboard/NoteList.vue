@@ -138,6 +138,8 @@ const vFocus = {
                 <input 
                     ref="searchInput"
                     type="text" 
+                    name="search_notes"
+                    id="search_notes"
                     :value="searchQuery"
                     @input="$emit('update:searchQuery', $event.target.value)"
                     placeholder="Search..."
