@@ -1,0 +1,46 @@
+{
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "start": "concurrently \"php artisan serve\" \"npm run dev\""
+    },
+    "dependencies": {
+        "@inertiajs/vue3": "^1.0.0",
+        "grapesjs": "^0.22.14",
+        "grapesjs-blocks-basic": "^1.0.2",
+        "grapesjs-preset-webpage": "^1.0.3",
+        "grapesjs-swiper-slider": "^0.0.5",
+        "isomorphic-dompurify": "^2.34.0",
+        "or": "^0.2.0",
+        "quill": "^2.0.3",
+        "swiper": "^12.0.3",
+        "vue": "^3.4.0"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.3",
+        "@tailwindcss/typography": "^0.5.19",
+        "@tiptap/extension-bubble-menu": "^2.27.1",
+        "@tiptap/extension-dropcursor": "^2.27.1",
+        "@tiptap/extension-focus": "^2.27.1",
+        "@tiptap/extension-image": "^2.27.1",
+        "@tiptap/extension-placeholder": "^2.27.1",
+        "@tiptap/extension-task-item": "^2.27.1",
+        "@tiptap/extension-task-list": "^2.27.1",
+        "@tiptap/starter-kit": "^2.27.1",
+        "@tiptap/suggestion": "^2.27.1",
+        "@tiptap/vue-3": "^2.27.1",
+        "@vitejs/plugin-vue": "^5.0.0",
+        "autoprefixer": "^10.4.12",
+        "axios": "^1.6.4",
+        "concurrently": "^9.2.1",
+        "laravel-vite-plugin": "^1.0.0",
+        "postcss": "^8.4.31",
+        "puppeteer": "^24.34.0",
+        "remixicon": "^4.7.0",
+        "tailwindcss": "^3.4.0",
+        "vite": "^6.0.0"
+    }
+}
