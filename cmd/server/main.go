@@ -82,6 +82,10 @@ func main() {
 	// Uploads
 	api.Post("/upload", handlers.UploadImage)
 
+	// Settings
+	api.Get("/settings", handlers.ListSettings)
+	api.Post("/settings", handlers.UpdateSettings)
+
 	// Start server
 	port := os.Getenv("PORT")
 	if port == "" {
