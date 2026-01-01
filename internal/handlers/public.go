@@ -2,10 +2,26 @@ package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/tarakreasi/taraNote_go/internal/config"
 	"github.com/tarakreasi/taraNote_go/internal/database"
 	"github.com/tarakreasi/taraNote_go/internal/models"
 	"github.com/tarakreasi/taraNote_go/internal/utils"
 )
+
+// Helper to get authenticated user
+func getAuthUser(c *fiber.Ctx) *models.User {
+	sess, _ := config.Store.Get(c)
+	if sess != nil {
+		userID := sess.Get("user_id")
+		if userID != nil {
+			var user models.User
+			if err := database.DB.First(&user, userID).Error; err == nil {
+				return &user
+			}
+		}
+	}
+	return nil
+}
 
 // PublicList renders the home page with published articles
 func PublicList(c *fiber.Ctx) error {
@@ -24,10 +40,17 @@ func PublicList(c *fiber.Ctx) error {
 	var notebooks []models.Notebook
 	database.DB.Find(&notebooks)
 
-	return utils.RenderInertia(c, "TaraNote", fiber.Map{
+	props := fiber.Map{
 		"notes":     notes,
 		"notebooks": notebooks,
-	})
+	}
+
+	// Add Auth User
+	if user := getAuthUser(c); user != nil {
+		props["auth"] = fiber.Map{"user": user}
+	}
+
+	return utils.RenderInertia(c, "TaraNote", props)
 }
 
 // PublicShow renders a single article by slug
@@ -48,10 +71,17 @@ func PublicShow(c *fiber.Ctx) error {
 		return c.Status(404).SendString("Article not found")
 	}
 
-	return utils.RenderInertia(c, "Docs", fiber.Map{
+	props := fiber.Map{
 		"article":  note,
 		"settings": fiber.Map{},
-	})
+	}
+
+	// Add Auth User
+	if user := getAuthUser(c); user != nil {
+		props["auth"] = fiber.Map{"user": user}
+	}
+
+	return utils.RenderInertia(c, "Docs", props)
 }
 
 // TaraNoteBrowser renders the 3-column internal browser
@@ -71,8 +101,15 @@ func TaraNoteBrowser(c *fiber.Ctx) error {
 		Group("notebooks.id").
 		Find(&notebooks)
 
-	return utils.RenderInertia(c, "TaraNote", fiber.Map{
+	props := fiber.Map{
 		"notes":     notes,
 		"notebooks": notebooks,
-	})
+	}
+
+	// Add Auth User
+	if user := getAuthUser(c); user != nil {
+		props["auth"] = fiber.Map{"user": user}
+	}
+
+	return utils.RenderInertia(c, "TaraNote", props)
 }
