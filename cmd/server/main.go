@@ -8,6 +8,7 @@ import (
 	"github.com/tarakreasi/taraNote_go/internal/database"
 	"github.com/tarakreasi/taraNote_go/internal/handlers"
 	"github.com/tarakreasi/taraNote_go/internal/middleware"
+	"github.com/tarakreasi/taraNote_go/internal/models"
 	"github.com/tarakreasi/taraNote_go/internal/utils"
 
 	"github.com/gofiber/fiber/v2"
@@ -66,9 +67,20 @@ func main() {
 
 	// Protected Routes
 	app.Get("/dashboard", middleware.Protected, func(c *fiber.Ctx) error {
+		// Get User ID from session
+		sess, _ := config.Store.Get(c)
+		userID := sess.Get("user_id")
+
+		var user models.User
+		if err := database.DB.First(&user, userID).Error; err != nil {
+			return c.Redirect("/login")
+		}
+
 		return c.Render("app", fiber.Map{
 			"InertiaJSON": string(utils.CreateInertiaPage(c, "Dashboard", fiber.Map{
-				"auth": fiber.Map{"user": fiber.Map{"name": "Test User"}}, // Mock User
+				"auth": fiber.Map{
+					"user": user,
+				},
 			})),
 		})
 	})
