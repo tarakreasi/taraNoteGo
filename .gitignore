@@ -1,32 +1,23 @@
+
+# Binaries
+bin/
+
+# Docs (Ignore sprint artifacts, but keep prompt_ref)
+docs/sprint/
+!docs/sprint/prompt_ref.md
+
 # Go
-/main
-/taraNote_go
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-*.test
-*.out
-vendor/
+/server
+/migrate
 
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
-public/build/
-public/hot
-
-# Environment
-.env
-.env.backup
-.env.production
-
-# Database
-*.sqlite
-*.db
+# Vite
+public/build
+node_modules
+*.tsbuildinfo
 
 # OS
 .DS_Store
 Thumbs.db
-docs/sprint/
+
+# Env
+.env
