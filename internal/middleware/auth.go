@@ -13,6 +13,13 @@ func Protected(c *fiber.Ctx) error {
 	}
 
 	if sess.Get("user_id") == nil {
+		// If API request, return 401
+		if c.Path()[:4] == "/api" || c.Get("Content-Type") == "application/json" {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"error": "Unauthorized",
+			})
+		}
+		// Else, redirect to login
 		return c.Redirect("/login")
 	}
 
