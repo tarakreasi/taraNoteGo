@@ -19,8 +19,7 @@
 
         <!-- Scripts -->
         <!-- In dev, Vite server is running on 5173. In prod, we serve built assets -->
-        <script type="module" src="http://localhost:5173/@vite/client"></script>
-        <script type="module" src="http://localhost:5173/resources/js/app.js"></script>
+        {{ .ViteTags }}
     </head>
     <body class="font-sans antialiased">
         <div id="app" data-page="{{ .InertiaJSON }}"></div>

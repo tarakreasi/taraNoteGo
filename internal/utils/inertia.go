@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"html/template"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -34,7 +35,12 @@ func RenderInertia(c *fiber.Ctx, component string, props fiber.Map) error {
 
 	// Otherwise render the full HTML page
 	c.Set("Content-Type", "text/html; charset=utf-8")
+
+	// Get Vite tags (Safe HTML)
+	viteTags := GetViteTags()
+
 	return c.Render("app", fiber.Map{
 		"InertiaJSON": string(CreateInertiaPage(c, component, props)),
+		"ViteTags":    template.HTML(viteTags),
 	})
 }
