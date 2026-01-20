@@ -128,9 +128,13 @@ npm ci
 # 3. Database Hydration (Migrate + Seed)
 make migrate
 
-# 4. Build & Run
-npm run build
+# 4. Build & Run (Development)
 make run
+
+# 5. Create Distribution Bundle (Linux/Windows)
+make dist
+# Output: `dist/linux/` and `dist/windows/` folders ready for deployment.
+# Detailed instructions: See "Deployment" section below.
 ```
 
 ---
@@ -155,8 +159,23 @@ taraNote_go/
 
 ---
 
-## 7. Docker Deployment
+---
 
+## 7. Deployment
+
+### Using Distribution Bundle (Recommended)
+To run the application on a server or another machine without installing Go/Node.js:
+
+1.  Run `make dist` on your dev machine.
+2.  Copy the `dist/linux` (or `windows`) folder to the target machine.
+3.  Rename `.env.example` to `.env` inside that folder and configure it.
+4.  Run the executable:
+    ```bash
+    ./server  # Linux
+    server.exe # Windows
+    ```
+
+### Docker Deployment
 A multi-stage `Dockerfile` is included for lightweight deployment (Alpine Linux), reflecting my preference for clean production environments.
 
 ```bash
